@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jesus in the Gospels — Origin, Destination & Purpose</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg2: #f9f7f4;
+    --bg3: #f2efe9;
+    --bg4: #ebe7df;
+    --border: rgba(100,80,50,0.12);
+    --border2: rgba(100,80,50,0.25);
+    --gold: #8a6820;
+    --gold-light: #6b5018;
+    --gold-dim: rgba(138,104,32,0.08);
+    --text: #1e1a14;
+    --text2: #5a4e3a;
+    --text3: #9a8870;
+    --blue: #1e5a8a;
+    --blue-bg: rgba(30,90,138,0.07);
+    --blue-text: #1a4e7a;
+    --green: #2a6e30;
+    --green-bg: rgba(42,110,48,0.07);
+    --green-text: #245a28;
+    --amber: #7a5a10;
+    --amber-bg: rgba(122,90,16,0.08);
+    --amber-text: #6a4e0e;
+    --purple: #5a3a8a;
+    --purple-bg: rgba(90,58,138,0.07);
+    --purple-text: #4a2e78;
+    --serif: 'EB Garamond', Georgia, serif;
+    --body: 'Spectral', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Subtle parchment texture via SVG noise */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    padding: 72px 0 48px;
+    border-bottom: 1px solid var(--border2);
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .header-ornament {
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+
+  header h1 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 500;
+    color: var(--gold-light);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  header h1 em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .subtitle {
+    font-family: var(--body);
+    font-size: 15px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .header-line {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
+    justify-content: center;
+  }
+
+  .header-line::before, .header-line::after {
+    content: '';
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.4;
+  }
+
+  .passage-count {
+    font-size: 13px;
+    color: var(--text3);
+    font-family: var(--body);
+    font-style: italic;
+  }
+
+  /* Controls */
+  .controls-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    margin: 0 -24px 36px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .search-wrap {
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .search-wrap svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text3);
+    pointer-events: none;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 9px 12px 9px 38px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s;
+  }
+
+  input[type="text"]:focus {
+    border-color: var(--border2);
+  }
+
+  input[type="text"]::placeholder { color: var(--text3); }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .filter-label {
+    font-size: 11px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-right: 4px;
+  }
+
+  .btn {
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text3);
+    font-family: var(--body);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .15s;
+    font-style: italic;
+  }
+
+  .btn:hover { border-color: var(--border2); color: var(--text2); }
+
+  .btn.active-all { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+  .btn.active-origin { border-color: var(--blue); color: var(--blue-text); background: var(--blue-bg); }
+  .btn.active-dest { border-color: var(--green); color: var(--green-text); background: var(--green-bg); }
+  .btn.active-purpose { border-color: var(--amber); color: var(--amber-text); background: var(--amber-bg); }
+  .btn.active-combined { border-color: var(--purple); color: var(--purple-text); background: var(--purple-bg); }
+
+  .divider-small { width: 1px; height: 16px; background: var(--border); flex-shrink: 0; }
+
+  /* Count */
+  .result-count {
+    font-size: 12px;
+    color: var(--text3);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  /* Gospel group header */
+  .gospel-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0 16px;
+  }
+
+  .gospel-heading:first-of-type { margin-top: 0; }
+
+  .gospel-heading h2 {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .gospel-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Entry card */
+  .entry {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 10px;
+    transition: border-color .2s;
+  }
+
+  .entry:hover { border-color: var(--border2); }
+
+  .entry-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .ref {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+  }
+
+  .tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: var(--body);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .tag-origin { background: var(--blue-bg); color: var(--blue-text); border: 1px solid rgba(74,127,165,0.25); }
+  .tag-dest   { background: var(--green-bg); color: var(--green-text); border: 1px solid rgba(90,138,96,0.25); }
+  .tag-purpose{ background: var(--amber-bg); color: var(--amber-text); border: 1px solid rgba(154,122,53,0.3); }
+  .tag-combined{ background: var(--purple-bg); color: var(--purple-text); border: 1px solid rgba(122,90,154,0.25); }
+
+  .greek-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.65;
+    margin-bottom: 8px;
+    border-left: 2px solid var(--border2);
+    padding-left: 14px;
+  }
+
+  .english-text {
+    font-family: var(--body);
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .note-text {
+    font-size: 12px;
+    color: var(--text3);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* Empty state */
+  .empty {
+    text-align: center;
+    padding: 48px 0;
+    color: var(--text3);
+    font-style: italic;
+    font-family: var(--serif);
+    font-size: 16px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 32px 0 0;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--text3);
+    font-style: italic;
+    line-height: 1.8;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .entry { padding: 16px; }
+    header { padding: 48px 0 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="header-ornament">✦ ✦ ✦</div>
+    <h1>Jesus in the Gospels<br><em>Origin, Destination &amp; Purpose</em></h1>
+    <p class="subtitle">An Exhaustive Reference — Greek Text &amp; Commentary</p>
+    <div class="header-line">
+      <span class="passage-count">35 passages · Matthew · Luke · John</span>
+    </div>
+  </header>
+
+  <div class="controls-wrap">
+    <div class="search-wrap">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="q" placeholder="Search reference, keyword, or Greek…" oninput="render()">
+    </div>
+    <div class="filters" id="type-filters">
+      <span class="filter-label">Type</span>
+      <button class="btn active-all" data-t="all" onclick="setType('all',this)">All</button>
+      <button class="btn" data-t="origin" onclick="setType('origin',this)">Origin</button>
+      <button class="btn" data-t="dest" onclick="setType('dest',this)">Destination</button>
+      <button class="btn" data-t="purpose" onclick="setType('purpose',this)">Purpose</button>
+      <div class="divider-small"></div>
+      <span class="filter-label">Gospel</span>
+      <button class="btn active-all" data-g="all" onclick="setGospel('all',this)">All</button>
+      <button class="btn" data-g="Matthew" onclick="setGospel('Matthew',this)">Matthew</button>
+      <button class="btn" data-g="Luke" onclick="setGospel('Luke',this)">Luke</button>
+      <button class="btn" data-g="John" onclick="setGospel('John',this)">John</button>
+    </div>
+  </div>
+
+  <div class="result-count" id="count"></div>
+  <div id="out"></div>
+
+  <footer>
+    <p>Greek text follows the Nestle-Aland 28th edition.<br>
+    Tag categories: <em>Origin</em> = whence He came · <em>Destination</em> = where He goes · <em>Purpose</em> = why He came.<br>
+    Passages spanning multiple categories carry multiple tags.</p>
+  </footer>
+
+</div>
+
+<script>
+const DATA = [
+  { ref:"Matt 5:17", gospel:"Matthew", tags:["purpose"],
+    greek:"Μὴ νομίσητε ὅτι ἦλθον καταλῦσαι τὸν νόμον ἢ τοὺς προφήτας· οὐκ ἦλθον καταλῦσαι ἀλλὰ πληρῶσαι.",
+    eng:"Do not think that I came to abolish the Law or the Prophets; I did not come to abolish but to fulfill.",
+    note:"ἦλθον (I came) + infinitive of purpose — fulfillment of Torah and Prophets." },
+  { ref:"Matt 9:13", gospel:"Matthew", tags:["purpose"],
+    greek:"οὐ γὰρ ἦλθον καλέσαι δικαίους ἀλλὰ ἁμαρτωλούς.",
+    eng:"For I did not come to call the righteous, but sinners.",
+    note:"ἦλθον + καλέσαι (to call) — mission directed to the lost." },
+  { ref:"Matt 10:34–35", gospel:"Matthew", tags:["purpose"],
+    greek:"Μὴ νομίσητε ὅτι ἦλθον βαλεῖν εἰρήνην ἐπὶ τὴν γῆν· οὐκ ἦλθον βαλεῖν εἰρήνην ἀλλὰ μάχαιραν.",
+    eng:"Do not think that I came to bring peace on the earth; I did not come to bring peace, but a sword.",
+    note:"ἦλθον + βαλεῖν — coming brings division, not false peace." },
+  { ref:"Matt 20:28", gospel:"Matthew", tags:["purpose"],
+    greek:"ὥσπερ ὁ υἱὸς τοῦ ἀνθρώπου οὐκ ἦλθεν διακονηθῆναι ἀλλὰ διακονῆσαι καὶ δοῦναι τὴν ψυχὴν αὐτοῦ λύτρον ἀντὶ πολλῶν.",
+    eng:"Just as the Son of Man did not come to be served, but to serve, and to give His life a ransom for many.",
+    note:"λύτρον ἀντὶ πολλῶν — substitutionary ransom; core atonement statement." },
+  { ref:"Matt 26:64", gospel:"Matthew", tags:["dest"],
+    greek:"ἀπ᾽ ἄρτι ὄψεσθε τὸν υἱὸν τοῦ ἀνθρώπου καθήμενον ἐκ δεξιῶν τῆς δυνάμεως καὶ ἐρχόμενον ἐπὶ τῶν νεφελῶν τοῦ οὐρανοῦ.",
+    eng:"From now on you will see the Son of Man sitting at the right hand of Power, and coming on the clouds of heaven.",
+    note:"ἐρχόμενον — eschatological return; alludes to Dan 7:13." },
+  { ref:"Luke 4:43", gospel:"Luke", tags:["purpose"],
+    greek:"ὅτι καὶ ταῖς ἑτέραις πόλεσιν εὐαγγελίσασθαί με δεῖ τὴν βασιλείαν τοῦ θεοῦ· ὅτι ἐπὶ τοῦτο ἀπεστάλην.",
+    eng:"I must proclaim the good news of the kingdom of God to the other towns also, because I was sent for this purpose.",
+    note:"ἀπεστάλην (I was sent) — divine commissioning; passive indicates sending by the Father." },
+  { ref:"Luke 9:22", gospel:"Luke", tags:["dest"],
+    greek:"Τὸν υἱὸν τοῦ ἀνθρώπου δεῖ πολλὰ παθεῖν καὶ ἀποδοκιμασθῆναι… καὶ ἀποκτανθῆναι καὶ τῇ τρίτῃ ἡμέρᾳ ἐγερθῆναι.",
+    eng:"The Son of Man must suffer many things… be killed, and be raised up on the third day.",
+    note:"δεῖ (divine necessity) governs death and resurrection; first Passion prediction." },
+  { ref:"Luke 12:49–50", gospel:"Luke", tags:["purpose"],
+    greek:"Πῦρ ἦλθον βαλεῖν ἐπὶ τὴν γῆν… βάπτισμα δὲ ἔχω βαπτισθῆναι, καὶ πῶς συνέχομαι ἕως ὅτου τελεσθῇ.",
+    eng:"I came to cast fire on the earth… I have a baptism to be baptized with, and how distressed I am until it is accomplished!",
+    note:"βαπτισθῆναι = the cross; τελεσθῇ anticipates τετέλεσται (John 19:30)." },
+  { ref:"Luke 19:10", gospel:"Luke", tags:["purpose"],
+    greek:"ἦλθεν γὰρ ὁ υἱὸς τοῦ ἀνθρώπου ζητῆσαι καὶ σῶσαι τὸ ἀπολωλός.",
+    eng:"For the Son of Man has come to seek and to save that which was lost.",
+    note:"ζητῆσαι καὶ σῶσαι — dual infinitives of purpose; climax of the Zacchaeus account." },
+  { ref:"Luke 22:37", gospel:"Luke", tags:["purpose"],
+    greek:"τοῦτο τὸ γεγραμμένον δεῖ τελεσθῆναι ἐν ἐμοί· τὸ Καὶ μετὰ ἀνόμων ἐλογίσθη.",
+    eng:"This which is written must be fulfilled in Me: 'And He was numbered with transgressors.'",
+    note:"Isa 53:12 fulfilled in His person; δεῖ τελεσθῆναι — necessity of scriptural completion." },
+  { ref:"John 3:13", gospel:"John", tags:["origin"],
+    greek:"οὐδεὶς ἀναβέβηκεν εἰς τὸν οὐρανὸν εἰ μὴ ὁ ἐκ τοῦ οὐρανοῦ καταβάς, ὁ υἱὸς τοῦ ἀνθρώπου.",
+    eng:"No one has ascended into heaven but He who descended from heaven: the Son of Man.",
+    note:"καταβάς (having descended) — pre-existent heavenly origin; ἐκ τοῦ οὐρανοῦ = from heaven." },
+  { ref:"John 3:17", gospel:"John", tags:["purpose","origin"],
+    greek:"οὐ γὰρ ἀπέστειλεν ὁ θεὸς τὸν υἱὸν εἰς τὸν κόσμον ἵνα κρίνῃ τὸν κόσμον, ἀλλ᾽ ἵνα σωθῇ ὁ κόσμος δι᾽ αὐτοῦ.",
+    eng:"For God did not send the Son into the world to judge the world, but that the world might be saved through Him.",
+    note:"ἀπέστειλεν ὁ θεός = the Father as sender; salvation (σωθῇ) as purpose." },
+  { ref:"John 5:30", gospel:"John", tags:["origin","purpose"],
+    greek:"ὅτι καταβέβηκα ἀπὸ τοῦ οὐρανοῦ οὐχ ἵνα ποιῶ τὸ θέλημα τὸ ἐμὸν ἀλλὰ τὸ θέλημα τοῦ πέμψαντός με.",
+    eng:"For I have come down from heaven not to do My own will, but the will of Him who sent Me.",
+    note:"καταβέβηκα (perfect) — descent from heaven declared; πέμψαντός = the Sender (Father)." },
+  { ref:"John 6:38", gospel:"John", tags:["origin","purpose"],
+    greek:"ὅτι καταβέβηκα ἀπὸ τοῦ οὐρανοῦ οὐχ ἵνα ποιῶ τὸ θέλημα τὸ ἐμὸν ἀλλὰ τὸ θέλημα τοῦ πέμψαντός με.",
+    eng:"For I have come down from heaven not to do My own will, but the will of Him who sent Me.",
+    note:"Bread of Life Discourse — emphasis on the Father's will as the governing purpose of the mission." },
+  { ref:"John 6:41–42", gospel:"John", tags:["origin"],
+    greek:"ἐγώ εἰμι ὁ ἄρτος ὁ καταβὰς ἐκ τοῦ οὐρανοῦ.",
+    eng:"I am the bread that came down out of heaven.",
+    note:"Crowds murmur because they know His earthly family — He insists on heavenly origin nonetheless." },
+  { ref:"John 6:51", gospel:"John", tags:["origin","purpose"],
+    greek:"ἐγώ εἰμι ὁ ἄρτος ὁ ζῶν ὁ ἐκ τοῦ οὐρανοῦ καταβάς· ἐάν τις φάγῃ ἐκ τούτου τοῦ ἄρτου ζήσεται εἰς τὸν αἰῶνα.",
+    eng:"I am the living bread that came down out of heaven; if anyone eats of this bread, he will live forever.",
+    note:"Third statement of heavenly descent in the Bread of Life Discourse." },
+  { ref:"John 7:28–29", gospel:"John", tags:["origin"],
+    greek:"κἀμὲ οἴδατε καὶ οἴδατε πόθεν εἰμί· καὶ ἀπ᾽ ἐμαυτοῦ οὐκ ἐλήλυθα, ἀλλ᾽ ἔστιν ἀληθινὸς ὁ πέμψας με, ὃν ὑμεῖς οὐκ οἴδατε. ἐγὼ οἶδα αὐτόν, ὅτι παρ᾽ αὐτοῦ εἰμι κἀκεῖνός με ἀπέστειλεν.",
+    eng:"You know Me and know where I am from; I have not come of Myself, but He who sent Me is true, whom you do not know. I know Him, because I am from Him, and He sent Me.",
+    note:"παρ᾽ αὐτοῦ εἰμι (I am from Him) — origin is the Father; ἀπέστειλεν = He commissioned Me." },
+  { ref:"John 8:14", gospel:"John", tags:["origin","dest"],
+    greek:"ἐγὼ οἶδα πόθεν ἦλθον καὶ ποῦ ὑπάγω· ὑμεῖς δὲ οὐκ οἴδατε πόθεν ἔρχομαι ἢ ποῦ ὑπάγω.",
+    eng:"I know where I came from and where I am going; but you do not know where I come from or where I am going.",
+    note:"πόθεν ἦλθον / ποῦ ὑπάγω — clearest dual statement of both origin and destination in the Gospels." },
+  { ref:"John 8:23", gospel:"John", tags:["origin"],
+    greek:"ὑμεῖς ἐκ τῶν κάτω ἐστέ, ἐγὼ ἐκ τῶν ἄνω εἰμί· ὑμεῖς ἐκ τούτου τοῦ κόσμου ἐστέ, ἐγὼ οὐκ εἰμὶ ἐκ τοῦ κόσμου τούτου.",
+    eng:"You are from below, I am from above; you are of this world, I am not of this world.",
+    note:"ἐκ τῶν ἄνω (from above) vs. ἐκ τῶν κάτω — spatial metaphor for divine vs. earthly origin." },
+  { ref:"John 8:42", gospel:"John", tags:["origin","purpose"],
+    greek:"ἐγὼ γὰρ ἐκ τοῦ θεοῦ ἐξῆλθον καὶ ἥκω· οὐδὲ γὰρ ἀπ᾽ ἐμαυτοῦ ἐλήλυθα, ἀλλ᾽ ἐκεῖνός με ἀπέστειλεν.",
+    eng:"I proceeded forth and have come from God, for I have not even come on My own initiative, but He sent Me.",
+    note:"ἐκ τοῦ θεοῦ ἐξῆλθον (I came out from God) — intra-Trinitarian origin; ἀπέστειλεν = authoritative sending." },
+  { ref:"John 8:58", gospel:"John", tags:["origin"],
+    greek:"πρὶν Ἀβραὰμ γενέσθαι ἐγώ εἰμι.",
+    eng:"Before Abraham was born, I am.",
+    note:"ἐγώ εἰμι (I AM) — pre-existence declared; divine Name of Exod 3:14 claimed." },
+  { ref:"John 9:39", gospel:"John", tags:["purpose"],
+    greek:"εἰς κρίμα ἐγὼ εἰς τὸν κόσμον τοῦτον ἦλθον, ἵνα οἱ μὴ βλέποντες βλέπωσιν καὶ οἱ βλέποντες τυφλοὶ γένωνται.",
+    eng:"For judgment I came into this world, so that those who do not see may see, and that those who see may become blind.",
+    note:"εἰς κρίμα ἦλθον — purpose framed as judgment/revelation; ironic inversion of sight and blindness." },
+  { ref:"John 10:10", gospel:"John", tags:["purpose"],
+    greek:"ἐγὼ ἦλθον ἵνα ζωὴν ἔχωσιν καὶ περισσὸν ἔχωσιν.",
+    eng:"I came that they may have life, and have it abundantly.",
+    note:"ἵνα + subjunctive — purpose clause; περισσόν = superabundance of life." },
+  { ref:"John 12:27", gospel:"John", tags:["dest","purpose"],
+    greek:"νῦν ἡ ψυχή μου τετάρακται… ἀλλὰ διὰ τοῦτο ἦλθον εἰς τὴν ὥραν ταύτην.",
+    eng:"Now My soul has become troubled… But for this purpose I came to this hour.",
+    note:"ἦλθον εἰς τὴν ὥραν ταύτην — the cross as the goal of the entire mission (ὥρα = the hour of death)." },
+  { ref:"John 12:46", gospel:"John", tags:["purpose","origin"],
+    greek:"ἐγὼ φῶς εἰς τὸν κόσμον ἐλήλυθα, ἵνα πᾶς ὁ πιστεύων εἰς ἐμὲ ἐν τῇ σκοτίᾳ μὴ μείνῃ.",
+    eng:"I have come as Light into the world, so that everyone who believes in Me will not remain in darkness.",
+    note:"ἐλήλυθα (perfect: I have come) — entry into the world as Light; salvation from darkness as purpose." },
+  { ref:"John 13:1", gospel:"John", tags:["dest"],
+    greek:"εἰδὼς ὁ Ἰησοῦς ὅτι ἦλθεν αὐτοῦ ἡ ὥρα ἵνα μεταβῇ ἐκ τοῦ κόσμου τούτου πρὸς τὸν πατέρα.",
+    eng:"Jesus, knowing that His hour had come that He would depart out of this world to the Father.",
+    note:"μεταβῇ… πρὸς τὸν πατέρα — departure to the Father as destination." },
+  { ref:"John 13:3", gospel:"John", tags:["origin","dest"],
+    greek:"εἰδὼς ὅτι… ἀπὸ θεοῦ ἐξῆλθεν καὶ πρὸς θεὸν ὑπάγει.",
+    eng:"Knowing that… He had come forth from God and was going back to God.",
+    note:"ἀπὸ θεοῦ ἐξῆλθεν / πρὸς θεὸν ὑπάγει — perfect chiasm of origin and destination." },
+  { ref:"John 14:2–3", gospel:"John", tags:["dest"],
+    greek:"ἐν τῇ οἰκίᾳ τοῦ πατρός μου μοναὶ πολλαί εἰσιν… πορεύομαι ἑτοιμάσαι τόπον ὑμῖν.",
+    eng:"In My Father's house are many dwelling places… I go to prepare a place for you.",
+    note:"πορεύομαι (I am going) — the Father's house as destination; purpose includes intercession for disciples." },
+  { ref:"John 14:12", gospel:"John", tags:["dest"],
+    greek:"ὅτι ἐγὼ πρὸς τὸν πατέρα πορεύομαι.",
+    eng:"Because I go to the Father.",
+    note:"Return to Father as the basis for the disciples' greater works." },
+  { ref:"John 14:28", gospel:"John", tags:["dest","origin"],
+    greek:"ὑπάγω καὶ ἔρχομαι πρὸς ὑμᾶς… πορεύομαι πρὸς τὸν πατέρα, ὅτι ὁ πατὴρ μείζων μού ἐστιν.",
+    eng:"I go away, and I will come to you… I go to the Father, for the Father is greater than I.",
+    note:"ὑπάγω / ἔρχομαι — departure and return held together; πρὸς τὸν πατέρα = destination." },
+  { ref:"John 16:5", gospel:"John", tags:["dest"],
+    greek:"νῦν δὲ ὑπάγω πρὸς τὸν πέμψαντά με.",
+    eng:"But now I am going to Him who sent Me.",
+    note:"ὑπάγω πρὸς τὸν πέμψαντά — return to the Sender; the sending creates a round-trip." },
+  { ref:"John 16:10", gospel:"John", tags:["dest"],
+    greek:"περὶ δικαιοσύνης δέ, ὅτι πρὸς τὸν πατέρα ὑπάγω.",
+    eng:"Concerning righteousness, because I go to the Father.",
+    note:"Departure is proof of His righteousness — vindication by resurrection and ascension." },
+  { ref:"John 16:28", gospel:"John", tags:["origin","dest"],
+    greek:"ἐξῆλθον παρὰ τοῦ πατρὸς καὶ ἐλήλυθα εἰς τὸν κόσμον· πάλιν ἀφίημι τὸν κόσμον καὶ πορεύομαι πρὸς τὸν πατέρα.",
+    eng:"I came forth from the Father and have come into the world; I am leaving the world again and going to the Father.",
+    note:"The clearest four-movement summary in the Gospels: origin → incarnation → departure → return to Father." },
+  { ref:"John 17:4–5", gospel:"John", tags:["origin","dest","purpose"],
+    greek:"ἐγώ σε ἐδόξασα ἐπὶ τῆς γῆς, τὸ ἔργον τελειώσας ὃ δέδωκάς μοι ἵνα ποιήσω· καὶ νῦν δόξασόν με σύ, πάτερ, παρὰ σεαυτῷ τῇ δόξῃ ᾗ εἶχον πρὸ τοῦ τὸν κόσμον εἶναι παρὰ σοί.",
+    eng:"I glorified You on the earth, having accomplished the work which You have given Me to do. Now, Father, glorify Me together with Yourself, with the glory which I had with You before the world was.",
+    note:"τὸ ἔργον τελειώσας = mission accomplished; πρὸ τοῦ κόσμου = pre-creation glory as origin; παρὰ σεαυτῷ = return." },
+  { ref:"John 17:8", gospel:"John", tags:["origin"],
+    greek:"ἔγνωσαν ἀληθῶς ὅτι παρὰ σοῦ ἐξῆλθον, καὶ ἐπίστευσαν ὅτι σύ με ἀπέστειλας.",
+    eng:"They truly understood that I came forth from You, and they believed that You sent Me.",
+    note:"παρὰ σοῦ ἐξῆλθον — origin from the Father; disciples' recognition as a mark of true faith." },
+  { ref:"John 17:11", gospel:"John", tags:["dest"],
+    greek:"καὶ οὐκέτι εἰμὶ ἐν τῷ κόσμῳ… καὶ ἐγὼ πρὸς σὲ ἔρχομαι.",
+    eng:"I am no longer in the world… and I come to You.",
+    note:"ἔρχομαι πρὸς σέ — departure as arrival to the Father; contrast with disciples remaining in the world." },
+  { ref:"John 17:24–25", gospel:"John", tags:["origin","dest"],
+    greek:"θέλω ἵνα ὅπου εἰμὶ ἐγὼ κἀκεῖνοι ὦσιν μετ᾽ ἐμοῦ… ὅτι ἠγάπησάς με πρὸ καταβολῆς κόσμου.",
+    eng:"I desire that they also, whom You have given Me, be with Me where I am… for You loved Me before the foundation of the world.",
+    note:"πρὸ καταβολῆς κόσμου — pre-creation love establishes the deepest level of origin; ὅπου εἰμί = destination becomes disciples' destiny." },
+  { ref:"John 18:37", gospel:"John", tags:["purpose","origin"],
+    greek:"εἰς τοῦτο γεγέννημαι καὶ εἰς τοῦτο ἐλήλυθα εἰς τὸν κόσμον, ἵνα μαρτυρήσω τῇ ἀληθείᾳ.",
+    eng:"For this I have been born, and for this I have come into the world, to testify to the truth.",
+    note:"γεγέννημαι (birth) and ἐλήλυθα (coming) both oriented to one purpose: bearing witness to truth." },
+  { ref:"John 20:17", gospel:"John", tags:["dest"],
+    greek:"ἀναβαίνω πρὸς τὸν πατέρα μου καὶ πατέρα ὑμῶν.",
+    eng:"I ascend to My Father and your Father.",
+    note:"ἀναβαίνω (I am ascending) — post-resurrection declaration; the Father as shared destination." },
+];
+
+let typeFilter = 'all';
+let gospelFilter = 'all';
+
+function setType(t, btn) {
+  typeFilter = t;
+  document.querySelectorAll('#type-filters .btn[data-t]').forEach(b => {
+    b.className = 'btn' + (b === btn ? ' active-' + t : '');
+  });
+  render();
+}
+
+function setGospel(g, btn) {
+  gospelFilter = g;
+  document.querySelectorAll('#type-filters .btn[data-g]').forEach(b => {
+    b.className = 'btn' + (b === btn ? ' active-' + (g === 'all' ? 'all' : 'origin') : '');
+  });
+  if (btn) {
+    btn.className = 'btn active-all';
+  }
+  render();
+}
+
+function tagHTML(tags, activeFilter) {
+  const labels = { origin: 'Origin', dest: 'Destination', purpose: 'Purpose', combined: 'Combined' };
+  // When a specific filter is active, show only that chip
+  const visibleTags = (activeFilter && activeFilter !== 'all')
+    ? tags.filter(t => t === activeFilter)
+    : tags;
+  return visibleTags.map(t => `<span class="tag tag-${t}">${labels[t] || t}</span>`).join(' ');
+}
+
+function render() {
+  const q = document.getElementById('q').value.toLowerCase();
+  let items = DATA.filter(d => {
+    if (gospelFilter !== 'all' && d.gospel !== gospelFilter) return false;
+    if (typeFilter !== 'all' && !d.tags.includes(typeFilter)) return false;
+    if (q && !d.ref.toLowerCase().includes(q) && !d.greek.toLowerCase().includes(q) && !d.eng.toLowerCase().includes(q) && !d.note.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  document.getElementById('count').textContent = items.length + ' passage' + (items.length !== 1 ? 's' : '') + ' shown';
+
+  if (!items.length) {
+    document.getElementById('out').innerHTML = '<div class="empty">No passages match your search.</div>';
+    return;
+  }
+
+  const gospels = ['Matthew', 'Luke', 'John'];
+  let html = '';
+  gospels.forEach(g => {
+    const gItems = items.filter(d => d.gospel === g);
+    if (!gItems.length) return;
+    html += `<div class="gospel-heading"><h2>${g}</h2></div>`;
+    gItems.forEach(d => {
+      html += `<div class="entry">
+        <div class="entry-header">
+          <span class="ref">${d.ref}</span>
+          ${tagHTML(d.tags, typeFilter)}
+        </div>
+        <div class="greek-text">${d.greek}</div>
+        <div class="english-text">${d.eng}</div>
+        <div class="note-text">${d.note}</div>
+      </div>`;
+    });
+  });
+
+  document.getElementById('out').innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>
