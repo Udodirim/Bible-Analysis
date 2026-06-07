@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gospel Christology Study — The Humanity & Lifestyle of Jesus</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --off: #f9f7f4;
+    --border: #e8e4de;
+    --text: #1a1714;
+    --muted: #7a7470;
+    --hint: #b0aba6;
+    --humanity-bg: #EAF3FB; --humanity-text: #0d4a7a;
+    --speech-bg: #EAF5EC; --speech-text: #1a5c24;
+    --emotion-bg: #FDF0E2; --emotion-text: #7a3c08;
+    --relationship-bg: #F0EFFE; --relationship-text: #3c2e8c;
+    --prayer-bg: #E4F5EE; --prayer-text: #0a5240;
+    --modeling-bg: #FCEEE8; --modeling-text: #7a2e14;
+  }
+
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2rem 2.5rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--hint);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  h1 em {
+    font-style: italic;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .thesis {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    border-left: 2px solid var(--text);
+    background: var(--off);
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .controls {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-wrap {
+    position: relative;
+  }
+
+  .search-wrap svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--hint);
+    pointer-events: none;
+  }
+
+  #sq {
+    width: 100%;
+    padding: 10px 12px 10px 38px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  #sq:focus { border-color: #aaa; }
+
+  .filter-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .fbtn {
+    padding: 5px 13px;
+    font-size: 12.5px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .fbtn:hover { border-color: #bbb; color: var(--text); }
+
+  .fbtn.active {
+    background: var(--text);
+    border-color: var(--text);
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .meta-row {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 1rem 2rem 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .count-badge {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0.5rem 2rem 4rem;
+  }
+
+  .entry {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem 1.5rem;
+    align-items: start;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  .entry-left { padding-top: 2px; }
+
+  .ref-tag {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+  }
+
+  .cat-tag {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 400;
+    color: var(--hint);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .verse {
+    font-family: 'EB Garamond', serif;
+    font-size: 15.5px;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 6px;
+    line-height: 1.55;
+  }
+
+  .insight {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .insight strong {
+    font-weight: 500;
+    color: var(--emotion-text);
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 3rem;
+    color: var(--hint);
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    font-size: 12px;
+    color: var(--hint);
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .entry { grid-template-columns: 1fr; gap: 0.5rem; }
+    header, .controls, .meta-row, main, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+    h1 { font-size: 1.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">Biblical Christology Study</p>
+  <h1>The <em>Humanity</em> &amp; Lifestyle<br>of Jesus in the Gospels</h1>
+  <p class="subtitle">A line-by-line study of how Jesus lived, how He spoke, how He interacted with people, and how He modeled the Father — drawn from Matthew, Mark, Luke, and John.</p>
+  <div class="thesis">"Anyone who has seen me has seen the Father." — John 14:9</div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input id="sq" type="text" placeholder="Search by reference, keyword, or insight...">
+  </div>
+  <div class="filter-row" id="btns"></div>
+</div>
+
+<div class="meta-row">
+  <span class="count-badge" id="cnt"></span>
+</div>
+
+<main>
+  <div id="list"></div>
+</main>
+
+<footer>
+  95 passages across Matthew, Mark, Luke &amp; John &mdash; covering humanity, speech, emotion, relationship, prayer &amp; solitude, and modeling the Father.
+</footer>
+
+<script>
+var activeFilter = 'all';
+
+var DATA = [
+  {ref:`Matt 3:13-17`,cat:`humanity`,verse:`Jesus came from Galilee to the Jordan to be baptized by John.`,insight:`He submitted to a rite of repentance He did not need, identifying fully with sinful humanity and inaugurating His public ministry in humility.`},
+  {ref:`Matt 4:1-2`,cat:`humanity`,verse:`He fasted forty days and forty nights, and afterward He was hungry.`,insight:`Real physical hunger. Jesus voluntarily entered bodily deprivation — genuine fasting that left Him famished and vulnerable to temptation.`},
+  {ref:`Matt 4:3-10`,cat:`speech`,verse:`Jesus answered, 'It is written...' (three times).`,insight:`When attacked, He used Scripture not divine power. He modeled that the Word of God is the believer's primary weapon — accessible to all.`},
+  {ref:`Matt 5:1-2`,cat:`speech`,verse:`He sat down. His disciples came to him, and he began to teach them.`,insight:`He taught seated — the posture of a rabbi with authority. He waited unhurried for the crowd to settle. The Sermon on the Mount is never rushed.`},
+  {ref:`Matt 5:3-12`,cat:`speech`,verse:`'Blessed are the poor in spirit...'`,insight:`He opened His manifesto with blessing the lowly. His first public teaching was benediction — pronouncing God's favor on the marginalized.`},
+  {ref:`Matt 6:6`,cat:`prayer`,verse:`'When you pray, go into your room, close the door, and pray to your Father in secret.'`,insight:`He prescribed what He practiced: private, hidden prayer — not to perform piety but to actually commune with the Father.`},
+  {ref:`Matt 6:9-13`,cat:`prayer`,verse:`'This, then, is how you should pray: Our Father in heaven...'`,insight:`He gave disciples a prayer He Himself used. He modeled accessibility to God, addressing Him as Father rather than Sovereign alone.`},
+  {ref:`Matt 8:3`,cat:`humanity`,verse:`Jesus reached out his hand and touched the man.`,insight:`He touched a leper — deliberate, unnecessary. He could have healed with a word. The touch communicated: you are not untouchable. Dignity before cure.`},
+  {ref:`Matt 8:10`,cat:`relationship`,verse:`When Jesus heard this, he was amazed and said, 'I have not found anyone in Israel with such great faith.'`,insight:`Jesus expressed genuine amazement. He was not acting omniscient detachment — the centurion's faith actually surprised and moved Him.`},
+  {ref:`Matt 8:14-15`,cat:`relationship`,verse:`He saw Peter's mother-in-law lying in bed with a fever... he touched her hand and the fever left her.`,insight:`He entered homes, sat at tables, involved Himself in the ordinary griefs of domestic life.`},
+  {ref:`Matt 8:24`,cat:`humanity`,verse:`Jesus was sleeping.`,insight:`Real physical exhaustion. He did not sustain creation by staying awake. His body needed rest like every human body.`},
+  {ref:`Matt 9:10-11`,cat:`relationship`,verse:`Many tax collectors and sinners came and ate with him and his disciples.`,insight:`He repeatedly ate with social outcasts. Table fellowship in Jewish culture signified acceptance — Jesus weaponized it for grace.`},
+  {ref:`Matt 9:36`,cat:`emotion`,verse:`When he saw the crowds, he had compassion on them, because they were harassed and helpless, like sheep without a shepherd.`,insight:`Compassion (σπλαγχνίζομαι) — gut-level, visceral. He saw crowds not as an obstacle but as wounded people. <strong>Response:</strong> He immediately turned the feeling into mission — He told His disciples to pray for workers and then sent them out (Matt 9:37–10:1). Compassion became commissioning.`},
+  {ref:`Matt 11:19`,cat:`relationship`,verse:`'The Son of Man came eating and drinking, and they say, \"Here is a glutton and a drunkard, a friend of tax collectors and sinners.\"'`,insight:`His own description of His lifestyle: He ate and drank socially, frequently enough critics called it a character flaw. He was not ascetic.`},
+  {ref:`Matt 11:28-29`,cat:`speech`,verse:`'Come to me, all you who are weary and burdened... for I am gentle and humble in heart.'`,insight:`His self-description: gentle (πραΰς) and humble in heart. Not adjectives about function — about character. He invites by who He is, not just what He does.`},
+  {ref:`Matt 14:13`,cat:`prayer`,verse:`When Jesus heard what had happened, he withdrew by boat privately to a solitary place.`,insight:`When John the Baptist was killed, Jesus sought solitude. He grieved. He did not immediately pivot to ministry — He first withdrew to be alone.`},
+  {ref:`Matt 14:23`,cat:`prayer`,verse:`After he had dismissed them, he went up on a mountainside by himself to pray.`,insight:`After feeding 5,000 — massive miracle, adulation available — He dismissed everyone and went alone to pray. Fame did not intoxicate Him.`},
+  {ref:`Matt 15:32`,cat:`emotion`,verse:`'I have compassion for these people; they have already been with me three days and have nothing to eat.'`,insight:`He kept track of how long people had been without food. Pastoral attentiveness to physical need — He saw bodies, not just souls. <strong>Response:</strong> He fed four thousand people. He did not merely feel sorry — He organized, multiplied, and distributed. Compassion without action was not His pattern.`},
+  {ref:`Matt 19:13-15`,cat:`relationship`,verse:`He placed his hands on the children and blessed them.`,insight:`He made time for children when disciples saw it as inefficient. He laid hands on each one — unhurried, individually. Not managing a crowd.`},
+  {ref:`Matt 21:12-13`,cat:`emotion`,verse:`Jesus drove out all who were buying and selling there... 'My house will be called a house of prayer, but you are making it a den of robbers.'`,insight:`Righteous anger — not impulsive but purposeful. His emotions were informed by Scripture (quoting Isaiah and Jeremiah together). <strong>Response:</strong> He acted directly and publicly — overturning tables, driving out traders, then immediately receiving the blind and lame who came to Him (v.14). Anger at injustice and compassion for the needy occupied the same moment.`},
+  {ref:`Matt 26:36-38`,cat:`prayer`,verse:`He began to be sorrowful and troubled. 'My soul is overwhelmed with sorrow to the point of death.'`,insight:`He admitted emotional distress to His friends and asked for company in His darkness. Gethsemane models that vulnerability is not weakness.`},
+  {ref:`Matt 26:39`,cat:`prayer`,verse:`'My Father, if it is possible, may this cup be taken from me. Yet not as I will, but as you will.'`,insight:`He prayed His actual desire before submitting it. He did not skip to the holy answer. Honest prayer: bring the real request, then surrender.`},
+  {ref:`Mark 1:35`,cat:`prayer`,verse:`Very early in the morning, while it was still dark, Jesus got up and went off to a solitary place, where he prayed.`,insight:`Pre-dawn prayer was His habit, not an emergency measure. He structured His day around the Father — before the demands of the day arrived.`},
+  {ref:`Mark 1:40-41`,cat:`emotion`,verse:`Jesus was indignant [or: filled with compassion]. He reached out his hand and touched the man.`,insight:`Deeply moved — either with compassion or anger at what leprosy had done to this man. <strong>Response:</strong> He reached out and touched him — the emotion went straight into physical, deliberate contact. He did not pray from a distance. The feeling became a hand.`},
+  {ref:`Mark 2:15-17`,cat:`relationship`,verse:`Many tax collectors and sinners were eating with him and his disciples, for there were many who followed him.`,insight:`Mark notes it was a regular pattern. Outcasts followed Him because He made space for them — not occasionally, but as a lifestyle.`},
+  {ref:`Mark 3:5`,cat:`emotion`,verse:`He looked around at them in anger and, deeply distressed at their stubborn hearts...`,insight:`Simultaneous anger and grief — anger at the sin, grief at the sinner. He did not disassociate from either dimension. <strong>Response:</strong> He healed the man anyway (v.5). Religious opposition and personal distress did not stop Him from doing good. He acted through the emotion, not after it passed.`},
+  {ref:`Mark 4:38`,cat:`humanity`,verse:`Jesus was in the stern, sleeping on a cushion.`,insight:`The detail 'on a cushion' is remarkably human. Mark preserves the specific comfort He sought. Genuinely tired, resting like any person on a boat.`},
+  {ref:`Mark 6:3`,cat:`humanity`,verse:`'Isn't this the carpenter? Isn't this Mary's son?'`,insight:`He lived in obscurity for ~30 years as a tradesman. His hands knew physical labor. He was not sheltered from ordinary working life.`},
+  {ref:`Mark 6:31`,cat:`humanity`,verse:`'Come with me by yourselves to a quiet place and get some rest.'`,insight:`He recognized when His disciples were depleted and prescribed rest. He practiced margin — and taught it. He did not glorify exhaustion.`},
+  {ref:`Mark 6:34`,cat:`emotion`,verse:`He had compassion on them, because they were like sheep without a shepherd. So he began teaching them.`,insight:`Compassion translated immediately into action — the word 'so' is the hinge. <strong>Response:</strong> He taught them at length, then fed them (the feeding of 5,000 follows). The feeling generated both word and bread. He did not move on until the need was fully met.`},
+  {ref:`Mark 7:34`,cat:`emotion`,verse:`He looked up to heaven and with a deep sigh said to him, 'Ephphatha!'`,insight:`A deep sigh before a healing miracle. He felt the weight of this man's suffering personally — not clinical detachment. <strong>Response:</strong> He spoke one Aramaic word and the man's ears opened and his tongue was loosed. He did not wait until the grief passed. He sighed and then acted. The compassion and the miracle were inseparable.`},
+  {ref:`Mark 10:14`,cat:`emotion`,verse:`When Jesus saw this, he was indignant.`,insight:`Indignant that children were being kept from Him — the only place He is explicitly indignant at His own disciples. <strong>Response:</strong> He rebuked them verbally ('Let the little children come to me, and do not hinder them'), then embraced each child individually. He corrected the disciples and then modeled the very thing He was teaching — without gap or hesitation.`},
+  {ref:`Mark 10:16`,cat:`relationship`,verse:`He took the children in his arms, placed his hands on them and blessed them.`,insight:`He took them in His arms (ἐναγκαλισάμενος) — fully physical, warm, unhurried. Not a head-pat. An embrace.`},
+  {ref:`Mark 10:21`,cat:`relationship`,verse:`Jesus looked at him and loved him. 'One thing you lack,' he said.`,insight:`He loved the rich young ruler before He challenged him. The correction came out of affection, not condemnation.`},
+  {ref:`Mark 14:33-34`,cat:`emotion`,verse:`He began to be deeply distressed and troubled. 'My soul is overwhelmed with sorrow to the point of death.'`,insight:`Mark's word (ἐκθαμβεῖσθαι) denotes shock, almost terror. Full humanity — not managed stoicism. <strong>Response:</strong> He did not suppress it or perform composure. He named it to His disciples, asked them to stay, then brought it directly to the Father: 'Abba, Father, everything is possible for you. Take this cup from me. Yet not what I will, but what you will' (v.36). Terror submitted to the Father — that is the model.`},
+  {ref:`Luke 2:40`,cat:`humanity`,verse:`The child grew and became strong; he was filled with wisdom.`,insight:`He genuinely developed. Not born with a fully adult mind. He learned, grew, became strong — like every human child.`},
+  {ref:`Luke 2:52`,cat:`humanity`,verse:`Jesus grew in wisdom and stature, and in favor with God and man.`,insight:`Four-dimensional growth: intellectual, physical, spiritual, social. He navigated adolescence and community — not skipping the ordinary years.`},
+  {ref:`Luke 4:1-2`,cat:`prayer`,verse:`Jesus, full of the Holy Spirit, was led by the Spirit into the wilderness.`,insight:`He was led by the Spirit — not self-directed. He modeled dependence on the Holy Spirit, not autonomous divine power.`},
+  {ref:`Luke 5:16`,cat:`prayer`,verse:`Jesus often withdrew to lonely places and prayed.`,insight:`Luke uses the imperfect tense — repeated, habitual withdrawal. The greater the ministry demand, the more He retreated to pray.`},
+  {ref:`Luke 6:12`,cat:`prayer`,verse:`Jesus went out to a mountainside to pray, and spent the night praying to God.`,insight:`Before choosing the Twelve, He prayed all night. He brought major decisions to the Father — not just crises.`},
+  {ref:`Luke 7:11-13`,cat:`emotion`,verse:`When the Lord saw her, his heart went out to her and he said, 'Don't cry.'`,insight:`He approached a widow at her son's funeral — she had not asked for help. His compassion initiated. He comforted before He healed. <strong>Response:</strong> He spoke to her first ('Don't cry'), then stepped forward and touched the bier — a ritual impurity He ignored — and raised her son. He addressed her grief before He addressed her need. The emotional sequence was intentional.`},
+  {ref:`Luke 7:36-38`,cat:`relationship`,verse:`A woman who had lived a sinful life stood behind him at his feet weeping.`,insight:`He sat and let a woman wash His feet with her tears without pulling away. He held space for the extravagant and the broken.`},
+  {ref:`Luke 7:44-47`,cat:`speech`,verse:`'Do you see this woman? I came into your house. You did not give me any water for my feet, but she wet my feet with her tears.'`,insight:`He publicly rebuked the host's lack of hospitality while defending the woman's honor. He named what He noticed with precision.`},
+  {ref:`Matt 9:11-13`,cat:`speech`,verse:`The Pharisees asked his disciples, 'Why does your teacher eat with tax collectors and sinners?' On hearing this, Jesus said, 'It is not the healthy who need a doctor, but the sick.'`,insight:`Criticism came indirectly — they asked His disciples, not Him. He answered anyway, with a proverb that reframed the entire accusation. He did not defend Himself; He explained His mission. His response was diagnostic, not defensive. <em>Note: the lifestyle that provoked this criticism is addressed under 'With People' — Matt 9:10-11 and Matt 11:19.</em>`},
+  {ref:`Matt 12:1-8`,cat:`speech`,verse:`The Pharisees said to him, 'Look! Your disciples are doing what is unlawful on the Sabbath.' He answered, 'Have you not read what David did...?'`,insight:`They framed the accusation against His disciples to trap Him through them. He responded with three counter-arguments in rapid sequence: David ate the showbread (Scripture precedent), priests work on the Sabbath (institutional precedent), 'Something greater than the temple is here' (Christological claim). He did not apologize for His disciples. He dismantled the accusation's theological foundation.`},
+  {ref:`Matt 12:24-28`,cat:`speech`,verse:`The Pharisees said, 'It is only by Beelzebul, the prince of demons, that this fellow drives out demons.' Jesus knew their thoughts and said to them, 'Every kingdom divided against itself will be ruined...'`,insight:`They attributed His miracles to Satan — the most malicious possible criticism. He did not react emotionally. He responded with logic: a divided kingdom falls; if Satan casts out Satan, his kingdom is already over. Then He turned it: 'But if it is by the Spirit of God that I drive out demons, then the kingdom of God has come upon you.' He converted their attack into a proclamation.`},
+  {ref:`Matt 15:1-3`,cat:`speech`,verse:`The Pharisees and teachers of the law asked Jesus, 'Why do your disciples break the tradition of the elders?' Jesus replied, 'And why do you break the command of God for the sake of your tradition?'`,insight:`Classic trap: accuse Him of lawbreaking. His method: answer a question with a question that exposes the questioner's deeper inconsistency. He did not engage their premise — He inverted the frame entirely. They were asking about hand-washing; He went straight to the command to honor parents. He chose the ground on which the fight would happen.`},
+  {ref:`Matt 16:1-4`,cat:`speech`,verse:`The Pharisees and Sadducees came to Jesus and tested him by asking him to show them a sign from heaven. He replied, '...A wicked and adulterous generation looks for a sign, but none will be given it except the sign of Jonah.'`,insight:`The test was designed so that any answer could be used against Him. He named the test for what it was — not a sincere question but a demand for performance. He refused to perform. He gave them a one-word prophecy (Jonah) that pointed to His death and resurrection, then left. He did not linger to argue.`},
+  {ref:`Matt 21:23-27`,cat:`speech`,verse:`'By what authority are you doing these things?' they asked. 'And who gave you this authority?' Jesus replied, 'I will also ask you one question... John's baptism — where did it come from?'`,insight:`The authority question was a political trap: claim divine authority and face blasphemy charges; claim human authority and lose credibility. He answered with a counter-question about John's baptism that put them in the same bind. They refused to answer, so He refused to answer. He exposed that their interest was not truth but leverage. His silence was as devastating as any argument.`},
+  {ref:`Matt 22:15-22`,cat:`speech`,verse:`'Tell us then, what is your opinion? Is it right to pay the imperial tax to Caesar or not?' But Jesus, knowing their evil intent, said, 'You hypocrites, why are you trying to trap me? Show me the coin used for paying the tax.'`,insight:`A coalition trap — Pharisees and Herodians together, political enemies united to catch Him. Answer yes: complicit with Rome. Answer no: seditious. He asked for a coin, made them produce it, then: 'Give back to Caesar what is Caesar's, and to God what is God's.' He named the trap ('why are you trying to trap me?') before answering it, then dissolved the false dilemma entirely. They marveled and left.`},
+  {ref:`Matt 22:23-33`,cat:`speech`,verse:`That same day the Sadducees, who say there is no resurrection, came to him with a question...'At the resurrection, whose wife will she be?' Jesus replied, 'You are in error because you do not know the Scriptures or the power of God.'`,insight:`The Sadducees used an elaborate hypothetical to mock resurrection. He opened His answer with a diagnosis: 'You do not know the Scriptures or the power of God' — two failures, both named. Then He answered the hypothetical on its merits (resurrected life is not like earthly life), then proved resurrection from their own accepted texts (Exodus, not just the Prophets). He met them on their theological ground and beat them there.`},
+  {ref:`Matt 22:34-40`,cat:`speech`,verse:`One of them, an expert in the law, tested him with this question: 'Teacher, which is the greatest commandment in the Law?' Jesus replied: '\"Love the Lord your God with all your heart...\" This is the first and greatest commandment. And the second is like it: \"Love your neighbor as yourself.\"'`,insight:`The question was a standard rabbinic debate used here as a test. He did not hedge. He gave a decisive, memorable answer — and then added the second commandment unprompted, linking the two. He then turned the test back on them (v.41): 'What do you think about the Messiah?' The tested became the questioner. After this, 'no one dared to ask him any more questions' (v.46).`},
+  {ref:`Matt 23:1-7`,cat:`speech`,verse:`Then Jesus said to the crowds and to his disciples: 'The teachers of the law and the Pharisees sit in Moses' seat... but do not do what they do, for they do not practice what they preach.'`,insight:`This was not a response to a trap but a public, unsolicited critique of religious leadership — addressed to the crowds, not the Pharisees directly, though they were present. He named hypocrisy plainly: they teach but don't do; they burden others but won't lift a finger; they perform for human applause. Fourteen verses of precise, itemized rebuke. He did not whisper it privately.`},
+  {ref:`Matt 26:63-64`,cat:`speech`,verse:`The high priest said to him, 'I charge you under oath by the living God: Tell us if you are the Messiah, the Son of God.' 'You have said so,' Jesus replied.`,insight:`Under oath before the Sanhedrin — the most legally charged moment of His trial. He had been silent until directly adjured. When He spoke, He neither fully confirmed nor denied in their terms; He let the high priest's own words stand, then added: 'But I say to all of you: from now on you will see the Son of Man sitting at the right hand of the Mighty One and coming on the clouds of heaven.' He answered with a claim larger than the one they asked about.`},
+  {ref:`Mark 2:6-8`,cat:`speech`,verse:`Some teachers of the law were sitting there, thinking to themselves, 'Why does this fellow talk like that? He's blaspheming!' Immediately Jesus knew in his spirit that this was what they were thinking in their hearts, and he said to them, 'Why are you thinking these things?'`,insight:`He responded to unspoken criticism — thoughts that had not been voiced. He did not wait for the accusation to be made; He named it and answered it. This disarmed the ambush before it launched. He then asked them a question: which is easier, to forgive or to heal? Then He did the healing to prove the authority behind the forgiveness.`},
+  {ref:`Mark 7:5-13`,cat:`speech`,verse:`The Pharisees and teachers of the law asked Jesus, 'Why don't your disciples live according to the tradition of the elders...?' He replied, 'Isaiah was right when he prophesied about you hypocrites...'`,insight:`He called them hypocrites to their faces — quoting Isaiah against them directly. Then He gave a specific example: they used the Corban rule to evade caring for their parents, nullifying God's command with a loophole. He did not speak in generalities. He named the exact mechanism of their hypocrisy, chapter and verse, then turned to the crowd to teach the real principle (v.14). He separated the argument about tradition from the instruction to the people.`},
+  {ref:`Luke 11:37-44`,cat:`speech`,verse:`When Jesus had finished speaking, a Pharisee invited him to eat with him; so he went in and reclined at the table. But the Pharisee was surprised that Jesus did not first wash before the meal.`,insight:`The Pharisee said nothing — he was simply surprised. Jesus, perceiving it, launched a full rebuke unprompted: 'Now then, you Pharisees clean the outside of the cup and dish, but inside you are full of greed and wickedness.' He then gave three 'woes' covering neglected justice, love of recognition, and concealed corruption. He did not wait to be formally challenged. Perceived disapproval was enough to warrant a full response.`},
+  {ref:`Luke 13:10-17`,cat:`speech`,verse:`Indignant because Jesus had healed on the Sabbath, the synagogue leader said to the people, 'There are six days for work. So come and be healed on those days, not on the Sabbath.' The Lord answered him, 'You hypocrites!'`,insight:`The synagogue ruler addressed the crowd, not Jesus — a passive-aggressive rebuke. Jesus answered him directly. He called him a hypocrite (plural, addressing the whole category), then made the argument: you untie your ox on the Sabbath — should not this woman, bound by Satan for eighteen years, be untied? He used their own agricultural practice to expose their inconsistency. His opponents were humiliated (v.17); the crowd was delighted.`},
+  {ref:`Luke 20:20-26`,cat:`speech`,verse:`Keeping a close watch on him, they sent spies, who pretended to be sincere. They hoped to catch Jesus in something he said so that they might hand him over to the power and authority of the governor.`,insight:`Luke records the intent before the question. Jesus 'detected their duplicity' (v.23) — He read the motive behind the flattery. He asked for a coin, named the trap, and then gave an answer that transcended both sides of the dilemma. He was never manipulated by false sincerity. He responded to what was actually being done, not to how it was being presented. <em>See also Matt 22:15-22 above for the full response.</em>`},
+  {ref:`John 2:18-19`,cat:`speech`,verse:`Then the Jews demanded of him, 'What sign can you show us to prove your authority to do all this?' Jesus answered them, 'Destroy this temple, and I will raise it again in three days.'`,insight:`After cleansing the temple, they demanded credentials. He refused a credential and gave a prophecy instead — one so cryptic it would only be understood after the resurrection (v.22). He did not justify Himself to those seeking to control Him. He pointed them toward the one event that would answer every question about His authority, knowing they could not yet receive it.`},
+  {ref:`John 5:16-18`,cat:`speech`,verse:`So, because Jesus was doing these things on the Sabbath, the Jewish leaders began to persecute him. In his defense Jesus said to them, 'My Father is always at his work to this very day, and I too am working.'`,insight:`Persecution for Sabbath healing. His defense was not legal but Christological: My Father works continuously — so do I. This escalated the confrontation (they now wanted to kill Him for calling God His Father), but He did not soften it. He then preached a full discourse on the Son's relationship to the Father (vv.19-47), turning a Sabbath accusation into the most extended statement of His divine identity in John.`},
+  {ref:`John 7:14-18`,cat:`speech`,verse:`The Jews there were amazed and asked, 'How did this man get such learning without having been taught?' Jesus answered, 'My teaching is not my own. It comes from the one who sent me.'`,insight:`They questioned His credentials — no formal rabbinical training. He reframed the question: the origin of His teaching is not human transmission but divine source. He then offered a test: 'Anyone who chooses to do God's will will find out whether my teaching comes from God or whether I speak on my own.' He invited verification by obedience, not argument.`},
+  {ref:`John 8:3-11`,cat:`speech`,verse:`The teachers of the law and the Pharisees brought in a woman caught in adultery... 'Now what do you say?' They were using this question as a trap...`,insight:`A perfect trap: condemn her and violate Roman law (Jews couldn't execute); release her and violate Moses. He stooped and wrote on the ground — making them wait, refusing to be rushed. Then: 'Let any one of you who is without sin be the first to throw a stone.' He dissolved the legal trap by shifting the court's attention from the accused to the accusers. Then He forgave the woman. He neither condemned nor condoned; He redeemed.`},
+  {ref:`John 8:13-18`,cat:`speech`,verse:`The Pharisees challenged him, 'Here you are, appearing as your own witness; your testimony is not valid.' Jesus answered, 'Even if I testify on my own behalf, my testimony is valid...'`,insight:`A legal challenge: self-testimony is inadmissible. He answered on two levels: first, He argued that His self-testimony is valid because He knows His own origin and destination (which they do not); second, He cited the Father as a second witness — satisfying the two-witness requirement of Mosaic law. He met them in their legal framework and won on their own terms.`},
+  {ref:`John 10:31-36`,cat:`speech`,verse:`Again his Jewish opponents picked up stones to stone him... Jesus said to them, 'I have shown you many good works from the Father. For which of these do you stone me?'`,insight:`They wanted to stone Him for blasphemy. He asked them to name which of His works merited death — forcing them to confront the gap between His deeds and their charge. He then made a precise legal argument from Psalm 82 (&ldquo;Is it not written in your Law, I have said you are gods?&rdquo;) — if the Scripture applies that word to ordinary judges, how much more can the one the Father consecrated use it of Himself? He used their own canon against their accusation.`},
+  {ref:`Luke 9:28`,cat:`prayer`,verse:`He took Peter, John and James with him and went up onto a mountain to pray.`,insight:`He brought others into His prayer life. Prayer was not always private — He modeled it relationally, letting disciples watch Him commune with the Father.`},
+  {ref:`Luke 10:21`,cat:`emotion`,verse:`Jesus, full of joy through the Holy Spirit, said, 'I praise you, Father, Lord of heaven and earth.'`,insight:`Exuberant, Spirit-filled joy expressed out loud. <strong>Response:</strong> He turned the joy immediately into praise directed at the Father. He did not keep it to Himself or channel it into self-congratulation. Joy became worship. This is the only time the Gospels explicitly say Jesus rejoiced — and what He did with it was pray.`},
+  {ref:`Luke 10:38-42`,cat:`relationship`,verse:`A woman named Martha opened her home to him.`,insight:`He regularly stayed in homes — not just eating but teaching, receiving hospitality, and engaging domestic tensions honestly.`},
+  {ref:`Luke 13:34`,cat:`emotion`,verse:`'Jerusalem, Jerusalem... how often I have longed to gather your children together, as a hen gathers her chicks under her wings, and you were not willing.'`,insight:`Maternal imagery. Longing repeatedly rebuffed. The verb (ἠθέλησα) implies sustained, unfulfilled desire. <strong>Response:</strong> He did not harden. He kept going to Jerusalem. Despite the rejection announced in this very lament, He entered the city days later — riding in publicly, weeping over it again (Luke 19:41), teaching daily in the temple. Grief over rejection did not produce withdrawal; it deepened His pursuit.`},
+  {ref:`Luke 19:5`,cat:`relationship`,verse:`'Zacchaeus, come down immediately. I must stay at your house today.'`,insight:`He invited Himself. He called Zacchaeus by name and proposed staying with him — uninvited by anyone. He initiated with the excluded.`},
+  {ref:`Luke 19:41`,cat:`emotion`,verse:`As he approached Jerusalem and saw the city, he wept over it.`,insight:`He wept over a city. The Greek (ἔκλαυσεν) is loud, convulsive weeping. Not silent tears. He grieved corporately, not only individually. <strong>Response:</strong> He wept, then entered the city, then cleansed the temple (v.45), then taught there daily (v.47). He did not turn around. The weeping was not paralysis — it was love that kept moving forward into the place that would kill Him.`},
+  {ref:`Luke 22:27`,cat:`modeling`,verse:`'But I am among you as one who serves.'`,insight:`He defined greatness by service and pointed to His own life as the definition. Leadership in His kingdom looks like the servant at the table.`},
+  {ref:`Luke 22:32`,cat:`relationship`,verse:`'But I have prayed for you, Simon, that your faith may not fail.'`,insight:`He prayed for disciples individually and told them. Pastoral transparency — Peter would need this after his denial.`},
+  {ref:`Luke 23:34`,cat:`relationship`,verse:`'Father, forgive them, for they do not know what they are doing.'`,insight:`He prayed forgiveness for the people killing Him — at the moment it was happening. Active, present-tense intercession under torture.`},
+  {ref:`Luke 24:30`,cat:`relationship`,verse:`He took bread, gave thanks, broke it and began to give it to them.`,insight:`Post-resurrection, the first thing He did with disciples was share a meal. Table fellowship was not abandoned after the resurrection.`},
+  {ref:`John 1:14`,cat:`humanity`,verse:`The Word became flesh and made his dwelling among us.`,insight:`σκηνόω — 'pitched his tent among us.' He moved into the neighborhood. The Incarnation is taking-up-residence, not a brief visit.`},
+  {ref:`John 2:1-2`,cat:`relationship`,verse:`A wedding took place at Cana in Galilee. Jesus and his disciples had also been invited.`,insight:`He attended a wedding. His first miracle was not in a synagogue but at a celebration, and it prevented social embarrassment — He cared about that.`},
+  {ref:`John 4:6-7`,cat:`humanity`,verse:`Jesus, tired as he was from the journey, sat down by the well... 'Will you give me a drink?'`,insight:`Genuinely tired and thirsty. He asked a Samaritan woman for water — crossing gender, ethnic, and religious lines from a place of need, not authority.`},
+  {ref:`John 4:27`,cat:`relationship`,verse:`His disciples returned and were surprised to find him talking with a woman.`,insight:`The disciples were shocked. He violated social convention habitually — talking to women, Samaritans, lepers, tax collectors. He did not manage His reputation.`},
+  {ref:`John 6:15`,cat:`modeling`,verse:`Jesus, knowing that they intended to come and make him king by force, withdrew again to a mountain by himself.`,insight:`He refused political power when offered it. He did not leverage public momentum. He stepped away from the crowd's version of success.`},
+  {ref:`John 8:1-2`,cat:`prayer`,verse:`Jesus went to the Mount of Olives. At dawn he appeared again in the temple courts.`,insight:`He spent the night on the Mount of Olives — in prayer — then returned at dawn to teach. Morning prayer was the rhythm of His day.`},
+  {ref:`John 9:1-3`,cat:`relationship`,verse:`As he went along, he saw a man blind from birth.`,insight:`He noticed the blind man before the disciples asked. He corrected retribution theology, then healed him. He did not let theological debate delay compassion.`},
+  {ref:`John 11:3-5`,cat:`relationship`,verse:`Lord, the one you love is sick... Now Jesus loved Martha and her sister and Lazarus.`,insight:`John records that Jesus loved this specific family. He had close, named, particular friendships — not just general love for humanity.`},
+  {ref:`John 11:33-35`,cat:`emotion`,verse:`He was deeply moved in spirit and troubled... Jesus wept.`,insight:`He wept even knowing He was about to raise Lazarus. The tears were real, not strategic. <strong>Response:</strong> He wept with the mourners first, then asked to be taken to the tomb, then prayed to the Father openly, then called Lazarus out (v.43). He entered the full grief of the moment before He resolved it. He did not skip the weeping to get to the miracle.`},
+  {ref:`John 11:38`,cat:`emotion`,verse:`Jesus, once more deeply moved, came to the tomb.`,insight:`Moved twice in the same passage. John records the repetition deliberately — this was not one performative tear. <strong>Response:</strong> Still deeply moved, He commanded the stone removed, gave thanks to the Father in prayer, then called Lazarus by name. He acted from within the grief, not from beyond it. Emotion and power operated together, not sequentially.`},
+  {ref:`John 12:27`,cat:`emotion`,verse:`'Now my soul is troubled, and what shall I say? Father, save me from this hour? No, it was for this very reason I came.'`,insight:`He talked through inner conflict aloud — not privately but before the crowd. He stayed in the tension, worked it out in real time. <strong>Response:</strong> He reasoned through His own distress, rejected the escape prayer He could have prayed, and landed on surrender: 'Father, glorify your name.' He did not suppress the trouble; He submitted it. The Father answered audibly (v.28). This is one of the most complete models of how to process anguish with God.`},
+  {ref:`John 13:1`,cat:`modeling`,verse:`Having loved his own who were in the world, he loved them to the end.`,insight:`'To the end' (εἰς τέλος) means to the uttermost and to the last moment. His love did not diminish under pressure, betrayal, or abandonment.`},
+  {ref:`John 13:4-5`,cat:`modeling`,verse:`He got up from the meal, took off his outer clothing, wrapped a towel around his waist, and began to wash his disciples' feet.`,insight:`He undressed to perform a slave's task — voluntarily, while knowing Judas would betray Him and Peter would deny Him. He served those who would fail Him.`},
+  {ref:`John 13:14-15`,cat:`modeling`,verse:`'I have set you an example that you should do as I have done for you.'`,insight:`He explicitly named it: 'I have set you an example.' He did not just teach servanthood — He demonstrated it and said: this is how you must live.`},
+  {ref:`John 13:23`,cat:`relationship`,verse:`One of them, the disciple whom Jesus loved, was reclining next to him.`,insight:`The Beloved Disciple reclined beside Him — intimacy at the table. Jesus cultivated close inner-circle relationships; He was not equidistant from everyone.`},
+  {ref:`John 14:9`,cat:`modeling`,verse:`'Anyone who has seen me has seen the Father.'`,insight:`The thesis of the entire study. His life is the answer to 'what is God like?' Every act, word, and response is a revelation of the Father.`},
+  {ref:`John 15:15`,cat:`relationship`,verse:`'I have called you friends, for everything that I learned from my Father I have made known to you.'`,insight:`He elevated disciples from servants to friends. Friendship was characterized by disclosure — He shared what the Father told Him.`},
+  {ref:`John 17:1-26`,cat:`prayer`,verse:`After Jesus said this, he looked toward heaven and prayed...`,insight:`The High Priestly Prayer — extended intercession for disciples and future believers. He ended His earthly ministry praying for others.`},
+  {ref:`John 19:26-27`,cat:`relationship`,verse:`'Woman, here is your son,' and to the disciple, 'Here is your mother.'`,insight:`From the cross, in His dying minutes, He made social provision for His mother. Still caring for specific people in the moment of ultimate suffering.`},
+  {ref:`John 20:15-16`,cat:`relationship`,verse:`Jesus said to her, 'Mary.'`,insight:`One word — her name — and she recognized Him. The resurrection did not make Him impersonal. He still knew people by name.`},
+  {ref:`John 21:9-13`,cat:`relationship`,verse:`Jesus said to them, 'Come and have breakfast.'`,insight:`Post-resurrection: He had made them breakfast. He cooked for His disciples. The risen Christ served a meal on a beach.`}
+];
+
+var FILTERS = [
+  {id:'all',label:'All passages'},
+  {id:'humanity',label:'Humanity & Body'},
+  {id:'speech',label:'How He Spoke'},
+  {id:'emotion',label:'Emotions'},
+  {id:'relationship',label:'With People'},
+  {id:'prayer',label:'Prayer & Solitude'},
+  {id:'modeling',label:'Modeling the Father'}
+];
+
+var CAT_COLORS = {
+  humanity:     {bg:'var(--humanity-bg)',     color:'var(--humanity-text)'},
+  speech:       {bg:'var(--speech-bg)',       color:'var(--speech-text)'},
+  emotion:      {bg:'var(--emotion-bg)',      color:'var(--emotion-text)'},
+  relationship: {bg:'var(--relationship-bg)', color:'var(--relationship-text)'},
+  prayer:       {bg:'var(--prayer-bg)',       color:'var(--prayer-text)'},
+  modeling:     {bg:'var(--modeling-bg)',     color:'var(--modeling-text)'}
+};
+
+var CAT_NAMES = {
+  humanity:'Humanity', speech:'Speech', emotion:'Emotion',
+  relationship:'Relationship', prayer:'Prayer', modeling:'Modeling the Father'
+};
+
+function buildButtons() {
+  var container = document.getElementById('btns');
+  container.innerHTML = '';
+  FILTERS.forEach(function(f) {
+    var btn = document.createElement('button');
+    btn.className = 'fbtn' + (activeFilter === f.id ? ' active' : '');
+    btn.textContent = f.label;
+    btn.addEventListener('click', function() {
+      activeFilter = f.id;
+      buildButtons();
+      renderList();
+    });
+    container.appendChild(btn);
+  });
+}
+
+function renderList() {
+  var q = document.getElementById('sq').value.toLowerCase();
+  var items = DATA.filter(function(d) {
+    if (activeFilter !== 'all' && d.cat !== activeFilter) return false;
+    if (q && !d.ref.toLowerCase().includes(q) && !d.verse.toLowerCase().includes(q) && !d.insight.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  document.getElementById('cnt').textContent = items.length + ' passage' + (items.length !== 1 ? 's' : '');
+
+  var list = document.getElementById('list');
+  if (!items.length) {
+    list.innerHTML = '<div class="no-results">No passages match your search.</div>';
+    return;
+  }
+
+  list.innerHTML = items.map(function(d) {
+    var c = CAT_COLORS[d.cat];
+    return '<div class="entry">'
+      + '<div class="entry-left">'
+      + '<span class="ref-tag" style="background:' + c.bg + ';color:' + c.color + ';">' + d.ref + '</span>'
+      + '<span class="cat-tag">' + CAT_NAMES[d.cat] + '</span>'
+      + '</div>'
+      + '<div>'
+      + '<div class="verse">&ldquo;' + d.verse + '&rdquo;</div>'
+      + '<div class="insight">' + d.insight + '</div>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+document.getElementById('sq').addEventListener('input', renderList);
+buildButtons();
+renderList();
+</script>
+</body>
+</html>
