@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who We Are in Christ Jesus — Full Biblical Reference</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #ffffff; color: #1a1a1a; min-height: 100vh; }
+  header { background: #ffffff; border-bottom: 1px solid #e5e0d8; padding: 2.5rem 2rem 2rem; text-align: center; }
+  header h1 { font-size: 1.9rem; font-weight: 700; color: #1a1a1a; letter-spacing: -0.01em; margin-bottom: 0.4rem; }
+  header p { font-size: 0.95rem; color: #6b6560; font-style: italic; }
+  .controls { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e5e0d8; padding: 1rem 2rem; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .search-box { flex: 1; min-width: 200px; height: 38px; border: 1px solid #ccc8c0; border-radius: 6px; padding: 0 14px; font-size: 14px; font-family: inherit; background: #fafaf8; color: #1a1a1a; outline: none; transition: border-color 0.15s; }
+  .search-box:focus { border-color: #8b7355; }
+  .tab-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tab { padding: 7px 16px; border: 1px solid #ccc8c0; border-radius: 6px; font-size: 13px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; cursor: pointer; background: #ffffff; color: #5a5550; transition: all 0.15s; letter-spacing: 0.01em; }
+  .tab:hover { background: #f5f2ed; }
+  .tab.active-all   { background: #1a1a1a; color: #ffffff; border-color: #1a1a1a; }
+  .tab.active-who   { background: #3C3489; color: #ffffff; border-color: #3C3489; }
+  .tab.active-have  { background: #085041; color: #ffffff; border-color: #085041; }
+  .tab.active-going { background: #712B13; color: #ffffff; border-color: #712B13; }
+  .tab.active-ot    { background: #7a5c00; color: #ffffff; border-color: #7a5c00; }
+  .count { font-size: 13px; color: #8a8480; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; white-space: nowrap; }
+  main { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .verse-list { display: flex; flex-direction: column; gap: 14px; }
+  .verse-card { background: #ffffff; border: 1px solid #e5e0d8; border-left: 4px solid #ccc; border-radius: 0 8px 8px 0; padding: 16px 18px; transition: box-shadow 0.15s; }
+  .verse-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .verse-card.who   { border-left-color: #534AB7; }
+  .verse-card.have  { border-left-color: #0F6E56; }
+  .verse-card.going { border-left-color: #D85A30; }
+  .verse-card.ot    { border-left-color: #b8860b; background: #fffef8; }
+  .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .ref { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5a5550; }
+  .badge { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 4px; letter-spacing: 0.02em; }
+  .badge.who   { background: #EEEDFE; color: #3C3489; }
+  .badge.have  { background: #E1F5EE; color: #085041; }
+  .badge.going { background: #FAECE7; color: #712B13; }
+  .badge.ot    { background: #fef3cd; color: #7a5c00; }
+  .eng { font-size: 15px; line-height: 1.7; color: #1a1a1a; margin-bottom: 10px; }
+  .greek-block { border-top: 1px solid #ede8e0; padding-top: 10px; margin-top: 4px; }
+  .greek-label { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa49e; display: block; margin-bottom: 4px; }
+  .greek { font-size: 13.5px; line-height: 1.7; color: #7a7570; font-style: italic; }
+  .fulfil-block { margin-top: 12px; padding: 12px 14px; background: #f0f7ff; border: 1px solid #c8dff5; border-radius: 6px; }
+  .fulfil-label { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #185FA5; display: block; margin-bottom: 8px; font-weight: 700; }
+  .fulfil-item { margin-bottom: 8px; }
+  .fulfil-item:last-child { margin-bottom: 0; }
+  .fulfil-ref { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; color: #185FA5; text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 2px; }
+  .fulfil-text { font-size: 14px; line-height: 1.65; color: #1a1a1a; }
+  .empty { text-align: center; color: #8a8480; font-size: 15px; padding: 3rem; font-style: italic; }
+  footer { text-align: center; padding: 2rem; font-size: 12px; color: #aaa49e; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; border-top: 1px solid #e5e0d8; }
+  @media (max-width: 600px) {
+    header { padding: 1.5rem 1rem 1.2rem; }
+    header h1 { font-size: 1.4rem; }
+    .controls { padding: 0.75rem 1rem; }
+    main { padding: 1.5rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Who We Are in Christ Jesus</h1>
+  <p>New Testament Epistles &amp; Old Testament Prophetic Roots · English (ESV) · Greek (NA28) &amp; Hebrew (BHS)</p>
+</header>
+
+<div class="controls">
+  <input class="search-box" type="search" id="q" placeholder="Search reference, keyword, Greek, or Hebrew…">
+  <div class="tab-bar">
+    <button class="tab active-all" data-tab="all">All</button>
+    <button class="tab" data-tab="who">Who we are</button>
+    <button class="tab" data-tab="have">What we have</button>
+    <button class="tab" data-tab="going">Where we're going</button>
+    <button class="tab" data-tab="ot">OT Prophetic Roots</button>
+  </div>
+  <span class="count" id="cnt"></span>
+</div>
+
+<main><div class="verse-list" id="list"></div></main>
+
+<footer>English: ESV &nbsp;·&nbsp; Greek: Nestle-Aland 28th ed. (NA28) &nbsp;·&nbsp; Hebrew: Biblia Hebraica Stuttgartensia (BHS)</footer>
+
+<script>
+var DATA = [
+  {cat:"who",ref:"Romans 6:6",eng:"We know that our old self was crucified with him so that the body of sin might be brought to nothing.",greek:"τοῦτο γινώσκοντες ὅτι ὁ παλαιὸς ἡμῶν ἄνθρωπος συνεσταυρώθη."},
+  {cat:"who",ref:"Romans 6:11",eng:"So you also must consider yourselves dead to sin and alive to God in Christ Jesus.",greek:"λογίζεσθε ἑαυτοὺς νεκροὺς μὲν τῇ ἁμαρτίᾳ ζῶντας δὲ τῷ Θεῷ ἐν Χριστῷ Ἰησοῦ."},
+  {cat:"who",ref:"Romans 8:14",eng:"For all who are led by the Spirit of God are sons of God.",greek:"ὅσοι γὰρ Πνεύματι Θεοῦ ἄγονται, οὗτοί εἰσιν υἱοὶ Θεοῦ."},
+  {cat:"who",ref:"Romans 8:16",eng:"The Spirit himself bears witness with our spirit that we are children of God.",greek:"αὐτὸ τὸ Πνεῦμα συμμαρτυρεῖ τῷ πνεύματι ἡμῶν ὅτι ἐσμὲν τέκνα Θεοῦ."},
+  {cat:"who",ref:"Romans 8:17",eng:"And if children, then heirs — heirs of God and fellow heirs with Christ.",greek:"εἰ δὲ τέκνα, καὶ κληρονόμοι· κληρονόμοι μὲν Θεοῦ, συγκληρονόμοι δὲ Χριστοῦ."},
+  {cat:"who",ref:"Romans 8:29",eng:"For those whom he foreknew he also predestined to be conformed to the image of his Son.",greek:"ὅτι οὓς προέγνω, καὶ προώρισεν συμμόρφους τῆς εἰκόνος τοῦ υἱοῦ αὐτοῦ."},
+  {cat:"who",ref:"Romans 8:37",eng:"In all these things we are more than conquerors through him who loved us.",greek:"ἀλλ᾽ ἐν τούτοις πᾶσιν ὑπερνικῶμεν διὰ τοῦ ἀγαπήσαντος ἡμᾶς."},
+  {cat:"who",ref:"1 Corinthians 1:2",eng:"To those sanctified in Christ Jesus, called to be saints.",greek:"ἡγιασμένοις ἐν Χριστῷ Ἰησοῦ, κλητοῖς ἁγίοις."},
+  {cat:"who",ref:"1 Corinthians 3:16",eng:"Do you not know that you are God's temple and that God's Spirit dwells in you?",greek:"οὐκ οἴδατε ὅτι ναὸς Θεοῦ ἐστε καὶ τὸ Πνεῦμα τοῦ Θεοῦ οἰκεῖ ἐν ὑμῖν;"},
+  {cat:"who",ref:"1 Corinthians 6:17",eng:"But he who is joined to the Lord becomes one spirit with him.",greek:"ὁ δὲ κολλώμενος τῷ Κυρίῳ ἓν πνεῦμά ἐστιν."},
+  {cat:"who",ref:"1 Corinthians 6:19–20",eng:"You are not your own, for you were bought with a price.",greek:"οὐκ ἐστὲ ἑαυτῶν· ἠγοράσθητε γὰρ τιμῆς."},
+  {cat:"who",ref:"2 Corinthians 1:21–22",eng:"It is God who establishes us in Christ and has anointed us and put his seal on us.",greek:"ὁ δὲ βεβαιῶν ἡμᾶς σὺν ὑμῖν εἰς Χριστὸν καὶ χρίσας ἡμᾶς Θεός, ὁ καὶ σφραγισάμενος ἡμᾶς."},
+  {cat:"who",ref:"2 Corinthians 5:17",eng:"Therefore, if anyone is in Christ, he is a new creation.",greek:"ὥστε εἴ τις ἐν Χριστῷ, καινὴ κτίσις· τὰ ἀρχαῖα παρῆλθεν, ἰδοὺ γέγονεν καινά."},
+  {cat:"who",ref:"2 Corinthians 5:21",eng:"For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God.",greek:"τὸν μὴ γνόντα ἁμαρτίαν ὑπὲρ ἡμῶν ἁμαρτίαν ἐποίησεν, ἵνα ἡμεῖς γενώμεθα δικαιοσύνη Θεοῦ ἐν αὐτῷ."},
+  {cat:"who",ref:"Galatians 3:26",eng:"For in Christ Jesus you are all sons of God, through faith.",greek:"πάντες γὰρ υἱοὶ Θεοῦ ἐστε διὰ τῆς πίστεως ἐν Χριστῷ Ἰησοῦ."},
+  {cat:"who",ref:"Galatians 3:28",eng:"You are all one in Christ Jesus.",greek:"πάντες γὰρ ὑμεῖς εἷς ἐστε ἐν Χριστῷ Ἰησοῦ."},
+  {cat:"who",ref:"Galatians 4:7",eng:"So you are no longer a slave, but a son, and if a son, then an heir through God.",greek:"ὥστε οὐκέτι εἶ δοῦλος ἀλλ᾽ υἱός· εἰ δὲ υἱός, καὶ κληρονόμος διὰ Θεοῦ."},
+  {cat:"who",ref:"Ephesians 1:4",eng:"He chose us in him before the foundation of the world, that we should be holy and blameless before him.",greek:"καθὼς ἐξελέξατο ἡμᾶς ἐν αὐτῷ πρὸ καταβολῆς κόσμου, εἶναι ἡμᾶς ἁγίους καὶ ἀμώμους κατενώπιον αὐτοῦ."},
+  {cat:"who",ref:"Ephesians 1:5",eng:"He predestined us for adoption to himself as sons through Jesus Christ.",greek:"προορίσας ἡμᾶς εἰς υἱοθεσίαν διὰ Ἰησοῦ Χριστοῦ εἰς αὐτόν."},
+  {cat:"who",ref:"Ephesians 2:6",eng:"And raised us up with him and seated us with him in the heavenly places in Christ Jesus.",greek:"καὶ συνήγειρεν καὶ συνεκάθισεν ἐν τοῖς ἐπουρανίοις ἐν Χριστῷ Ἰησοῦ."},
+  {cat:"who",ref:"Ephesians 2:10",eng:"For we are his workmanship, created in Christ Jesus for good works.",greek:"αὐτοῦ γάρ ἐσμεν ποίημα, κτισθέντες ἐν Χριστῷ Ἰησοῦ ἐπὶ ἔργοις ἀγαθοῖς."},
+  {cat:"who",ref:"Ephesians 2:19",eng:"You are no longer strangers and aliens, but fellow citizens with the saints and members of the household of God.",greek:"ἄρα οὖν οὐκέτι ἐστὲ ξένοι καὶ πάροικοι, ἀλλὰ συμπολῖται τῶν ἁγίων καὶ οἰκεῖοι τοῦ Θεοῦ."},
+  {cat:"who",ref:"Ephesians 5:8",eng:"For at one time you were darkness, but now you are light in the Lord.",greek:"ἦτε γάρ ποτε σκότος, νῦν δὲ φῶς ἐν Κυρίῳ."},
+  {cat:"who",ref:"Philippians 3:20",eng:"But our citizenship is in heaven.",greek:"ἡμῶν γὰρ τὸ πολίτευμα ἐν οὐρανοῖς ὑπάρχει."},
+  {cat:"who",ref:"Colossians 2:10",eng:"And you have been filled in him, who is the head of all rule and authority.",greek:"καὶ ἐστὲ ἐν αὐτῷ πεπληρωμένοι, ὅς ἐστιν ἡ κεφαλὴ πάσης ἀρχῆς καὶ ἐξουσίας."},
+  {cat:"who",ref:"Colossians 3:3",eng:"For you have died, and your life is hidden with Christ in God.",greek:"ἀπεθάνετε γάρ, καὶ ἡ ζωὴ ὑμῶν κέκρυπται σὺν τῷ Χριστῷ ἐν τῷ Θεῷ."},
+  {cat:"who",ref:"Colossians 3:12",eng:"Put on then, as God's chosen ones, holy and beloved, compassionate hearts…",greek:"ἐνδύσασθε οὖν ὡς ἐκλεκτοὶ τοῦ Θεοῦ, ἅγιοι καὶ ἠγαπημένοι."},
+  {cat:"who",ref:"1 Thessalonians 5:5",eng:"For you are all children of light, children of the day.",greek:"πάντες γὰρ ὑμεῖς υἱοὶ φωτός ἐστε καὶ υἱοὶ ἡμέρας."},
+  {cat:"who",ref:"2 Timothy 1:7",eng:"For God gave us a spirit not of fear but of power and love and self-control.",greek:"οὐ γὰρ ἔδωκεν ἡμῖν ὁ Θεὸς πνεῦμα δειλίας, ἀλλὰ δυνάμεως καὶ ἀγάπης καὶ σωφρονισμοῦ."},
+  {cat:"who",ref:"1 Peter 2:9",eng:"But you are a chosen race, a royal priesthood, a holy nation, a people for his own possession.",greek:"ὑμεῖς δὲ γένος ἐκλεκτόν, βασίλειον ἱεράτευμα, ἔθνος ἅγιον, λαὸς εἰς περιποίησιν."},
+  {cat:"who",ref:"1 Peter 2:10",eng:"Once you were not a people, but now you are God's people.",greek:"οἵ ποτε οὐ λαός, νῦν δὲ λαὸς Θεοῦ."},
+  {cat:"who",ref:"1 John 3:1",eng:"See what kind of love the Father has given to us, that we should be called children of God; and so we are.",greek:"ἴδετε ποταπὴν ἀγάπην δέδωκεν ἡμῖν ὁ Πατήρ, ἵνα τέκνα Θεοῦ κληθῶμεν· καὶ ἐσμέν."},
+  {cat:"who",ref:"1 John 5:1",eng:"Everyone who believes that Jesus is the Christ has been born of God.",greek:"πᾶς ὁ πιστεύων ὅτι Ἰησοῦς ἐστιν ὁ Χριστὸς ἐκ τοῦ Θεοῦ γεγέννηται."},
+  {cat:"have",ref:"Romans 3:24",eng:"Justified by his grace as a gift, through the redemption that is in Christ Jesus.",greek:"δικαιούμενοι δωρεὰν τῇ αὐτοῦ χάριτι διὰ τῆς ἀπολυτρώσεως τῆς ἐν Χριστῷ Ἰησοῦ."},
+  {cat:"have",ref:"Romans 5:1",eng:"Since we have been justified by faith, we have peace with God through our Lord Jesus Christ.",greek:"δικαιωθέντες οὖν ἐκ πίστεως εἰρήνην ἔχομεν πρὸς τὸν Θεὸν διὰ τοῦ Κυρίου ἡμῶν Ἰησοῦ Χριστοῦ."},
+  {cat:"have",ref:"Romans 5:2",eng:"Through him we have also obtained access by faith into this grace in which we stand.",greek:"δι᾽ οὗ καὶ τὴν προσαγωγὴν ἐσχήκαμεν τῇ πίστει εἰς τὴν χάριν ταύτην ἐν ᾗ ἑστήκαμεν."},
+  {cat:"have",ref:"Romans 5:5",eng:"God's love has been poured into our hearts through the Holy Spirit who has been given to us.",greek:"ἡ ἀγάπη τοῦ Θεοῦ ἐκκέχυται ἐν ταῖς καρδίαις ἡμῶν διὰ Πνεύματος Ἁγίου τοῦ δοθέντος ἡμῖν."},
+  {cat:"have",ref:"Romans 8:1",eng:"There is therefore now no condemnation for those who are in Christ Jesus.",greek:"Οὐδὲν ἄρα νῦν κατάκριμα τοῖς ἐν Χριστῷ Ἰησοῦ."},
+  {cat:"have",ref:"Romans 8:2",eng:"The law of the Spirit of life has set you free in Christ Jesus from the law of sin and death.",greek:"ὁ γὰρ νόμος τοῦ Πνεύματος τῆς ζωῆς ἐν Χριστῷ Ἰησοῦ ἠλευθέρωσέν σε ἀπὸ τοῦ νόμου τῆς ἁμαρτίας καὶ τοῦ θανάτου."},
+  {cat:"have",ref:"Romans 8:9",eng:"The Spirit of God dwells in you.",greek:"Πνεῦμα Θεοῦ οἰκεῖ ἐν ὑμῖν."},
+  {cat:"have",ref:"Romans 8:15",eng:"You have received the Spirit of adoption as sons, by whom we cry 'Abba! Father!'",greek:"ἐλάβετε πνεῦμα υἱοθεσίας ἐν ᾧ κράζομεν· Ἀββά ὁ Πατήρ."},
+  {cat:"have",ref:"Romans 8:26",eng:"The Spirit helps us in our weakness and intercedes for us with groanings too deep for words.",greek:"τὸ Πνεῦμα συναντιλαμβάνεται τῇ ἀσθενείᾳ ἡμῶν… ὑπερεντυγχάνει ὑπὲρ ἡμῶν στεναγμοῖς ἀλαλήτοις."},
+  {cat:"have",ref:"Romans 8:32",eng:"He who did not spare his own Son will graciously give us all things with him.",greek:"πῶς οὐχὶ καὶ σὺν αὐτῷ τὰ πάντα ἡμῖν χαρίσεται;"},
+  {cat:"have",ref:"1 Corinthians 2:16",eng:"But we have the mind of Christ.",greek:"ἡμεῖς δὲ νοῦν Χριστοῦ ἔχομεν."},
+  {cat:"have",ref:"1 Corinthians 6:11",eng:"You were washed, you were sanctified, you were justified in the name of the Lord Jesus Christ.",greek:"ἀπελούσασθε, ἡγιάσθητε, ἐδικαιώθητε ἐν τῷ ὀνόματι τοῦ Κυρίου Ἰησοῦ Χριστοῦ."},
+  {cat:"have",ref:"2 Corinthians 3:18",eng:"We all, with unveiled face, beholding the glory of the Lord, are being transformed into the same image.",greek:"ἡμεῖς δὲ πάντες ἀνακεκαλυμμένῳ προσώπῳ τὴν δόξαν Κυρίου κατοπτριζόμενοι τὴν αὐτὴν εἰκόνα μεταμορφούμεθα."},
+  {cat:"have",ref:"Galatians 2:20",eng:"I have been crucified with Christ. It is no longer I who live, but Christ who lives in me.",greek:"Χριστῷ συνεσταύρωμαι· ζῶ δὲ οὐκέτι ἐγώ, ζῇ δὲ ἐν ἐμοὶ Χριστός."},
+  {cat:"have",ref:"Ephesians 1:3",eng:"Blessed us in Christ with every spiritual blessing in the heavenly places.",greek:"εὐλογήσας ἡμᾶς ἐν πάσῃ εὐλογίᾳ πνευματικῇ ἐν τοῖς ἐπουρανίοις ἐν Χριστῷ."},
+  {cat:"have",ref:"Ephesians 1:7",eng:"In him we have redemption through his blood, the forgiveness of our trespasses.",greek:"ἐν ᾧ ἔχομεν τὴν ἀπολύτρωσιν διὰ τοῦ αἵματος αὐτοῦ, τὴν ἄφεσιν τῶν παραπτωμάτων."},
+  {cat:"have",ref:"Ephesians 1:11",eng:"In him we have obtained an inheritance.",greek:"ἐν ᾧ καὶ ἐκληρώθημεν."},
+  {cat:"have",ref:"Ephesians 1:13",eng:"In him you were sealed with the promised Holy Spirit.",greek:"ἐσφραγίσθητε τῷ Πνεύματι τῆς ἐπαγγελίας τῷ Ἁγίῳ."},
+  {cat:"have",ref:"Ephesians 2:5",eng:"Even when we were dead in our trespasses, God made us alive together with Christ.",greek:"καὶ ὄντας ἡμᾶς νεκροὺς τοῖς παραπτώμασιν συνεζωοποίησεν τῷ Χριστῷ."},
+  {cat:"have",ref:"Ephesians 2:13",eng:"In Christ Jesus you who once were far off have been brought near by the blood of Christ.",greek:"ἐν Χριστῷ Ἰησοῦ ὑμεῖς οἵ ποτε ὄντες μακρὰν ἐγενήθητε ἐγγὺς ἐν τῷ αἵματι τοῦ Χριστοῦ."},
+  {cat:"have",ref:"Ephesians 3:12",eng:"In him we have boldness and access with confidence through our faith in him.",greek:"ἐν ᾧ ἔχομεν τὴν παρρησίαν καὶ προσαγωγὴν ἐν πεποιθήσει διὰ τῆς πίστεως αὐτοῦ."},
+  {cat:"have",ref:"Philippians 4:7",eng:"The peace of God, which surpasses all understanding, will guard your hearts and minds in Christ Jesus.",greek:"ἡ εἰρήνη τοῦ Θεοῦ ἡ ὑπερέχουσα πάντα νοῦν φρουρήσει τὰς καρδίας ὑμῶν ἐν Χριστῷ Ἰησοῦ."},
+  {cat:"have",ref:"Philippians 4:13",eng:"I can do all things through him who strengthens me.",greek:"πάντα ἰσχύω ἐν τῷ ἐνδυναμοῦντί με Χριστῷ."},
+  {cat:"have",ref:"Colossians 1:13",eng:"He has delivered us from the domain of darkness and transferred us to the kingdom of his beloved Son.",greek:"ὃς ἐρρύσατο ἡμᾶς ἐκ τῆς ἐξουσίας τοῦ σκότους καὶ μετέστησεν εἰς τὴν βασιλείαν τοῦ υἱοῦ τῆς ἀγάπης αὐτοῦ."},
+  {cat:"have",ref:"Colossians 1:14",eng:"In whom we have redemption, the forgiveness of sins.",greek:"ἐν ᾧ ἔχομεν τὴν ἀπολύτρωσιν, τὴν ἄφεσιν τῶν ἁμαρτιῶν."},
+  {cat:"have",ref:"Colossians 2:13",eng:"God made you alive together with him, having forgiven us all our trespasses.",greek:"συνεζωοποίησεν ὑμᾶς σὺν αὐτῷ, χαρισάμενος ἡμῖν πάντα τὰ παραπτώματα."},
+  {cat:"have",ref:"Colossians 2:14",eng:"By canceling the record of debt that stood against us with its legal demands.",greek:"ἐξαλείψας τὸ καθ᾽ ἡμῶν χειρόγραφον τοῖς δόγμασιν ὃ ἦν ὑπεναντίον ἡμῖν."},
+  {cat:"have",ref:"Titus 3:5",eng:"He saved us not because of works done by us in righteousness, but by the washing of regeneration and renewing of the Holy Spirit.",greek:"οὐκ ἐξ ἔργων… ἀλλὰ κατὰ τὸ αὐτοῦ ἔλεος ἔσωσεν ἡμᾶς διὰ λουτροῦ παλιγγενεσίας καὶ ἀνακαινώσεως Πνεύματος Ἁγίου."},
+  {cat:"have",ref:"Hebrews 4:16",eng:"Let us with confidence draw near to the throne of grace, that we may receive mercy and find grace to help.",greek:"προσερχώμεθα οὖν μετὰ παρρησίας τῷ θρόνῳ τῆς χάριτος, ἵνα λάβωμεν ἔλεος καὶ χάριν εὕρωμεν."},
+  {cat:"have",ref:"1 John 1:9",eng:"If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.",greek:"ἐὰν ὁμολογῶμεν τὰς ἁμαρτίας ἡμῶν, πιστός ἐστιν καὶ δίκαιος ἵνα ἀφῇ ἡμῖν τὰς ἁμαρτίας καὶ καθαρίσῃ ἡμᾶς."},
+  {cat:"have",ref:"1 John 2:27",eng:"The anointing that you received from him abides in you.",greek:"τὸ χρῖσμα ὃ ἐλάβετε ἀπ᾽ αὐτοῦ μένει ἐν ὑμῖν."},
+  {cat:"have",ref:"1 John 4:4",eng:"He who is in you is greater than he who is in the world.",greek:"μείζων ἐστὶν ὁ ἐν ὑμῖν ἢ ὁ ἐν τῷ κόσμῳ."},
+  {cat:"have",ref:"1 John 5:12",eng:"Whoever has the Son has life.",greek:"ὁ ἔχων τὸν Υἱὸν ἔχει τὴν ζωήν."},
+  {cat:"going",ref:"Romans 5:9",eng:"Much more shall we be saved by him from the wrath of God.",greek:"πολλῷ οὖν μᾶλλον δικαιωθέντες νῦν ἐν τῷ αἵματι αὐτοῦ σωθησόμεθα δι᾽ αὐτοῦ ἀπὸ τῆς ὀργῆς."},
+  {cat:"going",ref:"Romans 8:11",eng:"He who raised Christ Jesus from the dead will also give life to your mortal bodies through his Spirit.",greek:"ὁ ἐγείρας Χριστὸν ἐκ νεκρῶν ζῳοποιήσει καὶ τὰ θνητὰ σώματα ὑμῶν διὰ τοῦ ἐνοικοῦντος αὐτοῦ Πνεύματος."},
+  {cat:"going",ref:"Romans 8:18",eng:"The sufferings of this present time are not worth comparing with the glory that is to be revealed to us.",greek:"οὐκ ἄξια τὰ παθήματα τοῦ νῦν καιροῦ πρὸς τὴν μέλλουσαν δόξαν ἀποκαλυφθῆναι εἰς ἡμᾶς."},
+  {cat:"going",ref:"Romans 8:23",eng:"We wait eagerly for adoption as sons, the redemption of our bodies.",greek:"ἀπεκδεχόμενοι τὴν υἱοθεσίαν, τὴν ἀπολύτρωσιν τοῦ σώματος ἡμῶν."},
+  {cat:"going",ref:"Romans 8:30",eng:"Those whom he predestined he also called; those he called he justified; those he justified he also glorified.",greek:"οὓς δὲ προώρισεν, τούτους καὶ ἐκάλεσεν· καὶ οὓς ἐκάλεσεν, τούτους καὶ ἐδικαίωσεν· οὓς δὲ ἐδικαίωσεν, τούτους καὶ ἐδόξασεν."},
+  {cat:"going",ref:"Romans 8:38–39",eng:"Neither death nor life will be able to separate us from the love of God in Christ Jesus our Lord.",greek:"οὔτε θάνατος οὔτε ζωή… δυνήσεται ἡμᾶς χωρίσαι ἀπὸ τῆς ἀγάπης τοῦ Θεοῦ τῆς ἐν Χριστῷ Ἰησοῦ τῷ Κυρίῳ ἡμῶν."},
+  {cat:"going",ref:"1 Corinthians 2:9",eng:"No eye has seen, nor ear heard, nor the heart of man imagined, what God has prepared for those who love him.",greek:"ὀφθαλμὸς οὐκ εἶδεν καὶ οὖς οὐκ ἤκουσεν καὶ ἐπὶ καρδίαν ἀνθρώπου οὐκ ἀνέβη ἃ ἡτοίμασεν ὁ Θεὸς τοῖς ἀγαπῶσιν αὐτόν."},
+  {cat:"going",ref:"1 Corinthians 15:51–52",eng:"We shall not all sleep, but we shall all be changed, in a moment, in the twinkling of an eye, at the last trumpet.",greek:"πάντες δὲ ἀλλαγησόμεθα, ἐν ἀτόμῳ, ἐν ῥιπῇ ὀφθαλμοῦ, ἐν τῇ ἐσχάτῃ σάλπιγγι."},
+  {cat:"going",ref:"1 Corinthians 15:54",eng:"Death is swallowed up in victory.",greek:"κατεπόθη ὁ θάνατος εἰς νῖκος."},
+  {cat:"going",ref:"2 Corinthians 4:17",eng:"This light momentary affliction is preparing for us an eternal weight of glory beyond all comparison.",greek:"τὸ γὰρ παραυτίκα ἐλαφρὸν τῆς θλίψεως καθ᾽ ὑπερβολὴν εἰς ὑπερβολὴν αἰώνιον βάρος δόξης κατεργάζεται ἡμῖν."},
+  {cat:"going",ref:"2 Corinthians 5:1",eng:"If the tent that is our earthly home is destroyed, we have a building from God, a house not made with hands, eternal in the heavens.",greek:"οἴδαμεν γὰρ ὅτι ἐὰν ἡ ἐπίγειος ἡμῶν οἰκία τοῦ σκήνους καταλυθῇ, οἰκοδομὴν ἐκ Θεοῦ ἔχομεν αἰώνιον ἐν τοῖς οὐρανοῖς."},
+  {cat:"going",ref:"Ephesians 1:14",eng:"The Holy Spirit is the guarantee of our inheritance until we acquire possession of it.",greek:"ὅ ἐστιν ἀρραβὼν τῆς κληρονομίας ἡμῶν εἰς ἀπολύτρωσιν τῆς περιποιήσεως."},
+  {cat:"going",ref:"Philippians 1:6",eng:"He who began a good work in you will bring it to completion at the day of Jesus Christ.",greek:"ὁ ἐναρξάμενος ἐν ὑμῖν ἔργον ἀγαθὸν ἐπιτελέσει ἄχρι ἡμέρας Χριστοῦ Ἰησοῦ."},
+  {cat:"going",ref:"Philippians 3:20–21",eng:"We await a Savior who will transform our lowly body to be like his glorious body.",greek:"ἀπεκδεχόμεθα Σωτῆρα Κύριον Ἰησοῦν Χριστόν, ὃς μετασχηματίσει τὸ σῶμα τῆς ταπεινώσεως ἡμῶν σύμμορφον τῷ σώματι τῆς δόξης αὐτοῦ."},
+  {cat:"going",ref:"Colossians 3:4",eng:"When Christ who is your life appears, then you also will appear with him in glory.",greek:"ὅταν ὁ Χριστὸς φανερωθῇ, ἡ ζωὴ ὑμῶν, τότε καὶ ὑμεῖς σὺν αὐτῷ φανερωθήσεσθε ἐν δόξῃ."},
+  {cat:"going",ref:"1 Thessalonians 4:16–17",eng:"The dead in Christ will rise first. Then we who are alive will be caught up together with them to meet the Lord in the air.",greek:"οἱ νεκροὶ ἐν Χριστῷ ἀναστήσονται πρῶτον· ἔπειτα ἡμεῖς οἱ ζῶντες ἅμα σὺν αὐτοῖς ἁρπαγησόμεθα εἰς ἀπάντησιν τοῦ Κυρίου εἰς ἀέρα."},
+  {cat:"going",ref:"1 Thessalonians 5:9–10",eng:"God has not destined us for wrath, but to obtain salvation through our Lord Jesus Christ.",greek:"ὅτι οὐκ ἔθετο ἡμᾶς ὁ Θεὸς εἰς ὀργὴν ἀλλὰ εἰς περιποίησιν σωτηρίας διὰ τοῦ Κυρίου ἡμῶν Ἰησοῦ Χριστοῦ."},
+  {cat:"going",ref:"2 Timothy 4:8",eng:"There is laid up for me the crown of righteousness, which the Lord will award to me on that day.",greek:"ἀπόκειταί μοι ὁ τῆς δικαιοσύνης στέφανος, ὃν ἀποδώσει μοι ὁ Κύριος ἐν ἐκείνῃ τῇ ἡμέρᾳ."},
+  {cat:"going",ref:"Hebrews 6:19",eng:"We have this as a sure and steadfast anchor of the soul, a hope that enters into the inner place behind the curtain.",greek:"ἣν ὡς ἄγκυραν ἔχομεν τῆς ψυχῆς ἀσφαλῆ τε καὶ βεβαίαν καὶ εἰσερχομένην εἰς τὸ ἐσώτερον τοῦ καταπετάσματος."},
+  {cat:"going",ref:"Hebrews 9:28",eng:"Christ will appear a second time to save those who are eagerly waiting for him.",greek:"Χριστὸς… ἐκ δευτέρου χωρὶς ἁμαρτίας ὀφθήσεται τοῖς αὐτὸν ἀπεκδεχομένοις εἰς σωτηρίαν."},
+  {cat:"going",ref:"1 Peter 1:3–4",eng:"A living hope through the resurrection of Jesus Christ, to an inheritance imperishable, undefiled, and unfading, kept in heaven for you.",greek:"ἀναγεννήσας ἡμᾶς εἰς ἐλπίδα ζῶσαν… εἰς κληρονομίαν ἄφθαρτον καὶ ἀμίαντον καὶ ἀμάραντον τετηρημένην ἐν οὐρανοῖς."},
+  {cat:"going",ref:"1 Peter 5:4",eng:"When the chief Shepherd appears, you will receive the unfading crown of glory.",greek:"φανερωθέντος τοῦ ἀρχιποίμενος κομιεῖσθε τὸν ἀμαράντινον τῆς δόξης στέφανον."},
+  {cat:"going",ref:"1 John 3:2",eng:"We know that when he appears we shall be like him, because we shall see him as he is.",greek:"οἴδαμεν δὲ ὅτι ὅταν φανερωθῇ, ὅμοιοι αὐτῷ ἐσόμεθα ὅτι ὀψόμεθα αὐτὸν καθώς ἐστιν."},
+  {cat:"going",ref:"Revelation 21:3–4",eng:"He will dwell with them; he will wipe away every tear, and death shall be no more.",greek:"αὐτὸς ὁ Θεὸς μετ᾽ αὐτῶν ἔσται… καὶ ὁ θάνατος οὐκ ἔσται ἔτι."},
+  {cat:"going",ref:"Revelation 22:5",eng:"The Lord God will be their light, and they will reign forever and ever.",greek:"Κύριος ὁ Θεὸς φωτίσει αὐτούς, καὶ βασιλεύσουσιν εἰς τοὺς αἰῶνας τῶν αἰώνων."},
+
+  // OT PROPHETIC ROOTS
+  {cat:"ot",ref:"Genesis 12:1–3",eng:"I will make of you a great nation… and in you all the families of the earth shall be blessed.",greek:"וְנִבְרְכוּ בְךָ כֹּל מִשְׁפְּחֹת הָאֲדָמָה — 'All families of the earth will be blessed in you.'",fulfil:[{ref:"Galatians 3:16",text:"The promises were made to Abraham and to his offspring — that is, to one person, who is Christ."},{ref:"Galatians 3:29",text:"If you are Christ's, then you are Abraham's offspring, heirs according to promise."}]},
+  {cat:"ot",ref:"Genesis 15:6",eng:"And he believed the LORD, and he counted it to him as righteousness.",greek:"וְהֶאֱמִן בַּיהוָה וַיַּחְשְׁבֶהָ לּוֹ צְדָקָה",fulfil:[{ref:"Romans 4:3",text:"Abraham believed God, and it was counted to him as righteousness."},{ref:"Romans 4:23–24",text:"The words 'it was counted to him' were not written for his sake alone, but for ours also — to us who believe in him who raised Jesus our Lord from the dead."}]},
+  {cat:"ot",ref:"Exodus 19:5–6",eng:"You shall be my treasured possession among all peoples… a kingdom of priests and a holy nation.",greek:"וְאַתֶּם תִּהְיוּ-לִי מַמְלֶכֶת כֹּהֲנִים וְגוֹי קָדוֹשׁ",fulfil:[{ref:"1 Peter 2:9",text:"You are a chosen race, a royal priesthood, a holy nation — Peter quotes Exodus 19:6 directly and applies it to the church in Christ."},{ref:"Revelation 1:6",text:"He has made us a kingdom, priests to his God and Father."}]},
+  {cat:"ot",ref:"Psalm 2:7–8",eng:"You are my Son; today I have begotten you. Ask of me, and I will make the nations your heritage.",greek:"אֲנִי הַיּוֹם יְלִדְתִּיךָ — 'Today I have begotten you.'",fulfil:[{ref:"Hebrews 1:5",text:"To which of the angels did God ever say, 'You are my Son, today I have begotten you'? — applied to the risen Christ."},{ref:"Romans 8:17",text:"Heirs of God and fellow heirs with Christ — we share in the inheritance promised in Psalm 2."}]},
+  {cat:"ot",ref:"Psalm 22:1–31",eng:"My God, my God, why have you forsaken me?… They shall come and proclaim his righteousness to a people yet unborn.",greek:"אֵלִי אֵלִי לָמָה עֲזַבְתָּנִי",fulfil:[{ref:"Matthew 27:46",text:"Jesus cries Psalm 22:1 from the cross — the entire psalm is a prophetic script of the crucifixion and its global aftermath."},{ref:"Hebrews 2:12",text:"Christ quotes Psalm 22:22 — 'I will tell of your name to my brothers' — confirming our brotherhood with him in the new covenant community."}]},
+  {cat:"ot",ref:"Psalm 110:1–4",eng:"The LORD says to my Lord: Sit at my right hand… You are a priest forever after the order of Melchizedek.",greek:"נְאֻם יְהוָה לַאדֹנִי שֵׁב לִימִינִי",fulfil:[{ref:"Hebrews 7:17, 25",text:"Jesus has become a high priest forever after the order of Melchizedek — he is able to save to the uttermost those who draw near to God through him."},{ref:"Ephesians 1:20–22",text:"God seated Christ at his right hand in the heavenly places, far above all rule and authority."}]},
+  {cat:"ot",ref:"Isaiah 9:6–7",eng:"For to us a child is born, to us a son is given… Prince of Peace. Of the increase of his government there will be no end.",greek:"כִּי-יֶלֶד יֻלַּד-לָנוּ בֵּן נִתַּן-לָנוּ",fulfil:[{ref:"Luke 1:32–33",text:"He will be called the Son of the Most High, and the Lord God will give to him the throne of his father David."},{ref:"Colossians 1:13",text:"We have been transferred to the kingdom of his beloved Son — we now live under the government of the Prince of Peace."}]},
+  {cat:"ot",ref:"Isaiah 40:31",eng:"They who wait for the LORD shall renew their strength; they shall mount up with wings like eagles.",greek:"וְקוֹיֵ יְהוָה יַחֲלִיפוּ כֹחַ",fulfil:[{ref:"Philippians 4:13",text:"I can do all things through him who strengthens me — the NT fulfilment of divine strengthening promised in Isaiah 40."},{ref:"2 Corinthians 12:9",text:"My grace is sufficient for you, for my power is made perfect in weakness."}]},
+  {cat:"ot",ref:"Isaiah 43:1",eng:"Fear not, for I have redeemed you; I have called you by name, you are mine.",greek:"אַל-תִּירָא כִּי גְאַלְתִּיךָ קָרָאתִי בְשִׁמְךָ לִי-אָתָּה",fulfil:[{ref:"John 10:3",text:"The shepherd calls his own sheep by name — Jesus fulfils the personal naming and claiming of Isaiah 43."},{ref:"Romans 8:15",text:"You have received the Spirit of adoption — we cry 'Abba, Father' as those individually called and owned by God."}]},
+  {cat:"ot",ref:"Isaiah 53:4–6",eng:"He has borne our griefs and carried our sorrows… he was wounded for our transgressions… and with his stripes we are healed.",greek:"אָכֵן חֳלָיֵנוּ הוּא נָשָׂא וּמַכְאֹבֵינוּ סְבָלָם",fulfil:[{ref:"1 Peter 2:24",text:"He himself bore our sins in his body on the tree, that we might die to sin and live to righteousness. By his wounds you have been healed."},{ref:"Romans 4:25",text:"He was delivered up for our trespasses and raised for our justification."}]},
+  {cat:"ot",ref:"Isaiah 53:11",eng:"By his knowledge shall the righteous one, my servant, make many to be accounted righteous, and he shall bear their iniquities.",greek:"יַצְדִּיק צַדִּיק עַבְדִּי לָרַבִּים וַעֲוֹנֹתָם הוּא יִסְבֹּל",fulfil:[{ref:"2 Corinthians 5:21",text:"For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God — the direct NT fulfilment of the Servant's substitutionary justification."}]},
+  {cat:"ot",ref:"Isaiah 61:1–3",eng:"The Spirit of the Lord GOD is upon me… to proclaim liberty to the captives… to give them beauty instead of ashes.",greek:"רוּחַ אֲדֹנָי יְהוִה עָלָי יַעַן מָשַׁח יְהוָה אֹתִי",fulfil:[{ref:"Luke 4:18–21",text:"Jesus reads this passage in Nazareth and declares: 'Today this Scripture has been fulfilled in your hearing.'"},{ref:"2 Corinthians 1:21",text:"God has anointed us — every believer shares in the anointing of the Anointed One (Christ = Messiah)."}]},
+  {cat:"ot",ref:"Jeremiah 31:31–34",eng:"I will make a new covenant… I will put my law within them and write it on their hearts… I will forgive their iniquity.",greek:"הִנֵּה יָמִים בָּאִים נְאֻם-יְהוָה וְכָרַתִּי… בְּרִית חֲדָשָׁה",fulfil:[{ref:"Hebrews 8:6, 10–12",text:"Christ is the mediator of a better covenant… 'I will put my laws into their minds and write them on their hearts' — Hebrews quotes Jeremiah 31 directly as fulfilled in Jesus."},{ref:"2 Corinthians 3:3",text:"You are a letter from Christ… written not with ink but with the Spirit of the living God, not on tablets of stone but on tablets of human hearts."}]},
+  {cat:"ot",ref:"Ezekiel 36:26–27",eng:"I will give you a new heart, and a new spirit I will put within you… I will put my Spirit within you and cause you to walk in my statutes.",greek:"וְנָתַתִּי לָכֶם לֵב חָדָשׁ וְרוּחַ חֲדָשָׁה אֶתֵּן בְּקִרְבְּכֶם",fulfil:[{ref:"John 3:5",text:"Unless one is born of water and the Spirit, he cannot enter the kingdom of God — Jesus points to Ezekiel 36 as the new-birth reality he brings."},{ref:"Romans 8:9–11",text:"The Spirit of God dwells in you… If the Spirit of him who raised Jesus dwells in you, he will also give life to your mortal bodies."}]},
+  {cat:"ot",ref:"Daniel 7:13–14",eng:"One like a son of man came to the Ancient of Days… to him was given dominion and glory and a kingdom that shall not be destroyed.",greek:"כְּבַר אֱנָשׁ אָתֵה הֲוָה (Aramaic)",fulfil:[{ref:"Matthew 26:64",text:"Jesus declares to the high priest: 'You will see the Son of Man seated at the right hand of Power and coming on the clouds of heaven.'"},{ref:"Revelation 22:5",text:"They will reign forever and ever — we who belong to him share in the everlasting dominion of Daniel 7."}]},
+  {cat:"ot",ref:"Joel 2:28–29",eng:"I will pour out my Spirit on all flesh; your sons and daughters shall prophesy… even on the male and female servants in those days.",greek:"וְהָיָה אַחֲרֵי-כֵן אֶשְׁפּוֹךְ אֶת-רוּחִי עַל-כָּל-בָּשָׂר",fulfil:[{ref:"Acts 2:16–18",text:"Peter at Pentecost: 'This is what was uttered through the prophet Joel' — the Spirit poured on all believers is the fulfilment of Joel 2."},{ref:"Galatians 3:28",text:"There is neither Jew nor Greek, slave nor free, male nor female — you are all one in Christ Jesus, the Joel 2 community fully realised."}]},
+  {cat:"ot",ref:"Zechariah 12:10",eng:"I will pour out… a spirit of grace and pleas for mercy, so that they look on me, on him whom they have pierced.",greek:"וְהִבִּיטוּ אֵלַי אֵת אֲשֶׁר-דָּקָרוּ",fulfil:[{ref:"John 19:37",text:"And again another Scripture says, 'They will look on him whom they have pierced' — John explicitly cites Zechariah 12:10 at the crucifixion."},{ref:"Revelation 1:7",text:"Every eye will see him, even those who pierced him — the final fulfilment at the return of Christ."}]},
+  {cat:"ot",ref:"Malachi 3:1",eng:"Behold, I send my messenger, and he will prepare the way before me. And the Lord whom you seek will suddenly come to his temple.",greek:"הִנְנִי שֹׁלֵחַ מַלְאָכִי וּפִנָּה-דֶרֶךְ לְפָנָי",fulfil:[{ref:"Matthew 11:10",text:"Jesus identifies John the Baptist as the fulfilment of Malachi 3:1 — 'Behold, I send my messenger before your face, who will prepare your way before you.'"},{ref:"Luke 1:76",text:"You, child, will be called the prophet of the Most High; for you will go before the Lord to prepare his ways."}]}
+];
+
+var activeTab = 'all';
+var LABELS = {who:'Who we are', have:'What we have', going:"Where we're going", ot:'OT Prophetic Root'};
+
+function render() {
+  var q = document.getElementById('q').value.toLowerCase();
+  var filtered = DATA.filter(function(v) {
+    var matchTab = activeTab === 'all' || v.cat === activeTab;
+    var searchable = v.ref + ' ' + v.eng + ' ' + v.greek;
+    if (v.fulfil) v.fulfil.forEach(function(f){ searchable += ' ' + f.ref + ' ' + f.text; });
+    var matchQ = !q || searchable.toLowerCase().indexOf(q) > -1;
+    return matchTab && matchQ;
+  });
+  document.getElementById('cnt').textContent = filtered.length + ' passage' + (filtered.length !== 1 ? 's' : '');
+  var list = document.getElementById('list');
+  if (!filtered.length) { list.innerHTML = '<div class="empty">No results found.</div>'; return; }
+  list.innerHTML = filtered.map(function(v) {
+    var langLabel = v.cat === 'ot' ? 'Hebrew · BHS' : 'Greek · NA28';
+    var fulfilHTML = '';
+    if (v.fulfil && v.fulfil.length) {
+      fulfilHTML = '<div class="fulfil-block"><span class="fulfil-label">Fulfilled in Christ — New Testament</span>' +
+        v.fulfil.map(function(f) {
+          return '<div class="fulfil-item"><span class="fulfil-ref">' + f.ref + '</span><div class="fulfil-text">' + f.text + '</div></div>';
+        }).join('') + '</div>';
+    }
+    return '<div class="verse-card ' + v.cat + '">' +
+      '<div class="card-header"><span class="ref">' + v.ref + '</span><span class="badge ' + v.cat + '">' + LABELS[v.cat] + '</span></div>' +
+      '<div class="eng">' + v.eng + '</div>' +
+      '<div class="greek-block"><span class="greek-label">' + langLabel + '</span><div class="greek">' + v.greek + '</div></div>' +
+      fulfilHTML + '</div>';
+  }).join('');
+}
+
+document.getElementById('q').addEventListener('input', render);
+document.querySelectorAll('.tab').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    activeTab = btn.getAttribute('data-tab');
+    document.querySelectorAll('.tab').forEach(function(b) { b.className = 'tab'; });
+    btn.className = 'tab active-' + activeTab;
+    render();
+  });
+});
+render();
+</script>
+</body>
+</html>
