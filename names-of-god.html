@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Names of God in Scripture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #B8860B;
+    --gold-light: #F5EDD5;
+    --gold-mid: #D4A843;
+    --text-primary: #1A1008;
+    --text-secondary: #6B5B3E;
+    --text-muted: #9E8E72;
+    --border: #E8DCC8;
+    --bg: #FFFFFF;
+    --bg-surface: #FDFAF5;
+    --ot-bg: #F0F7F2;
+    --ot-text: #2D6A45;
+    --nt-bg: #EFF4FB;
+    --nt-text: #1D4E89;
+    --both-bg: #F5F0FB;
+    --both-text: #5B3FA0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fff;
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Header */
+  header {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+  }
+  .header-ornament {
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .header-ornament::before,
+  .header-ornament::after {
+    content: '';
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-mid));
+  }
+  .header-ornament::after { background: linear-gradient(90deg, var(--gold-mid), transparent); }
+  .header-ornament span {
+    color: var(--gold);
+    font-size: 18px;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Controls */
+  .controls-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+  }
+  .controls-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .search-wrap {
+    flex: 1;
+    min-width: 220px;
+    position: relative;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 12px; top: 50%; transform: translateY(-50%);
+    color: var(--text-muted);
+    width: 16px; height: 16px;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 9px 12px 9px 36px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input[type="text"]:focus { border-color: var(--gold-mid); }
+  input[type="text"]::placeholder { color: var(--text-muted); }
+
+  .filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    background: #fff;
+    color: var(--text-secondary);
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--gold-mid); color: var(--gold); }
+  .filter-btn.active {
+    background: var(--text-primary);
+    border-color: var(--text-primary);
+    color: #fff;
+  }
+
+  /* Results count */
+  .results-info {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem 2rem 0.5rem;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* Grid */
+  .grid {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0.5rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 14px;
+  }
+
+  /* Card */
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: transparent;
+    transition: background 0.2s;
+  }
+  .card:hover { border-color: #D4A843; box-shadow: 0 4px 20px rgba(180,134,11,0.08); }
+  .card:hover::before { background: var(--gold-mid); }
+  .card.ot:hover::before { background: #4A9B6F; }
+  .card.nt:hover::before { background: #3A6DB5; }
+  .card.both:hover::before { background: #7B5CC5; }
+
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .name-group { flex: 1; }
+  .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+  .transliteration {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge.ot { background: var(--ot-bg); color: var(--ot-text); }
+  .badge.nt { background: var(--nt-bg); color: var(--nt-text); }
+  .badge.both { background: var(--both-bg); color: var(--both-text); }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 10px 0;
+  }
+
+  .meaning-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+  }
+  .meaning-text {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 400;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .context-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 8px;
+  }
+  .verse-ref {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gold);
+    background: var(--gold-light);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* Empty state */
+  .empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--text-muted);
+  }
+  .empty-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .empty p { font-size: 15px; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; padding: 0.5rem 1rem 3rem; }
+    .controls-bar { padding: 0.75rem 1rem; }
+    .results-info { padding: 0.75rem 1rem 0.25rem; }
+    header { padding: 2rem 1rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-ornament">
+    <span>✦</span>
+  </div>
+  <h1>Names of God in Scripture</h1>
+  <p class="subtitle">A Biblical Reference — Hebrew, Aramaic &amp; Greek</p>
+</header>
+
+<div class="controls-bar">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="search" placeholder="Search names, meanings, references…" oninput="render()" />
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-filter="" onclick="setFilter(this)">All</button>
+      <button class="filter-btn" data-filter="OT" onclick="setFilter(this)">Old Testament</button>
+      <button class="filter-btn" data-filter="NT" onclick="setFilter(this)">New Testament</button>
+      <button class="filter-btn" data-filter="Both" onclick="setFilter(this)">Both</button>
+    </div>
+  </div>
+</div>
+
+<div class="results-info" id="count"></div>
+<div class="grid" id="list"></div>
+
+<footer>62 Names &nbsp;·&nbsp; Biblical Reference Resource &nbsp;·&nbsp; Sources: Hebrew, Aramaic &amp; Greek Scripture</footer>
+
+<script>
+const data = [
+  {name:"Elohim",trans:"el-o-HEEM",meaning:"God; the Creator, powerful and supreme Being",context:"Used in the creation narrative; plural form emphasizing majesty and fullness",verse:"Genesis 1:1",trad:"OT"},
+  {name:"YHWH / Yahweh",trans:"YAH-weh",meaning:"I AM WHO I AM; the self-existent, eternal covenant God",context:"Revealed to Moses at the burning bush when he asked God's name",verse:"Exodus 3:14–15",trad:"OT"},
+  {name:"Adonai",trans:"ah-doe-NYE",meaning:"Lord, Master, Sovereign; used in place of YHWH in speech",context:"Abraham's address to God; later became the spoken substitute for YHWH",verse:"Genesis 15:2",trad:"OT"},
+  {name:"El Shaddai",trans:"el sha-DYE",meaning:"God Almighty; possibly 'God of the mountains' or 'all-sufficient God'",context:"Revealed to Abraham at age 99 when God renewed the covenant of circumcision",verse:"Genesis 17:1",trad:"OT"},
+  {name:"El Elyon",trans:"el el-YOHN",meaning:"God Most High; the supreme God above all gods",context:"Used by Melchizedek when blessing Abraham after the defeat of four kings",verse:"Genesis 14:18–20",trad:"OT"},
+  {name:"El Olam",trans:"el oh-LAHM",meaning:"The Everlasting God; God of eternity",context:"Abraham planted a tree at Beersheba after a covenant with Abimelech",verse:"Genesis 21:33",trad:"OT"},
+  {name:"El Roi",trans:"el ROH-ee",meaning:"The God Who Sees Me",context:"Hagar named God after He appeared to her in the wilderness after she fled from Sarai",verse:"Genesis 16:13",trad:"OT"},
+  {name:"El Gibbor",trans:"el gib-BOR",meaning:"Mighty God, heroic God",context:"Prophetic title in Isaiah's messianic passage about the coming child",verse:"Isaiah 9:6",trad:"OT"},
+  {name:"El Qanna",trans:"el kan-NAH",meaning:"Jealous God; a God who demands exclusive devotion",context:"Second commandment — prohibiting worship of other gods",verse:"Exodus 20:5",trad:"OT"},
+  {name:"Yahweh Jireh",trans:"yah-weh YEE-reh",meaning:"The LORD Will Provide",context:"Abraham named the location after God provided a ram in place of Isaac on Mount Moriah",verse:"Genesis 22:14",trad:"OT"},
+  {name:"Yahweh Rapha",trans:"yah-weh rah-FAH",meaning:"The LORD Who Heals",context:"After Israel complained at Marah's bitter waters, God promised to be their healer if they obeyed",verse:"Exodus 15:26",trad:"OT"},
+  {name:"Yahweh Nissi",trans:"yah-weh NIS-see",meaning:"The LORD Is My Banner",context:"Moses built an altar after Israel's victory over Amalek at Rephidim",verse:"Exodus 17:15",trad:"OT"},
+  {name:"Yahweh Shalom",trans:"yah-weh sha-LOHM",meaning:"The LORD Is Peace",context:"Gideon built an altar after the Angel of the LORD appeared to him in Ophrah",verse:"Judges 6:24",trad:"OT"},
+  {name:"Yahweh Sabaoth",trans:"yah-weh tsah-bah-OHT",meaning:"LORD of Hosts / LORD of Armies",context:"Hannah prayed to God with this title at Shiloh while seeking a child",verse:"1 Samuel 1:11",trad:"OT"},
+  {name:"Yahweh Rohi",trans:"yah-weh ro-HEE",meaning:"The LORD Is My Shepherd",context:"David's psalm of trust — the foundational shepherd metaphor in Scripture",verse:"Psalm 23:1",trad:"OT"},
+  {name:"Yahweh Tsidkenu",trans:"yah-weh tsid-KAY-noo",meaning:"The LORD Our Righteousness",context:"Jeremiah's prophecy of a coming righteous Davidic king who would save Judah",verse:"Jeremiah 23:6",trad:"OT"},
+  {name:"Yahweh Shammah",trans:"yah-weh SHAM-mah",meaning:"The LORD Is There",context:"The final name given to the restored Jerusalem in Ezekiel's end-times vision",verse:"Ezekiel 48:35",trad:"OT"},
+  {name:"Yahweh Mekaddesh",trans:"yah-weh me-KAH-desh",meaning:"The LORD Who Sanctifies / Sets Apart",context:"God commanded Israel to keep the Sabbath as a sign that He sanctifies them",verse:"Exodus 31:13",trad:"OT"},
+  {name:"Qadosh Yisrael",trans:"kah-DOSH yis-rah-EL",meaning:"The Holy One of Israel",context:"Isaiah's distinctive title for God, used across judgment and restoration passages",verse:"Isaiah 1:4",trad:"OT"},
+  {name:"Avinu",trans:"ah-VEE-noo",meaning:"Our Father; Israel addressed as God's son",context:"Israel addressed as God's son; God as Father of the nation",verse:"Isaiah 63:16",trad:"OT"},
+  {name:"Tsur",trans:"TSOOR",meaning:"Rock; God as immovable refuge and strength",context:"Moses' final song praises God as the Rock whose works are perfect",verse:"Deuteronomy 32:4",trad:"OT"},
+  {name:"Shophet",trans:"sho-FATE",meaning:"Judge of all the earth",context:"Abraham's appeal to God's justice before Sodom's destruction",verse:"Genesis 18:25",trad:"OT"},
+  {name:"Magen",trans:"mah-GEN",meaning:"Shield; divine protector",context:"God's self-declaration to Abraham after the covenant ceremonies",verse:"Genesis 15:1",trad:"OT"},
+  {name:"Melech",trans:"MEH-lekh",meaning:"King; God as reigning sovereign",context:"Isaiah's vision in the year King Uzziah died — God seen enthroned",verse:"Isaiah 6:5",trad:"OT"},
+  {name:"Ishi",trans:"ee-SHEE",meaning:"My Husband",context:"Hosea's prophecy of restored intimacy — Israel will call God 'my husband' not 'my master'",verse:"Hosea 2:16",trad:"OT"},
+  {name:"Ancient of Days",trans:"—",meaning:"The eternal, timeless God who sits in divine judgment",context:"Daniel's throne-room vision in which the Ancient of Days judges the beasts",verse:"Daniel 7:9",trad:"OT"},
+  {name:"Wonderful Counselor",trans:"Pele Yoetz",meaning:"A counselor whose wisdom is miraculous, beyond human comprehension",context:"Isaiah's messianic child prophecy — four compound titles for the coming king",verse:"Isaiah 9:6",trad:"OT"},
+  {name:"Prince of Peace",trans:"Sar Shalom",meaning:"The ruler who brings ultimate shalom — wholeness and peace",context:"Part of the fourfold name in Isaiah's messianic prophecy",verse:"Isaiah 9:6",trad:"OT"},
+  {name:"Root of Jesse",trans:"shoresh Yishai",meaning:"The messianic shoot from David's lineage",context:"Isaiah's vision of a restored remnant — a signal to the nations",verse:"Isaiah 11:10",trad:"OT"},
+  {name:"Servant of the LORD",trans:"Eved YHWH",meaning:"The obedient, suffering servant who bears sin",context:"Isaiah's four Servant Songs, most fully described in the suffering servant passage",verse:"Isaiah 52:13–53:12",trad:"OT"},
+  {name:"Man of Sorrows",trans:"ish makhovot",meaning:"One acquainted with grief and suffering",context:"Isaiah's description of the suffering servant bearing human pain",verse:"Isaiah 53:3",trad:"OT"},
+  {name:"Yahweh Ori",trans:"yah-weh oh-REE",meaning:"The LORD Is My Light",context:"David's confident declaration at the opening of Psalm 27",verse:"Psalm 27:1",trad:"OT"},
+  {name:"Yahweh Uzzi",trans:"yah-weh OOZ-zee",meaning:"The LORD Is My Strength",context:"David praises God as his shield and strength after being heard",verse:"Psalm 28:7",trad:"OT"},
+  {name:"Gibbor",trans:"gib-BOR",meaning:"Mighty warrior, strong champion",context:"Zephaniah's vision of restoration — God rejoices over his people as a mighty warrior",verse:"Zephaniah 3:17",trad:"OT"},
+  {name:"Potter",trans:"yotser",meaning:"God as the one who shapes and forms his people",context:"Isaiah's and Jeremiah's metaphor — God molds Israel like clay on a wheel",verse:"Isaiah 64:8 / Jeremiah 18:6",trad:"OT"},
+  {name:"El Emet",trans:"el eh-MET",meaning:"God of Truth",context:"Moses' song — God is a Rock, his works are perfect, all his ways are just",verse:"Deuteronomy 32:4",trad:"OT"},
+  {name:"Abba",trans:"AB-bah",meaning:"Father (intimate, like 'Papa')",context:"Jesus' prayer in Gethsemane; Paul teaches believers can cry Abba through the Spirit",verse:"Mark 14:36 / Romans 8:15",trad:"NT"},
+  {name:"Theos",trans:"theh-OS",meaning:"God; the supreme divine being",context:"Opening of John's Gospel — the Word was with God and was God",verse:"John 1:1",trad:"NT"},
+  {name:"Kyrios",trans:"KYR-ee-os",meaning:"Lord, Master, sovereign authority",context:"Thomas' declaration after seeing the risen Jesus",verse:"John 20:28",trad:"NT"},
+  {name:"Soter",trans:"so-TARE",meaning:"Savior; one who rescues and delivers",context:"Angel's announcement to the shepherds at the birth of Jesus",verse:"Luke 2:11",trad:"NT"},
+  {name:"Logos",trans:"LAW-goss",meaning:"The Word; the divine reason and expression",context:"John's prologue — the pre-existent Word became flesh",verse:"John 1:14",trad:"NT"},
+  {name:"Alpha and Omega",trans:"AL-fah and oh-MAY-gah",meaning:"First and last; beginning and end of all things",context:"Christ's self-revelation to John in the apocalyptic vision on Patmos",verse:"Revelation 1:8",trad:"NT"},
+  {name:"Pantokrator",trans:"pan-TOK-rah-tor",meaning:"Almighty; the all-powerful ruler",context:"Used 9 times in Revelation for God's absolute sovereign authority over all creation",verse:"Revelation 4:8",trad:"NT"},
+  {name:"Parakletos",trans:"par-AK-lay-tos",meaning:"Advocate, Helper, Comforter — the Holy Spirit",context:"Jesus' farewell discourse — he would send another Advocate after his departure",verse:"John 14:16",trad:"NT"},
+  {name:"Pater",trans:"pah-TARE",meaning:"Father; God as divine Father",context:"The Lord's Prayer — Jesus taught disciples to address God as 'Our Father'",verse:"Matthew 6:9",trad:"NT"},
+  {name:"Christos",trans:"khris-TOS",meaning:"Anointed One (= Hebrew Messiah)",context:"Peter's great confession at Caesarea Philippi",verse:"Matthew 16:16",trad:"NT"},
+  {name:"I AM",trans:"ego eimi",meaning:"Absolute self-existence; the divine name",context:"Jesus' seven 'I AM' declarations in John, echoing the divine name of Exodus 3",verse:"John 8:58",trad:"NT"},
+  {name:"Lamb of God",trans:"Amnos tou Theou",meaning:"The sacrificial atoning offering",context:"John the Baptist's proclamation at Jesus' baptism",verse:"John 1:29",trad:"NT"},
+  {name:"Good Shepherd",trans:"ho poimen ho kalos",meaning:"The caring, self-sacrificing shepherd of his people",context:"Jesus' extended parable distinguishing the true shepherd from hirelings",verse:"John 10:11",trad:"NT"},
+  {name:"Bread of Life",trans:"artos tes zoes",meaning:"The one who gives and sustains spiritual life",context:"Jesus' discourse after feeding the 5,000, contrasting himself with manna",verse:"John 6:35",trad:"NT"},
+  {name:"Light of the World",trans:"phos tou kosmou",meaning:"Divine illumination against spiritual darkness",context:"Jesus' declaration in the Temple treasury during the Feast of Tabernacles",verse:"John 8:12",trad:"NT"},
+  {name:"Resurrection and Life",trans:"anastasis kai zoe",meaning:"The source and power over death and eternal life",context:"Jesus' declaration to Martha before raising Lazarus",verse:"John 11:25",trad:"NT"},
+  {name:"Way, Truth, Life",trans:"hodos, aletheia, zoe",meaning:"The exclusive path to the Father",context:"Thomas asked about the way; Jesus answered with this threefold self-identification",verse:"John 14:6",trad:"NT"},
+  {name:"True Vine",trans:"he ampelos he alethine",meaning:"The source of spiritual fruitfulness and connection",context:"Jesus' discourse before Gethsemane — the allegory of abiding",verse:"John 15:1",trad:"NT"},
+  {name:"Bright Morning Star",trans:"ho aster ho lampros ho proinos",meaning:"The herald of a new age, light in darkness",context:"Christ's final self-identification at the close of Revelation",verse:"Revelation 22:16",trad:"NT"},
+  {name:"King of Kings, Lord of Lords",trans:"basileus basileōn, kyrios kyriōn",meaning:"Supreme authority over all rulers and powers",context:"The name written on the robe and thigh of the rider on the white horse",verse:"Revelation 19:16",trad:"NT"},
+  {name:"Head of the Church",trans:"kephale tes ekklesias",meaning:"The supreme authority and source of life for the body of believers",context:"Paul's letter to the Ephesians on the mystery of Christ and the church",verse:"Ephesians 1:22",trad:"NT"},
+  {name:"High Priest",trans:"archiereus",meaning:"The mediator between God and humanity",context:"Hebrews presents Jesus as the ultimate fulfillment of the Levitical priesthood",verse:"Hebrews 4:14",trad:"NT"},
+  {name:"Cornerstone",trans:"lithos akrogoniaios",meaning:"The foundational stone on which the whole structure rests",context:"Peter quotes Psalm 118 and Isaiah 28, applying them to Christ",verse:"1 Peter 2:6",trad:"NT"},
+  {name:"Son of God",trans:"huios theou",meaning:"The divine Son, in a unique filial relationship with the Father",context:"Voice from heaven at Jesus' baptism; demon recognition; Peter's confession",verse:"Matthew 3:17 / Matthew 16:16",trad:"NT"},
+  {name:"Immanuel",trans:"im-MAN-yoo-el",meaning:"God With Us",context:"Isaiah's sign to King Ahaz; fulfilled in Matthew's birth narrative of Jesus",verse:"Isaiah 7:14 / Matthew 1:23",trad:"Both"},
+  {name:"Lion of Judah",trans:"—",meaning:"The conquering, royal messianic king from Judah's line",context:"Jacob's blessing on Judah; fulfilled in Revelation's vision of Christ",verse:"Genesis 49:9 / Revelation 5:5",trad:"Both"},
+  {name:"Son of Man",trans:"ben adam / huios tou anthropou",meaning:"Humanity's representative; the heavenly figure of Daniel 7",context:"Jesus' self-preferred title — used ~80 times in the Gospels",verse:"Daniel 7:13 / Mark 8:31",trad:"Both"},
+];
+
+let activeFilter = '';
+
+function setFilter(btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.filter;
+  render();
+}
+
+function render() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const filtered = data.filter(d => {
+    const matchText = !q || [d.name, d.meaning, d.verse, d.trans, d.context].some(s => s.toLowerCase().includes(q));
+    const matchTrad = !activeFilter || d.trad === activeFilter;
+    return matchText && matchTrad;
+  });
+
+  document.getElementById('count').textContent = `Showing ${filtered.length} of ${data.length} names`;
+
+  if (filtered.length === 0) {
+    document.getElementById('list').innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">✦</div>
+        <p>No names found for that search.</p>
+      </div>`;
+    return;
+  }
+
+  document.getElementById('list').innerHTML = filtered.map(d => {
+    const cls = d.trad === 'OT' ? 'ot' : d.trad === 'NT' ? 'nt' : 'both';
+    const label = d.trad === 'Both' ? 'OT & NT' : d.trad;
+    return `<div class="card ${cls}">
+      <div class="card-header">
+        <div class="name-group">
+          <div class="name">${d.name}</div>
+          <div class="transliteration">${d.trans}</div>
+        </div>
+        <span class="badge ${cls}">${label}</span>
+      </div>
+      <div class="divider"></div>
+      <div class="meaning-label">Meaning</div>
+      <div class="meaning-text">${d.meaning}</div>
+      <div class="context-text">${d.context}</div>
+      <div class="verse-ref">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        ${d.verse}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+render();
+</script>
+</body>
+</html>
