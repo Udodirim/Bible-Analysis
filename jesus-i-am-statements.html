@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Am Statements in the Gospels</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 820px; margin: 0 auto; padding: 20px; background: #fff; color: #222; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  .subtitle { color: #666; font-size: 13px; margin-bottom: 20px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .tab { padding: 7px 16px; border-radius: 20px; border: 1px solid #ccc; background: #fff; color: #555; font-size: 13px; cursor: pointer; }
+  .tab.active { background: #222; color: #fff; border-color: #222; }
+  .tab.ot-tab.active { background: #7c3c00; border-color: #7c3c00; color: #fff; }
+  .counts { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+  .count-box { border: 1px solid #ddd; border-radius: 8px; padding: 10px 16px; background: #f9f9f9; min-width: 80px; }
+  .count-num { font-size: 24px; font-weight: bold; }
+  .count-lbl { font-size: 11px; color: #888; }
+  .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin: 20px 0 8px; font-weight: bold; }
+  .card { border: 1px solid #e5e5e5; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; background: #fafafa; display: flex; gap: 12px; }
+  .pill { font-size: 11px; font-weight: bold; padding: 3px 9px; border-radius: 12px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .pill-abs { background: #ede9ff; color: #3c2e9c; }
+  .pill-pred { background: #e0f5ee; color: #095; }
+  .pill-ot { background: #fff3e0; color: #7c3c00; }
+  .card-ref { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+  .card-saying { font-size: 14px; font-style: italic; margin-bottom: 6px; }
+  .card-note { font-size: 12px; color: #555; line-height: 1.6; }
+  .card-ot-refs { font-size: 12px; color: #7c3c00; margin-top: 6px; line-height: 1.6; }
+  .ot-label { font-weight: bold; color: #7c3c00; }
+  #empty { display: none; padding: 40px; text-align: center; color: #999; }
+  .ot-intro { background: #fff8f0; border: 1px solid #f0d5b0; border-radius: 10px; padding: 16px 18px; margin-bottom: 20px; font-size: 13px; line-height: 1.7; color: #4a3000; }
+  .ot-intro h2 { font-size: 15px; margin: 0 0 8px; color: #7c3c00; }
+</style>
+</head>
+<body>
+<h1>Egō eimi (ἐγώ εἰμι) in the Gospels</h1>
+<p class="subtitle">Every "I Am" statement of Jesus — absolute declarations, predicate forms, and Old Testament background</p>
+
+<div class="tabs" id="tabs"></div>
+<div id="counts" class="counts"></div>
+<div id="list"></div>
+<div id="empty">No entries for this filter.</div>
+
+<script>
+var data = [
+  {gospel:"Matthew",ref:"Matt 14:27",type:"absolute",saying:'"Take heart; it is I. Do not be afraid."',note:"Jesus walks on water. Bare egō eimi to terrified disciples. Parallel in Mark 6:50 and John 6:20.",ot:'<span class="ot-label">Exod 3:14</span> — God reveals his name as "I AM WHO I AM" (Heb: Ehyeh asher ehyeh); LXX renders it egō eimi ho ōn. The divine self-identification formula is intentionally echoed here.<br><span class="ot-label">Isa 43:1–3</span> — "Fear not, for I have redeemed you… When you pass through the waters, I will be with you." Jesus walking on water and calming fear directly mirrors YHWH\'s mastery over chaos waters.'},
+  {gospel:"Matthew",ref:"Matt 22:32",type:"predicate",saying:'"I am the God of Abraham, of Isaac, and of Jacob."',note:"Quoting Exod 3:6 in the resurrection debate — God's present tense implies the patriarchs still live.",ot:'<span class="ot-label">Exod 3:6,15–16</span> — The exact phrase spoken by YHWH at the burning bush. Jesus quotes it verbatim (LXX) and draws a theological argument from the present tense of the verb, demonstrating familiarity with rabbinic exegetical method.<br><span class="ot-label">Gen 26:24; 28:13</span> — "I am the God of Abraham your father" is a recurring divine self-introduction formula throughout the patriarchal narratives.'},
+  {gospel:"Matthew",ref:"Matt 24:5",type:"predicate",saying:'"Many will come in my name, saying, \'I am the Christ.\'"',note:"Warning about false messiahs using the egō eimi formula.",ot:'<span class="ot-label">Deut 13:1–5; 18:20–22</span> — The Torah\'s criteria for identifying false prophets who presume to speak in God\'s name. Jesus invokes the same concern for discernment.<br><span class="ot-label">Dan 7:13–14</span> — The Son of Man who receives dominion — the very figure the false claimants appropriate.'},
+  {gospel:"Matthew",ref:"Matt 26:64",type:"predicate",saying:'"You have said so." [implicit affirmation, cf. Mark 14:62]',note:"Before the Sanhedrin. Mark's parallel uses the direct egō eimi.",ot:'<span class="ot-label">Dan 7:13</span> — "One like a son of man, coming with the clouds of heaven" — Jesus immediately applies this to himself ("you will see the Son of Man seated…").<br><span class="ot-label">Ps 110:1</span> — "The LORD says to my Lord: Sit at my right hand" — the two OT texts Jesus combines here were not previously read as messianic in combination; his fusion is original and the claim audacious.'},
+  {gospel:"Matthew",ref:"Matt 28:20",type:"predicate",saying:'"I am with you always, to the end of the age."',note:"Great Commission close — solemn predication of divine presence.",ot:'<span class="ot-label">Exod 3:12</span> — God\'s commissioning formula to Moses: "I will be with you." Jesus applies the same divine-presence assurance to his disciples.<br><span class="ot-label">Isa 7:14; 8:10</span> — Immanuel ("God with us") — Matthew frames his entire Gospel around this theme (Matt 1:23), and the final words seal it.'},
+  {gospel:"Mark",ref:"Mark 6:50",type:"absolute",saying:'"Take heart; it is I. Do not be afraid."',note:"Walking on water — the starkest Synoptic form of the absolute egō eimi.",ot:'<span class="ot-label">Job 9:8</span> — "He alone stretched out the heavens and trampled the waves of the sea." Walking on water is a divine prerogative in the OT.<br><span class="ot-label">Ps 77:19</span> — "Your way was through the sea, your path through the great waters." YHWH\'s mastery of the sea is the backdrop for Jesus\'s action.'},
+  {gospel:"Mark",ref:"Mark 13:6",type:"predicate",saying:'"Many will come in my name, saying, \'I am he.\'"',note:"Eschatological warning. Parallel to Matt 24:5 and Luke 21:8.",ot:'<span class="ot-label">Deut 18:20</span> — The false prophet who presumes to speak in YHWH\'s name — the penalty is death.<br><span class="ot-label">Ezek 13</span> — Extended oracle against false prophets who say "Thus says the LORD" when YHWH has not spoken.'},
+  {gospel:"Mark",ref:"Mark 14:62",type:"absolute",saying:'"I am, and you will see the Son of Man seated at the right hand of Power."',note:"Most explicit Synoptic absolute. Direct answer to the high priest, leading to the blasphemy charge.",ot:'<span class="ot-label">Exod 3:14 (LXX)</span> — Egō eimi as the divine name. The Sanhedrin\'s immediate charge of blasphemy (v.63–64) confirms they heard the allusion.<br><span class="ot-label">Dan 7:13</span> — "Coming with the clouds of heaven" — the Son of Man receiving dominion from the Ancient of Days.<br><span class="ot-label">Ps 110:1</span> — "Sit at my right hand" — fused with Dan 7:13 in an unprecedented messianic claim.'},
+  {gospel:"Luke",ref:"Luke 21:8",type:"predicate",saying:'"Many will come in my name, saying, \'I am he!\'"',note:"Luke's version of the eschatological warning.",ot:'<span class="ot-label">Deut 13:1–5</span> — Signs and wonders do not validate a prophet who leads Israel away. The test is theological fidelity, not miraculous performance.<br><span class="ot-label">Jer 14:14; 23:21</span> — "The prophets are prophesying lies in my name. I did not send them."'},
+  {gospel:"Luke",ref:"Luke 22:70",type:"predicate",saying:'"You say that I am." [Hymeis legete hoti egō eimi]',note:"Before the Sanhedrin — guarded but affirmative response to 'Are you the Son of God?'",ot:'<span class="ot-label">Ps 2:7</span> — "You are my Son; today I have begotten you" — the royal/divine sonship text the high priest\'s question invokes.<br><span class="ot-label">Exod 3:14</span> — The affirmative use of egō eimi carries the same weight as Mark\'s direct answer — the council takes it as equivalent.'},
+  {gospel:"Luke",ref:"Luke 24:39",type:"absolute",saying:'"It is I myself." [Hoti egō eimi autos]',note:"Post-resurrection: proof to the disciples he is not a ghost.",ot:'<span class="ot-label">Isa 26:19</span> — "Your dead shall live; their bodies shall rise." The resurrection of the righteous is an OT hope now fulfilled in person.<br><span class="ot-label">Ezek 37</span> — The valley of dry bones — bodily resurrection as restoration. Luke\'s emphasis on physical tangibility (touch, eat fish) fulfills the corporeal hope of these passages.'},
+  {gospel:"John",ref:"John 6:35",type:"predicate",saying:'"I am the bread of life."',note:"1st of 7 great predicates. After feeding of 5,000 and the manna discourse. Repeated in vv. 48, 51.",ot:'<span class="ot-label">Exod 16</span> — Manna in the wilderness: bread from heaven sustaining Israel for 40 years. Jesus explicitly cites this and contrasts it (v.49 — "your fathers ate manna and died").<br><span class="ot-label">Deut 8:3</span> — "Man does not live by bread alone, but by every word that comes from the mouth of God." Jesus is the living Word, the true bread.<br><span class="ot-label">Ps 78:24–25</span> — "He rained down manna… the grain of heaven… the bread of angels."'},
+  {gospel:"John",ref:"John 6:41",type:"predicate",saying:'"I am the bread that came down from heaven."',note:"The crowd 'grumbles' — same verb as Israel in the wilderness, deepening Exodus typology.",ot:'<span class="ot-label">Exod 16:2,7–8</span> — The congregation of Israel "grumbled" (LXX: egoggyzon) against Moses and Aaron — the identical verb John uses in vv.41,43. The crowd re-enacts the wilderness rebellion.<br><span class="ot-label">Num 11:4–6</span> — The people despise the manna and crave what they left behind — a type of rejecting the bread Jesus offers.'},
+  {gospel:"John",ref:"John 6:48",type:"predicate",saying:'"I am the bread of life."',note:"Restatement within the same discourse.",ot:'<span class="ot-label">Prov 9:1–5</span> — Wisdom has prepared her table and calls: "Come, eat of my bread." The identification of Jesus with divine Wisdom giving life-sustaining food is deliberate.<br><span class="ot-label">Isa 55:1–3</span> — "Come, everyone who thirsts… eat what is good, and delight yourselves in rich food… that your soul may live."'},
+  {gospel:"John",ref:"John 6:51",type:"predicate",saying:'"I am the living bread that came down from heaven."',note:"Extended form introducing the Eucharistic motif.",ot:'<span class="ot-label">Exod 12 (Passover)</span> — The Passover lamb whose flesh was eaten for deliverance — Jesus\'s "flesh given for the life of the world" is the fulfillment.<br><span class="ot-label">Lev 17:11</span> — "The life of the flesh is in the blood" — the Eucharistic language (eat flesh, drink blood) deliberately inverts Torah\'s blood prohibition to convey a new covenant reality.'},
+  {gospel:"John",ref:"John 8:12",type:"predicate",saying:'"I am the light of the world."',note:"2nd predicate. During Sukkoth, when Temple menorahs blazed. Repeated in 9:5.",ot:'<span class="ot-label">Exod 13:21–22</span> — The pillar of fire leading Israel — YHWH as light guiding his people through darkness. Jesus claims this role for the new exodus.<br><span class="ot-label">Isa 9:2</span> — "The people walking in darkness have seen a great light." Matthew (4:16) applies this to Jesus; here Jesus claims it himself.<br><span class="ot-label">Isa 49:6; 60:1–3</span> — The Servant as "a light for the nations" and the eschatological glory of God rising over Zion.'},
+  {gospel:"John",ref:"John 8:18",type:"predicate",saying:'"I am the one who bears witness about myself."',note:"Legal context — divine self-attestation alongside the Father's witness.",ot:'<span class="ot-label">Deut 19:15</span> — "A single witness shall not suffice… only on the evidence of two or three witnesses." Jesus meets this requirement by citing himself and the Father.<br><span class="ot-label">Isa 43:10–12</span> — "You are my witnesses… I am he." YHWH himself is witness to his own identity — Jesus invokes the same self-authenticating structure.'},
+  {gospel:"John",ref:"John 8:23",type:"predicate",saying:'"I am not of this world."',note:"Contrasting origins — establishes heavenly provenance before the absolutes that follow.",ot:'<span class="ot-label">Isa 55:8–9</span> — "My thoughts are not your thoughts, neither are your ways my ways… as the heavens are higher than the earth." The radical otherness of the divine origin Jesus claims.<br><span class="ot-label">Prov 8:22–31</span> — Wisdom\'s pre-existent, heavenly origin before the creation of the world — a key background for John\'s Logos/Wisdom Christology.'},
+  {gospel:"John",ref:"John 8:24",type:"absolute",saying:'"Unless you believe that I am he, you will die in your sins."',note:"First absolute in ch. 8. Echoes LXX Isa 43:10. Faith in the divine I Am is the condition of salvation.",ot:'<span class="ot-label">Isa 43:10 (LXX)</span> — "That you may know and believe me and understand that I am he (egō eimi)" — the exact phrase; in Isaiah, acknowledging YHWH\'s identity as the only God is the point. Jesus makes belief in his egō eimi the identical saving act.<br><span class="ot-label">Exod 3:14</span> — The divine name as the ground of salvation from Egypt — now salvation from sin.'},
+  {gospel:"John",ref:"John 8:28",type:"absolute",saying:'"When you have lifted up the Son of Man, then you will know that I am he."',note:"The crucifixion as the moment of revelation. 'Lifted up' = crucified and exalted.",ot:'<span class="ot-label">Isa 52:13 (LXX)</span> — "My servant shall be exalted (hypsōthēsetai) and lifted up greatly." John\'s hypsōthē directly echoes the Servant\'s exaltation through suffering.<br><span class="ot-label">Num 21:8–9</span> — Moses lifting up the bronze serpent so that all who look at it live — Jesus cites this himself in John 3:14 as a type of his own lifting up.<br><span class="ot-label">Isa 45:23</span> — "To me every knee shall bow" — the universal acknowledgment of YHWH that the crucifixion/exaltation of Jesus inaugurates.'},
+  {gospel:"John",ref:"John 8:58",type:"absolute",saying:'"Before Abraham was, I am."',note:"Most theologically charged absolute. Present eimi vs. Abraham's aorist genesthai. Direct echo of Exod 3:14. The crowd immediately takes up stones.",ot:'<span class="ot-label">Exod 3:14 (LXX)</span> — Egō eimi ho ōn — "I am the one who is." The present-tense divine name transcends time. Jesus uses the identical formulation with deliberate grammatical contrast (genesthai vs. eimi).<br><span class="ot-label">Isa 43:13</span> — "Before the day was, I am." The Hebrew \'ani hu\' ("I am he") — YHWH\'s pre-temporal existence. LXX: egō eimi.<br><span class="ot-label">Isa 41:4; 48:12</span> — "I, the LORD, the first, and with the last; I am he." Pre-existence as a divine attribute YHWH alone holds — and Jesus now claims.<br><span class="ot-label">Gen 17:1</span> — YHWH appeared to Abraham — the very Abraham whose relationship with Jesus he is asserting pre-dates.'},
+  {gospel:"John",ref:"John 9:5",type:"predicate",saying:'"I am the light of the world."',note:"Repeated before healing the man born blind.",ot:'<span class="ot-label">Gen 1:3–5</span> — "Let there be light" — the first creative word of God. The healing of congenital blindness is a new creation act, and Jesus as light enacts God\'s first creative deed.<br><span class="ot-label">Isa 29:18; 35:5</span> — "In that day the deaf shall hear… the eyes of the blind shall see" — signs of the messianic age. Jesus deliberately fulfills them.'},
+  {gospel:"John",ref:"John 10:7",type:"predicate",saying:'"I am the door of the sheep."',note:"3rd predicate. Jesus is the gate — the only legitimate entry to the sheepfold.",ot:'<span class="ot-label">Ps 118:20</span> — "This is the gate of the LORD; the righteous shall enter through it." The Temple gate imagery of divine access.<br><span class="ot-label">Num 27:17; 1 Kgs 22:17</span> — Israel described as "sheep without a shepherd" — language Jesus picks up throughout the discourse.'},
+  {gospel:"John",ref:"John 10:9",type:"predicate",saying:'"I am the door."',note:"Restated with promise: 'If anyone enters by me, he will be saved.'",ot:'<span class="ot-label">Ezek 34:11–16</span> — YHWH himself declares he will seek his sheep and bring them into safety — fulfilled by Jesus as the door through which sheep find pasture and salvation.<br><span class="ot-label">Isa 40:11</span> — "He will tend his flock like a shepherd."'},
+  {gospel:"John",ref:"John 10:11",type:"predicate",saying:'"I am the good shepherd."',note:"4th predicate. Echoes Ezek 34 and Ps 23. The good shepherd lays down his life.",ot:'<span class="ot-label">Ps 23</span> — "The LORD is my shepherd" — Jesus appropriates YHWH\'s own title. The parallel is exact and intentional.<br><span class="ot-label">Ezek 34:11–16,23</span> — YHWH\'s devastating oracle against Israel\'s false shepherds (rulers), followed by the promise: "I myself will be the shepherd of my sheep." Then v.23: "I will set up over them one shepherd, my servant David." Jesus is both YHWH the shepherd and the Davidic shepherd-king.<br><span class="ot-label">Isa 40:11</span> — "He will tend his flock like a shepherd; he will gather the lambs in his arms."'},
+  {gospel:"John",ref:"John 10:14",type:"predicate",saying:'"I am the good shepherd. I know my own and my own know me."',note:"Restatement with mutual-knowledge language mirroring the Father-Son relationship.",ot:'<span class="ot-label">Jer 31:34</span> — In the new covenant, "they shall all know me, from the least of them to the greatest" — the intimate mutual knowledge Jesus describes is the fulfillment of the new covenant promise.<br><span class="ot-label">Hos 13:5</span> — "It was I who knew you in the wilderness" — divine knowing as covenant intimacy, not mere awareness.'},
+  {gospel:"John",ref:"John 11:25",type:"predicate",saying:'"I am the resurrection and the life."',note:"5th predicate. Spoken to Martha before raising Lazarus. He is resurrection itself.",ot:'<span class="ot-label">Dan 12:2</span> — "Many of those who sleep in the dust of the earth shall awake, some to everlasting life." The first clear OT statement of individual resurrection — now embodied in a person.<br><span class="ot-label">Ezek 37:12–14</span> — "I will open your graves and raise you from your graves, O my people… I will put my Spirit in you, and you shall live." YHWH as the direct agent of resurrection — Jesus claims that agency.<br><span class="ot-label">1 Sam 2:6</span> — "The LORD kills and brings to life; he brings down to Sheol and raises up."'},
+  {gospel:"John",ref:"John 13:19",type:"absolute",saying:'"When it does happen you may believe that I am he."',note:"At the Last Supper, forewarning Judas's betrayal. The divine absolute is the content of saving faith.",ot:'<span class="ot-label">Isa 43:10 (LXX)</span> — "That you may know and believe me and understand that I am he (egō eimi)" — belief in the divine I Am identity as the goal of God\'s self-revelation in history. Jesus casts his betrayal as an event designed to produce that same belief.<br><span class="ot-label">Ps 41:9</span> — "Even my close friend in whom I trusted, who ate my bread, has lifted his heel against me" — Jesus quotes this (v.18) as the scripture being fulfilled by Judas.'},
+  {gospel:"John",ref:"John 14:6",type:"predicate",saying:'"I am the way, and the truth, and the life."',note:"6th predicate (triple form). Response to Thomas. 'No one comes to the Father except through me.'",ot:'<span class="ot-label">Ps 119:30</span> — "I have chosen the way of faithfulness." Torah is described as "the way" throughout the Psalms and Proverbs — Jesus replaces halakhic law as the path to God.<br><span class="ot-label">Prov 8:32–36</span> — Wisdom says: "Blessed are those who keep my ways… whoever finds me finds life." Jesus embodies Wisdom.<br><span class="ot-label">Exod 33:13</span> — Moses asks God, "Show me your ways." The longing for access to the divine presence is now answered in a person.<br><span class="ot-label">Isa 35:8</span> — "A highway shall be there, and it shall be called the Way of Holiness."'},
+  {gospel:"John",ref:"John 15:1",type:"predicate",saying:'"I am the true vine, and my Father is the vinedresser."',note:"7th predicate. Israel was God's vine (Ps 80; Isa 5; Jer 2) — Jesus fulfills and replaces that imagery.",ot:'<span class="ot-label">Ps 80:8–16</span> — "You brought a vine out of Egypt; you drove out the nations and planted it." Israel as YHWH\'s transplanted vine, now withered and needing rescue.<br><span class="ot-label">Isa 5:1–7</span> — The Song of the Vineyard — God planted a choice vine (Israel) that yielded only wild grapes; the vineyard is destroyed. Jesus is the "true" vine that finally bears fruit.<br><span class="ot-label">Jer 2:21</span> — "I planted you a choice vine, wholly of pure seed. How then have you turned degenerate and become a wild vine?"<br><span class="ot-label">Ezek 15; 19:10–14</span> — Israel as a vine fit only for burning. Jesus as the true vine reverses this judgment.'},
+  {gospel:"John",ref:"John 15:5",type:"predicate",saying:'"I am the vine; you are the branches."',note:"Restatement with disciples as branches — mutual abiding is the theme.",ot:'<span class="ot-label">Isa 27:2–6</span> — The restored vineyard song: "A pleasant vineyard, sing of it!… In days to come Jacob shall take root, Israel shall blossom and put forth shoots." The eschatological fruitful vineyard is realized in Jesus and his disciples.<br><span class="ot-label">Zech 8:12</span> — "For there shall be a sowing of peace. The vine shall give its fruit."'},
+  {gospel:"John",ref:"John 18:5,6,8",type:"absolute",saying:'"I am he." (spoken three times at the arrest)',note:"In Gethsemane. At each utterance the soldiers fall to the ground (v.6) — a theophanic response unique in the Gospels.",ot:'<span class="ot-label">Exod 3:14; Isa 43:13</span> — The bare divine name causes a physical theophanic response — falling down before the holy God (cf. Ezek 1:28; Dan 8:17; 10:9; Rev 1:17).<br><span class="ot-label">Ps 27:2</span> — "When evildoers assail me… they stumble and fall." The soldiers\' falling at the egō eimi echoes the enemies of YHWH\'s anointed being thrown down.<br><span class="ot-label">Isa 41:4</span> — "Who has performed and done this, calling the generations from the beginning? I, the LORD, the first, and with the last; I am he (egō eimi)." The arrest scene is a deliberate theophany — Jesus surrenders as the sovereign I Am, not as a victim.'}
+];
+
+var currentFilter = "all";
+var gospels = ["Matthew","Mark","Luke","John"];
+var filters = [
+  {key:"all", label:"All"},
+  {key:"Matthew", label:"Matthew"},
+  {key:"Mark", label:"Mark"},
+  {key:"Luke", label:"Luke"},
+  {key:"John", label:"John"},
+  {key:"absolute", label:"Absolute only"},
+  {key:"predicate", label:"Predicate only"},
+  {key:"ot", label:"OT Background", isOT: true}
+];
+
+function buildTabs() {
+  var wrap = document.getElementById("tabs");
+  wrap.innerHTML = "";
+  filters.forEach(function(f) {
+    var btn = document.createElement("button");
+    btn.textContent = f.label;
+    btn.className = "tab" + (f.isOT ? " ot-tab" : "") + (f.key === "all" ? " active" : "");
+    btn.onclick = function() {
+      currentFilter = f.key;
+      document.querySelectorAll(".tab").forEach(function(t){ t.classList.remove("active"); });
+      btn.classList.add("active");
+      render();
+    };
+    wrap.appendChild(btn);
+  });
+}
+
+function getFiltered() {
+  if (currentFilter === "all" || currentFilter === "ot") return data;
+  if (currentFilter === "absolute") return data.filter(function(d){ return d.type === "absolute"; });
+  if (currentFilter === "predicate") return data.filter(function(d){ return d.type === "predicate"; });
+  return data.filter(function(d){ return d.gospel === currentFilter; });
+}
+
+function render() {
+  var items = getFiltered();
+  var showOT = (currentFilter === "ot");
+
+  var abs = items.filter(function(d){ return d.type==="absolute"; }).length;
+  var pred = items.filter(function(d){ return d.type==="predicate"; }).length;
+
+  if (showOT) {
+    document.getElementById("counts").innerHTML =
+      '<div class="count-box"><div class="count-num">'+items.length+'</div><div class="count-lbl">Entries</div></div>' +
+      '<div class="count-box" style="background:#fff8f0;border-color:#f0d5b0"><div class="count-num" style="color:#7c3c00">3</div><div class="count-lbl" style="color:#7c3c00">Core texts</div></div>';
+  } else {
+    document.getElementById("counts").innerHTML =
+      '<div class="count-box"><div class="count-num">'+items.length+'</div><div class="count-lbl">Total</div></div>' +
+      '<div class="count-box"><div class="count-num">'+abs+'</div><div class="count-lbl">Absolute</div></div>' +
+      '<div class="count-box"><div class="count-num">'+pred+'</div><div class="count-lbl">Predicate</div></div>';
+  }
+
+  var html = "";
+
+  if (showOT) {
+    html += '<div class="ot-intro"><h2>Old Testament Background</h2>' +
+      'The three anchor texts for Jesus\'s egō eimi are <strong>Exodus 3:14</strong> (the divine name), ' +
+      '<strong>Isaiah 43–45</strong> (YHWH\'s repeated "I am he"), and <strong>Daniel 7:13</strong> (the Son of Man). ' +
+      'Every entry below lists the specific OT passages behind each statement — hover or read the amber text for each reference.</div>';
+  }
+
+  var byGospel = {};
+  items.forEach(function(d){ if(!byGospel[d.gospel]) byGospel[d.gospel]=[]; byGospel[d.gospel].push(d); });
+
+  gospels.forEach(function(g) {
+    if (!byGospel[g]) return;
+    html += '<div class="section-title">'+g+' ('+byGospel[g].length+')</div>';
+    byGospel[g].forEach(function(d) {
+      var isAbs = d.type === "absolute";
+      html += '<div class="card">' +
+        '<span class="pill '+(isAbs?"pill-abs":"pill-pred")+'">'+(isAbs?"Absolute":"Predicate")+'</span>' +
+        '<div style="flex:1">' +
+          '<div class="card-ref">'+d.ref+'</div>' +
+          '<div class="card-saying">'+d.saying+'</div>' +
+          '<div class="card-note">'+d.note+'</div>' +
+          (showOT ? '<div class="card-ot-refs" style="border-top:1px solid #f0d5b0;margin-top:8px;padding-top:8px">'+d.ot+'</div>' : '') +
+        '</div>' +
+        '</div>';
+    });
+  });
+
+  document.getElementById("list").innerHTML = html;
+}
+
+buildTabs();
+render();
+</script>
+</body>
+</html>
