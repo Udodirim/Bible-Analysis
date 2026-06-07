@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eden Mandate AI | Graph of Life Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --card: #1a1a26;
+    --border: rgba(255,255,255,0.08);
+    --morning: #f9a825;
+    --afternoon: #e91e8c;
+    --evening: #7c4dff;
+    --rest: #00bcd4;
+    --text: #f0eeff;
+    --muted: #8a87a0;
+    --gold: #ffd700;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 20%, rgba(249,168,37,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 70%, rgba(233,30,140,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 60% 10%, rgba(124,77,255,0.05) 0%, transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── INTAKE SCREEN ─── */
+  #intake-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .intake-box {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 28px;
+    padding: 40px 32px;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intake-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--morning), var(--afternoon), var(--evening));
+  }
+
+  .intake-logo {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .intake-logo .emoji { font-size: 40px; display: block; margin-bottom: 12px; }
+
+  .intake-logo h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+
+  .intake-logo h2 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--morning), var(--afternoon));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .intake-logo p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .field-group {
+    margin-bottom: 20px;
+  }
+
+  .field-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .field-input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .field-input:focus {
+    border-color: var(--morning);
+    box-shadow: 0 0 0 3px rgba(249,168,37,0.12);
+  }
+
+  .field-input::placeholder { color: rgba(255,255,255,0.25); }
+
+  .dob-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr;
+    gap: 10px;
+  }
+
+  .dob-row select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a87a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    cursor: pointer;
+  }
+
+  .dob-row select option { background: #1a1a26; color: #f0eeff; }
+
+  .generate-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--morning), var(--afternoon));
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .generate-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+  .generate-btn:active { transform: translateY(0); }
+
+  .error-msg {
+    color: #ff6b6b;
+    font-size: 12px;
+    margin-top: 8px;
+    display: none;
+  }
+
+  /* ─── RESULT SCREEN ─── */
+  #result-screen { display: none; }
+
+  .hero {
+    text-align: center;
+    padding: 40px 0 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,215,0,0.12);
+    border: 1px solid rgba(255,215,0,0.3);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--morning) 0%, var(--afternoon) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* Age indicator */
+  .age-indicator {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 24px 0;
+    animation: fadeUp 0.8s 0.1s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .age-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--morning), var(--afternoon));
+  }
+
+  .age-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .age-display {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .age-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .age-context { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+  .life-progress-wrap { margin-top: 16px; }
+
+  .life-progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .life-bar {
+    height: 12px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: visible;
+    position: relative;
+  }
+
+  .life-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 100px;
+    transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .life-bar-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 20px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 100px;
+    filter: blur(4px);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .life-bar-marker {
+    position: absolute;
+    top: -4px;
+    width: 20px;
+    height: 20px;
+    background: var(--bg);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+
+  .you-are-here {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* Scripture */
+  .scripture {
+    background: linear-gradient(135deg, rgba(249,168,37,0.08), rgba(233,30,140,0.08));
+    border: 1px solid rgba(249,168,37,0.2);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    text-align: center;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .scripture-ref { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--morning); margin-bottom: 8px; }
+  .scripture-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; }
+
+  /* Priorities */
+  .priorities { margin: 28px 0; animation: fadeUp 0.8s 0.25s ease both; }
+
+  .section-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+
+  .priority-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .priority-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: transform 0.2s ease;
+  }
+
+  .priority-item:hover { transform: translateX(4px); }
+
+  .priority-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    min-width: 32px;
+    background: linear-gradient(135deg, var(--morning), var(--afternoon));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .priority-text strong { display: block; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .priority-text span { font-size: 12px; color: var(--muted); }
+  .priority-icon { margin-left: auto; font-size: 20px; }
+
+  /* Stage cards */
+  .stages { display: flex; flex-direction: column; gap: 16px; margin: 28px 0; animation: fadeUp 0.8s 0.3s ease both; }
+
+  .stage-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--border); cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .stage-card:hover { transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .stage-card.active .stage-body { display: block; }
+  .stage-card.active .stage-arrow { transform: rotate(180deg); }
+
+  .stage-header { display: flex; align-items: center; gap: 14px; padding: 18px 20px; }
+  .stage-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .stage-meta strong { display: block; font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  .stage-meta span { font-size: 12px; opacity: 0.6; }
+  .stage-arrow { margin-left: auto; font-size: 16px; opacity: 0.5; transition: transform 0.3s ease; }
+
+  .stage-you-here {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px; margin-left: 8px;
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 8px currentColor; } 50% { box-shadow: 0 0 20px currentColor; } }
+
+  .stage-body { display: none; padding: 0 20px 20px; }
+  .stage-divider { height: 1px; background: var(--border); margin-bottom: 16px; }
+
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.8); }
+  .checklist li .check { width: 18px; height: 18px; border-radius: 50%; border: 2px solid; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-size: 10px; }
+
+  .stage-quote { margin-top: 14px; padding: 12px 16px; border-radius: 12px; font-size: 13px; font-style: italic; line-height: 1.6; opacity: 0.85; }
+
+  /* Stage colour themes */
+  .morning .stage-header { background: linear-gradient(135deg, rgba(249,168,37,0.12), rgba(249,168,37,0.04)); }
+  .morning .stage-icon-wrap { background: rgba(249,168,37,0.15); }
+  .morning .stage-meta strong { color: var(--morning); }
+  .morning .stage-you-here { background: rgba(249,168,37,0.15); color: var(--morning); border: 1px solid rgba(249,168,37,0.4); }
+  .morning .checklist li .check { border-color: var(--morning); color: var(--morning); }
+  .morning .stage-quote { background: rgba(249,168,37,0.08); border-left: 3px solid var(--morning); }
+
+  .afternoon .stage-header { background: linear-gradient(135deg, rgba(233,30,140,0.12), rgba(233,30,140,0.04)); }
+  .afternoon .stage-icon-wrap { background: rgba(233,30,140,0.15); }
+  .afternoon .stage-meta strong { color: var(--afternoon); }
+  .afternoon .stage-you-here { background: rgba(233,30,140,0.15); color: var(--afternoon); border: 1px solid rgba(233,30,140,0.4); }
+  .afternoon .checklist li .check { border-color: var(--afternoon); color: var(--afternoon); }
+  .afternoon .stage-quote { background: rgba(233,30,140,0.08); border-left: 3px solid var(--afternoon); }
+
+  .evening .stage-header { background: linear-gradient(135deg, rgba(124,77,255,0.12), rgba(124,77,255,0.04)); }
+  .evening .stage-icon-wrap { background: rgba(124,77,255,0.15); }
+  .evening .stage-meta strong { color: var(--evening); }
+  .evening .stage-you-here { background: rgba(124,77,255,0.15); color: var(--evening); border: 1px solid rgba(124,77,255,0.4); }
+  .evening .checklist li .check { border-color: var(--evening); color: var(--evening); }
+  .evening .stage-quote { background: rgba(124,77,255,0.08); border-left: 3px solid var(--evening); }
+
+  .rest .stage-header { background: linear-gradient(135deg, rgba(0,188,212,0.12), rgba(0,188,212,0.04)); }
+  .rest .stage-icon-wrap { background: rgba(0,188,212,0.15); }
+  .rest .stage-meta strong { color: var(--rest); }
+  .rest .stage-you-here { background: rgba(0,188,212,0.15); color: var(--rest); border: 1px solid rgba(0,188,212,0.4); }
+  .rest .checklist li .check { border-color: var(--rest); color: var(--rest); }
+  .rest .stage-quote { background: rgba(0,188,212,0.08); border-left: 3px solid var(--rest); }
+
+  /* Today box */
+  .today-box {
+    background: var(--card);
+    border: 1px solid rgba(249,168,37,0.25);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 28px 0;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .today-box h3 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--morning); }
+
+  .task-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 14px; line-height: 1.5; }
+  .task-item:last-child { border-bottom: none; }
+  .task-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; color: var(--morning); min-width: 22px; padding-top: 1px; }
+
+  /* Save buttons */
+  .save-bar {
+    display: flex;
+    gap: 12px;
+    margin: 28px 0;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  .save-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    letter-spacing: 0.3px;
+  }
+
+  .save-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+  .save-btn.pdf { background: linear-gradient(135deg, var(--evening), var(--afternoon)); color: #fff; }
+  .save-btn.html { background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid rgba(255,255,255,0.15); }
+  .save-btn.restart { background: rgba(249,168,37,0.1); color: var(--morning); border: 1px solid rgba(249,168,37,0.3); }
+
+  /* Footer */
+  .footer { text-align: center; padding: 32px 0 20px; animation: fadeUp 0.8s 0.5s ease both; }
+  .footer-emoji { font-size: 28px; margin-bottom: 10px; display: block; }
+  .footer p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  .tap-hint { text-align: center; font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Print styles */
+  @media print {
+    body::before { display: none; }
+    .save-bar, .tap-hint, #intake-screen { display: none !important; }
+    .stage-body { display: block !important; }
+    .stage-card { break-inside: avoid; margin-bottom: 16px; border: 1px solid #ddd !important; border-radius: 12px !important; }
+    body { background: #fff !important; color: #111 !important; }
+
+    /* Reset all CSS variables for print */
+    :root {
+      --bg: #fff !important;
+      --card: #f8f8f8 !important;
+      --border: #ddd !important;
+      --text: #111 !important;
+      --muted: #444 !important;
+      --morning: #c47f00 !important;
+      --afternoon: #b01070 !important;
+      --evening: #5a2fcc !important;
+      --rest: #007a99 !important;
+      --gold: #c47f00 !important;
+    }
+
+    /* Force all text to be dark */
+    p, li, span, div, h1, h2, h3, h4 { color: #111 !important; }
+    .hero-sub, .age-context, .stage-meta span, .tap-hint, .priority-text span { color: #444 !important; }
+    .scripture-text { color: #222 !important; }
+    .footer p { color: #444 !important; }
+
+    /* Stage intros */
+    .stage-body p { color: #333 !important; }
+
+    /* Checklist items */
+    .checklist li { color: #111 !important; }
+    .checklist li div, .checklist li span:not(.check) { color: #111 !important; }
+    strong { color: #000 !important; }
+
+    /* Stage headers stay coloured but readable */
+    .morning .stage-header { background: #fff8e6 !important; }
+    .afternoon .stage-header { background: #fce4f0 !important; }
+    .evening .stage-header { background: #ede8ff !important; }
+    .rest .stage-header { background: #e0f7fa !important; }
+
+    /* Stage quotes */
+    .stage-quote { opacity: 1 !important; color: #222 !important; }
+    .stage-quote * { color: #222 !important; }
+
+    /* Priority items */
+    .priority-item { background: #f8f8f8 !important; border: 1px solid #ddd !important; }
+    .priority-text strong { color: #111 !important; }
+    .priority-text span { color: #444 !important; }
+
+    /* Today box */
+    .today-box { background: #f8f8f8 !important; border: 1px solid #ddd !important; }
+    .task-item { color: #111 !important; border-bottom-color: #ddd !important; }
+
+    /* Age indicator */
+    .age-indicator { background: #f8f8f8 !important; }
+    .age-label { color: #444 !important; }
+    .life-progress-labels span { color: #444 !important; }
+    .you-are-here { color: #c47f00 !important; }
+
+    /* Scripture box */
+    .scripture { background: #fffbf0 !important; border: 1px solid #f0d080 !important; }
+    .scripture-ref { color: #c47f00 !important; }
+
+    /* Hero badge */
+    .hero-badge { color: #c47f00 !important; border-color: #c47f00 !important; background: #fff8e6 !important; }
+
+    /* YouVersion card */
+    .stage-body > div[style*="bible.com"] { background: #fff8e6 !important; border: 1px solid #f0c040 !important; }
+    .stage-body a { color: #000 !important; background: #f9a825 !important; }
+
+    /* Remove animations */
+    * { animation: none !important; transition: none !important; }
+
+    /* Page setup */
+    @page { margin: 1.5cm; }
+    .container { padding: 0 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── INTAKE SCREEN ─── -->
+<div id="intake-screen">
+  <div class="container" style="display:flex;align-items:center;justify-content:center;min-height:100vh;">
+    <div class="intake-box">
+      <div class="intake-logo">
+        <span class="emoji">🌅</span>
+        <h2>Graph of <em>Life</em></h2>
+        <p>Enter your details and discover where you are in your journey — and what to do next.</p>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="firstName">Your First Name</label>
+        <input class="field-input" type="text" id="firstName" placeholder="e.g. David" autocomplete="off" />
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Date of Birth</label>
+        <div class="dob-row">
+          <select class="field-input" id="dobDay">
+            <option value="">Day</option>
+          </select>
+          <select class="field-input" id="dobMonth">
+            <option value="">Month</option>
+            <option value="0">January</option><option value="1">February</option>
+            <option value="2">March</option><option value="3">April</option>
+            <option value="4">May</option><option value="5">June</option>
+            <option value="6">July</option><option value="7">August</option>
+            <option value="8">September</option><option value="9">October</option>
+            <option value="10">November</option><option value="11">December</option>
+          </select>
+          <select class="field-input" id="dobYear">
+            <option value="">Year</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="error-msg" id="errorMsg">⚠️ Please enter your name and a valid date of birth.</div>
+
+      <button class="generate-btn" onclick="generateGraph()">✨ Generate My Graph of Life</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── RESULT SCREEN ─── -->
+<div id="result-screen">
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-badge" id="heroBadge">✨ Your Personal Graph</div>
+    <h1 id="heroTitle">Name's <em>Graph of Life</em></h1>
+    <p class="hero-sub" id="heroSub">Loading your journey...</p>
+  </div>
+
+  <!-- Age Indicator -->
+  <div class="age-indicator">
+    <div class="age-label">You are right here</div>
+    <div class="age-display">
+      <div class="age-num" id="ageNum">--</div>
+      <div class="age-context" id="ageContext">years old</div>
+    </div>
+    <div class="life-progress-wrap">
+      <div class="life-progress-labels">
+        <span>Birth</span><span>25</span><span>50</span><span>75</span><span>100</span>
+      </div>
+      <div class="life-bar">
+        <div class="life-bar-fill" id="lifeFill"></div>
+        <div class="life-bar-marker" id="lifeMarker"></div>
+      </div>
+      <div class="you-are-here" id="youAreHere" style="color: var(--morning);">← You are here.</div>
+    </div>
+  </div>
+
+  <!-- Scripture -->
+  <div class="scripture">
+    <div class="scripture-ref">📖 Psalm 90:12</div>
+    <div class="scripture-text">"Teach us to number our days, that we may gain a heart of wisdom."</div>
+  </div>
+
+  <!-- Priorities -->
+  <div class="priorities">
+    <div class="section-title">🎯 Core Priorities For This Season</div>
+    <div class="priority-list" id="priorityList"></div>
+  </div>
+
+  <!-- Stage Cards -->
+  <div class="section-title">The 4 Stages of Your Life 👇 Tap each one</div>
+  <div class="tap-hint">tap to open each stage</div>
+  <div class="stages" id="stagesContainer"></div>
+
+  <!-- Today's Actions -->
+  <div class="today-box">
+    <h3>⚡ What You Can Do Starting Today</h3>
+    <div id="todayActions"></div>
+  </div>
+
+  <!-- Save Options -->
+  <div class="save-bar">
+    <button class="save-btn pdf" onclick="window.print()">🖨️ Save as PDF</button>
+    <button class="save-btn html" onclick="saveAsHTML()">💾 Download File</button>
+    <button class="save-btn restart" onclick="restart()">↩ Start Over</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="footer-emoji">🌅</span>
+    <p id="footerText">Life is a gift. Every birthday is progress — and a reminder of the road ahead.<br><br>
+    <span style="color: var(--morning);">"The true worth of life is not in the things you acquire, but in what you give." ✨</span></p>
+  </div>
+
+</div>
+</div>
+
+<script>
+// ─── POPULATE DROPDOWNS ───
+(function() {
+  const dayEl = document.getElementById('dobDay');
+  for (let d = 1; d <= 31; d++) {
+    const o = document.createElement('option');
+    o.value = d; o.textContent = d;
+    dayEl.appendChild(o);
+  }
+  const yearEl = document.getElementById('dobYear');
+  const thisYear = new Date().getFullYear();
+  for (let y = thisYear; y >= thisYear - 100; y--) {
+    const o = document.createElement('option');
+    o.value = y; o.textContent = y;
+    yearEl.appendChild(o);
+  }
+})();
+
+// ─── AGE CALCULATION ───
+function calcAge(day, month, year) {
+  const today = new Date();
+  const dob = new Date(year, month, day);
+  let years = today.getFullYear() - dob.getFullYear();
+  let months = today.getMonth() - dob.getMonth();
+  let days = today.getDate() - dob.getDate();
+  if (days < 0) { months--; days += new Date(today.getFullYear(), today.getMonth(), 0).getDate(); }
+  if (months < 0) { years--; months += 12; }
+  return { years, months, days, totalDays: Math.floor((today - dob) / 86400000) };
+}
+
+// ─── STAGE DETECTION ───
+function getStage(age) {
+  if (age <= 25) return 'morning';
+  if (age <= 50) return 'afternoon';
+  if (age <= 75) return 'evening';
+  return 'rest';
+}
+
+// ─── STAGE CONTENT ───
+function getStageCards(age, name, stage) {
+  const yearsLeft = stage === 'morning' ? 25 - age :
+                    stage === 'afternoon' ? 50 - age :
+                    stage === 'evening' ? 75 - age : null;
+
+  const morningIntro = age <= 15
+    ? `This is your biggest investment season. Think of it like charging a phone to 100% — everything you pour in now powers everything that comes later. Nothing you do here is wasted. 💛`
+    : age <= 25
+    ? `You have ${yearsLeft} year${yearsLeft !== 1 ? 's' : ''} left in your Morning season. The decisions you make now about faith, purpose, relationships and mindset will directly shape your Afternoon. Don't drift — decide. 💛`
+    : `You have passed through the Morning season. What was built here forms the foundation of everything that follows.`;
+
+  const afternoonIntro = stage === 'afternoon'
+    ? `You are in the execution season. Everything you built in your Morning is now being deployed. This is where faith becomes action and purpose becomes impact. Walk in it fully. 🔥`
+    : `This is the execution stage — where everything built in the Morning clicks into place. If the Morning is invested well, the Afternoon is powerful. 🔥`;
+
+  const eveningIntro = stage === 'evening'
+    ? `You are in the legacy season. Your focus shifts from building to giving back — raising others, building institutions, leaving things that will outlast you. This is your most selfless season. 💜`
+    : `Your focus shifts from building to giving back. You start raising up others, building institutions, leaving things that outlast you. 💜`;
+
+  const restIntro = stage === 'rest'
+    ? `You have reached the season of completion. Rest here does not mean the end — it means your assignment is complete. Like Billy Graham and Paul, a man can finish his work and still be alive. You are an overcomer. 🩵`
+    : `Rest doesn't mean the end. It means assignment complete. The true worth of life isn't what you collected — it's what you gave. 🩵`;
+
+  return `
+    <!-- MORNING -->
+    <div class="stage-card morning ${stage === 'morning' ? 'active' : ''}" onclick="toggleStage(this)">
+      <div class="stage-header">
+        <div class="stage-icon-wrap">🌅</div>
+        <div class="stage-meta">
+          <strong>Morning Stage ${stage === 'morning' ? '<span class="stage-you-here">YOU ARE HERE</span>' : ''}</strong>
+          <span>Ages 0–25 · The Learning Season</span>
+        </div>
+        <div class="stage-arrow">▾</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-divider"></div>
+        <p style="font-size:13.5px;color:var(--muted);margin-bottom:14px;line-height:1.6;">${morningIntro}</p>
+        <ul class="checklist">
+          <li><span class="check" style="border-color:var(--morning);color:var(--morning);">→</span><div><strong style="color:#fff;">Build your spirit first.</strong> Massive investment in your prayer life and the Word of God — this is your prayer &amp; word bank. Deposits made now pay dividends for life.</div></li>
+          <li><span class="check" style="border-color:var(--morning);color:var(--morning);">→</span><div><strong style="color:#fff;">Know Jesus personally.</strong> Experience salvation, build a real working relationship with Him, and get filled with the Holy Spirit. Not religion — a living connection.</div></li>
+          <li><span class="check" style="border-color:var(--morning);color:var(--morning);">→</span><div><strong style="color:#fff;">Discover your purpose.</strong> What problem were you born to solve? Your assignment is unique to you — begin developing your potential around it.</div></li>
+          <li><span class="check" style="border-color:var(--morning);color:var(--morning);">→</span><div><strong style="color:#fff;">Write your life blueprint.</strong> A clearly defined plan for how you want to live — spiritually, professionally, financially, relationally. Don't drift — design.</div></li>
+          <li><span class="check" style="border-color:var(--morning);color:var(--morning);">→</span><div><strong style="color:#fff;">Make honest mistakes — and learn fast.</strong> This is the grace season. Every stumble is a lesson; let none be wasted.</div></li>
+          <li><span class="check" style="border-color:var(--morning);color:var(--morning);">→</span><div><strong style="color:#fff;">Develop your mind thoroughly.</strong> Study the principles of God's Kingdom AND the laws of how the world works. Understanding both gives you an edge in every room.</div></li>
+          <li><span class="check" style="border-color:var(--morning);color:var(--morning);">→</span><div><strong style="color:#fff;">Gain financial intelligence.</strong> Learn how money works — before you need it, not after. Budgeting, saving, building wealth.</div></li>
+          <li><span class="check" style="border-color:var(--morning);color:var(--morning);">→</span><div><strong style="color:#fff;">Build strategic destiny relationships.</strong> The right people in your Morning determine the quality of your Afternoon. Be intentional — not everyone deserves your inner circle.</div></li>
+          <li><span class="check" style="border-color:var(--morning);color:var(--morning);">→</span><div><strong style="color:#fff;">Be settled in family life by 25.</strong> After ticking the above — faith, purpose, blueprint, mindset — being grounded in family by 25 is the strongest foundation for your Afternoon.</div></li>
+        </ul>
+        <div style="background:linear-gradient(135deg,rgba(249,168,37,0.15),rgba(249,168,37,0.05));border:1px solid rgba(249,168,37,0.3);border-radius:14px;padding:16px 18px;margin:16px 0;display:flex;align-items:center;gap:14px;">
+          <div style="font-size:28px;flex-shrink:0;">📖</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--morning);margin-bottom:4px;">Start with the New Testament</div>
+            <div style="font-size:12.5px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:8px;">Begin with the Gospels — <strong>Matthew, Mark and Luke</strong> — and get to know Jesus in His own words.</div>
+            <a href="https://www.bible.com/" target="_blank" style="display:inline-block;background:var(--morning);color:#000;font-size:12px;font-weight:700;padding:7px 16px;border-radius:100px;text-decoration:none;">📱 Download the YouVersion Bible App →</a>
+          </div>
+        </div>
+        <div class="stage-quote" style="color:rgba(255,255,255,0.85);">
+          💛 <strong>God has always used young people:</strong>
+          <ul style="list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+            <li style="display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--morning);font-weight:700;min-width:44px;">Age 12</span><span>Jesus understood His purpose — already in the temple, about His Father's business. <em>(Luke 2:42)</em></span></li>
+            <li style="display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--morning);font-weight:700;min-width:44px;">Age 17</span><span>Joseph dreamed his destiny — everything that followed was leading him there. <em>(Genesis 37:2)</em></span></li>
+            <li style="display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--morning);font-weight:700;min-width:44px;">A child</span><span>Samuel heard God's voice before he even knew who was speaking. <em>(1 Samuel 3)</em></span></li>
+            <li style="display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--morning);font-weight:700;min-width:44px;">Young</span><span>Solomon asked for wisdom to lead — not wealth or power, just an understanding heart. <em>(1 Kings 3)</em></span></li>
+            <li style="display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--morning);font-weight:700;min-width:44px;">Young</span><span>David was anointed king — overlooked by everyone in the room, chosen by God. <em>(1 Samuel 16)</em></span></li>
+            <li style="display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--morning);font-weight:700;min-width:44px;">Young</span><span>Mary said yes to carry the Son of God — her obedience changed all of human history. <em>(Luke 1:38)</em></span></li>
+          </ul>
+          <div style="margin-top:12px;font-weight:600;color:#fff;">Your age is not a limitation. <em>It is your launchpad.</em> 🌅</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AFTERNOON -->
+    <div class="stage-card afternoon ${stage === 'afternoon' ? 'active' : ''}" onclick="toggleStage(this)">
+      <div class="stage-header">
+        <div class="stage-icon-wrap">☀️</div>
+        <div class="stage-meta">
+          <strong>Afternoon Stage ${stage === 'afternoon' ? '<span class="stage-you-here">YOU ARE HERE</span>' : ''}</strong>
+          <span>Ages 26–50 · Maximum Impact</span>
+        </div>
+        <div class="stage-arrow">▾</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-divider"></div>
+        <p style="font-size:13.5px;color:var(--muted);margin-bottom:14px;line-height:1.6;">${afternoonIntro}</p>
+        <ul class="checklist">
+          <li><span class="check" style="border-color:var(--afternoon);color:var(--afternoon);">→</span><div><strong style="color:#fff;">Walk fully in your purpose and assignment.</strong> This is the execution stage — stop preparing, start doing. Everything built in the Morning is now deployed.</div></li>
+          <li><span class="check" style="border-color:var(--afternoon);color:var(--afternoon);">→</span><div><strong style="color:#fff;">Engage the laws and principles for your profit.</strong> Every Kingdom principle and worldly law you studied in your Morning — you're now activating them. Watch them work for you.</div></li>
+          <li><span class="check" style="border-color:var(--afternoon);color:var(--afternoon);">→</span><div><strong style="color:#fff;">Be married and building your family.</strong> It is generally expected that by this stage you're married and raising your children — your family is part of your assignment, not separate from it.</div></li>
+          <li><span class="check" style="border-color:var(--afternoon);color:var(--afternoon);">→</span><div><strong style="color:#fff;">Be established structurally.</strong> Your career, your finances, your home — these should have a solid shape. You're not figuring out the basics; you're building on them.</div></li>
+          <li><span class="check" style="border-color:var(--afternoon);color:var(--afternoon);">→</span><div><strong style="color:#fff;">Reap the dividends of diligence.</strong> What you sowed in your Morning, you harvest here. Diligence always pays — just not always immediately.</div></li>
+          <li><span class="check" style="border-color:var(--afternoon);color:var(--afternoon);">→</span><div><strong style="color:#fff;">Create your biggest Kingdom impact.</strong> Influence, build, lead, serve. This is your maximum output season — bring everything you have.</div></li>
+        </ul>
+        <div class="stage-quote" style="color:rgba(255,255,255,0.85);">
+          🌸 The quality of your Afternoon is determined by the investment of your Morning. Every prayer, every skill, every good habit — it all comes with you into this season.
+        </div>
+      </div>
+    </div>
+
+    <!-- EVENING -->
+    <div class="stage-card evening ${stage === 'evening' ? 'active' : ''}" onclick="toggleStage(this)">
+      <div class="stage-header">
+        <div class="stage-icon-wrap">🌇</div>
+        <div class="stage-meta">
+          <strong>Evening Stage ${stage === 'evening' ? '<span class="stage-you-here">YOU ARE HERE</span>' : ''}</strong>
+          <span>Ages 51–75 · Legacy Season</span>
+        </div>
+        <div class="stage-arrow">▾</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-divider"></div>
+        <p style="font-size:13.5px;color:var(--muted);margin-bottom:14px;line-height:1.6;">${eveningIntro}</p>
+        <ul class="checklist">
+          <li><span class="check" style="border-color:var(--evening);color:var(--evening);">→</span>Your legacy is defined by 2 things: the problems you solved and the lives you positively changed.</li>
+          <li><span class="check" style="border-color:var(--evening);color:var(--evening);">→</span>Build institutions — organisations, schools, movements — that preserve your beliefs and impact beyond your lifetime.</li>
+          <li><span class="check" style="border-color:var(--evening);color:var(--evening);">→</span>Raise the next generation. Pour into younger people the way mentors poured into you. Selflessness becomes your superpower.</li>
+          <li><span class="check" style="border-color:var(--evening);color:var(--evening);">→</span>Your name and your life will be remembered for the solutions you provided and the lives you changed — choose every action wisely.</li>
+        </ul>
+        <div class="stage-quote" style="color:rgba(255,255,255,0.85);">
+          🌟 Your name will be remembered for the <strong>solutions you gave</strong> and the <strong>lives you touched</strong>. Every action from today builds that legacy.
+        </div>
+      </div>
+    </div>
+
+    <!-- REST -->
+    <div class="stage-card rest ${stage === 'rest' ? 'active' : ''}" onclick="toggleStage(this)">
+      <div class="stage-header">
+        <div class="stage-icon-wrap">🌙</div>
+        <div class="stage-meta">
+          <strong>Rest Stage ${stage === 'rest' ? '<span class="stage-you-here">YOU ARE HERE</span>' : ''}</strong>
+          <span>Ages 76+ · Completion</span>
+        </div>
+        <div class="stage-arrow">▾</div>
+      </div>
+      <div class="stage-body">
+        <div class="stage-divider"></div>
+        <p style="font-size:13.5px;color:var(--muted);margin-bottom:14px;line-height:1.6;">${restIntro}</p>
+        <ul class="checklist">
+          <li><span class="check" style="border-color:var(--rest);color:var(--rest);">→</span>God's perfect will is that you discover your assignment and complete it within the span of your life.</li>
+          <li><span class="check" style="border-color:var(--rest);color:var(--rest);">→</span>Learn from both your crowns (victories) and your scars (lessons). Both have shaped you.</li>
+          <li><span class="check" style="border-color:var(--rest);color:var(--rest);">→</span>Giving is living. The more you give, the more your life truly counts. The worth of life is not in acquisition but in contribution.</li>
+        </ul>
+        <div class="stage-quote" style="color:rgba(255,255,255,0.85);">
+          🙏 Paul wrote half the New Testament. Billy Graham preached to over 2 billion people. They both finished well — <strong>crown and scars together.</strong>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ─── TODAY'S ACTIONS BY STAGE ───
+function getTodayActions(stage) {
+  const actions = {
+    morning: [
+      { n:'01', t:'Spend real time with God — not a quick prayer, but a genuine conversation. Tell Him exactly where you are and ask Him to guide your next step.' },
+      { n:'02', t:'Start reading the Gospels — <strong>Matthew, Mark and Luke.</strong> Jot down what stands out. Your notes are the beginning of your word bank.' },
+      { n:'03', t:'Be planted in a church and show up consistently. Bring your questions from personal study to your pastor — that conversation accelerates growth.' },
+      { n:'04', t:'Write your life blueprint — even a rough draft. Where do you want to be spiritually, professionally and financially by 25? A life without a plan drifts.' },
+      { n:'05', t:'Identify 3 things you are good at or love doing. That is a clue to your purpose and how you are wired to trade on earth.' },
+      { n:'06', t:'Audit your relationships. Are the people closest to you sharpening you or dulling you? Your circle is shaping your future right now.' },
+      { n:'07', t:'Start learning about money — how to save, budget and build. Financial intelligence developed early is a gift you give your future self.' },
+    ],
+    afternoon: [
+      { n:'01', t:'Spend time in prayer specifically about your assignment — not general prayer, but focused. Ask God: <em>"Am I walking in the fullness of what you called me to do?"</em>' },
+      { n:'02', t:'Review your life blueprint. Are you executing on it or drifting? Identify one area where you have been preparing instead of doing — and take a concrete step today.' },
+      { n:'03', t:'Identify the Kingdom principle or law you most need to activate right now in your career, family or finances — and apply it with intentionality this week.' },
+      { n:'04', t:'Invest deliberately in your family today. The most important institution you will ever build is your home — protect and nourish it consistently.' },
+      { n:'05', t:'Assess your structural establishment. Career, finances, home — are these solid? Identify one area that needs shoring up and make a plan.' },
+      { n:'06', t:'Find one person in their Morning season to pour into. Mentoring others is part of your Afternoon assignment — your wisdom is not just for you.' },
+      { n:'07', t:'At the close of today ask: <em>"Did I execute, or did I merely plan?"</em> The Afternoon is not a season for preparation — it is a season for impact. 🔥' },
+    ],
+    evening: [
+      { n:'01', t:'Spend time in prayer asking God: <em>"Who have you placed in my life that I am called to raise up and pour into?"</em> Name them. Be intentional about them.' },
+      { n:'02', t:'Ask yourself honestly: what institution, movement or system can you build that will outlast you? Begin outlining it — even one page.' },
+      { n:'03', t:'Write down the top 3 lessons from your life that the next generation must hear. That is the beginning of your legacy document and your inheritance.' },
+      { n:'04', t:'Reach out to one younger person today — a word of wisdom, encouragement or an invitation to sit with you. Legacy is transferred person to person.' },
+      { n:'05', t:'Review what you are giving — your time, wisdom and resources. Selflessness is your superpower in this season. Are you living it fully?' },
+      { n:'06', t:'Protect your name and your legacy. Every decision from here builds or erodes what you will be remembered for — choose every action wisely.' },
+      { n:'07', t:'At the end of today ask: <em>"Did I give, or did I hold back?"</em> The Evening season is defined by generosity of spirit. 💜' },
+    ],
+    rest: [
+      { n:'01', t:'Rest in God\'s presence today — not striving, not performing. Simply be with Him. You have earned this communion.' },
+      { n:'02', t:'Reflect quietly on your assignment. Have you finished it? If something remains, ask God for grace to complete it gently — not frantically.' },
+      { n:'03', t:'Write down the top 3 lessons your life has taught you. Someone younger is waiting for exactly what you know. Your story is a precious gift.' },
+      { n:'04', t:'Give something today — your time, a word of wisdom, an encouragement, or a resource. In this season, giving is the fullest expression of living.' },
+      { n:'05', t:'Share a story from your life with someone younger — a crown or a scar. Both are needed. Both carry power to change a life.' },
+      { n:'06', t:'Rest in gratitude. You have run your race. Take time today to thank God for every chapter — the victories, the lessons, and the grace that carried you through.' },
+      { n:'07', t:'Close your day with this truth: <em>"The true worth of life is not in what I acquired, but in what I gave."</em> You have lived. 🙏' },
+    ],
+  };
+
+  return actions[stage].map(item =>
+    `<div class="task-item"><div class="task-num">${item.n}</div><div>${item.t}</div></div>`
+  ).join('');
+}
+
+
+// ─── PRIORITIES BY STAGE ───
+function getPriorities(stage) {
+  const data = {
+    morning: [
+      { icon: '✝️', label: 'Identity in Christ',       sub: 'Know who you are in Jesus — your foundation is formed here' },
+      { icon: '🔥', label: 'Calling, Laws & Gifts',    sub: 'Discover your assignment, Kingdom laws & principles, and how you are wired to trade on earth' },
+      { icon: '🤍', label: 'Sustainable Relationships', sub: 'Family, friends & networks aligned with God\'s purpose for your life' },
+    ],
+    afternoon: [
+      { icon: '🔥', label: 'Execute Your Assignment',  sub: 'Stop preparing — you are doing it now. Walk in the fullness of purpose' },
+      { icon: '🤍', label: 'Family & Structure',       sub: 'Married, raising children, established in career and finances' },
+      { icon: '👑', label: 'Kingdom Impact',            sub: 'Lead, influence and serve at your maximum capacity this season' },
+    ],
+    evening: [
+      { icon: '🌱', label: 'Raise the Next Generation', sub: 'Pour your wisdom into those coming behind you — mentoring is your primary assignment now' },
+      { icon: '🏛️', label: 'Build Lasting Institutions', sub: 'Organisations and movements that outlast you and preserve your convictions' },
+      { icon: '🌟', label: 'Guard Your Legacy',          sub: 'Your name is defined by the solutions you gave and the lives you changed' },
+    ],
+    rest: [
+      { icon: '🏁', label: 'Finish Well',         sub: 'Complete your assignment — God\'s will is that you finish within your lifespan' },
+      { icon: '📖', label: 'Share Your Story',    sub: 'Crowns and scars both — your life is someone else\'s road map' },
+      { icon: '🎁', label: 'Give Generously',     sub: 'Time, wisdom, resources. Giving is living — this is your season of pure generosity' },
+    ],
+  };
+  return data[stage].map((p, i) => `
+    <div class="priority-item">
+      <div class="priority-num">0${i + 1}</div>
+      <div class="priority-text"><strong>${p.label}</strong><span>${p.sub}</span></div>
+      <div class="priority-icon">${p.icon}</div>
+    </div>`).join('');
+}
+
+
+function generateGraph() {
+  const name = document.getElementById('firstName').value.trim();
+  const day = parseInt(document.getElementById('dobDay').value);
+  const month = parseInt(document.getElementById('dobMonth').value);
+  const year = parseInt(document.getElementById('dobYear').value);
+  const err = document.getElementById('errorMsg');
+
+  if (!name || isNaN(day) || isNaN(month) || isNaN(year)) {
+    err.style.display = 'block';
+    return;
+  }
+
+  const dob = new Date(year, month, day);
+  if (dob > new Date()) {
+    err.textContent = '⚠️ Date of birth cannot be in the future.';
+    err.style.display = 'block';
+    return;
+  }
+
+  err.style.display = 'none';
+
+  const { years, months, days } = calcAge(day, month, year);
+  const stage = getStage(years);
+
+  // Stage colours for the progress bar
+  const stageColours = {
+    morning:   'linear-gradient(90deg, #f9a825, #ffca28)',
+    afternoon: 'linear-gradient(90deg, #f9a825, #e91e8c)',
+    evening:   'linear-gradient(90deg, #e91e8c, #7c4dff)',
+    rest:      'linear-gradient(90deg, #7c4dff, #00bcd4)',
+  };
+
+  const stageLabels = {
+    morning:   { icon: '🌅', label: 'Morning Season', sub: `${25 - years} year${25 - years !== 1 ? 's' : ''} remaining in this season` },
+    afternoon: { icon: '☀️', label: 'Afternoon Season', sub: `${50 - years} year${50 - years !== 1 ? 's' : ''} remaining in this season` },
+    evening:   { icon: '🌇', label: 'Evening Season', sub: `${75 - years} year${75 - years !== 1 ? 's' : ''} remaining in this season` },
+    rest:      { icon: '🌙', label: 'Rest Season', sub: 'Assignment complete — well done.' },
+  };
+
+  const heroSubs = {
+    morning:   `You are in your most important investment season. Every decision you make right now is shaping your future. Don't drift — design your life with intention. 🗺️`,
+    afternoon: `You are in the execution season — the most powerful chapter of your life. Everything you built in your Morning is now being deployed. Walk in it fully. 🔥`,
+    evening:   `You are in the legacy season. Your greatest work now is raising the next generation and building things that will outlast you. 💜`,
+    rest:      `You have reached the season of completion. Your assignment is done. Rest in the Lord's faithfulness — and share your story with those who follow. 🌙`,
+  };
+
+  // Populate hero
+  document.getElementById('heroTitle').innerHTML = `${name}'s <em>Graph of Life</em>`;
+  document.getElementById('heroBadge').textContent = `✨ ${stageLabels[stage].icon} ${stageLabels[stage].label}`;
+  document.getElementById('heroSub').textContent = heroSubs[stage];
+
+  // Age display
+  let ageStr = `${years}`;
+  let contextStr = `years old<br><span style="color:var(--${stage});font-weight:600;">${stageLabels[stage].icon} ${stageLabels[stage].label}</span><br><span style="font-size:12px;color:var(--muted);">${months} months, ${days} days</span>`;
+  document.getElementById('ageNum').textContent = ageStr;
+  document.getElementById('ageNum').style.color = `var(--${stage})`;
+  document.getElementById('ageContext').innerHTML = contextStr;
+
+  // Life marker colour
+  document.getElementById('lifeMarker').style.border = `3px solid var(--${stage})`;
+  document.getElementById('lifeMarker').style.boxShadow = `0 0 12px var(--${stage})`;
+
+  // Progress bar
+  const pct = Math.min((years / 100) * 100, 100);
+  document.getElementById('lifeFill').style.background = stageColours[stage];
+  document.getElementById('youAreHere').style.color = `var(--${stage})`;
+
+  const yah = document.getElementById('youAreHere');
+  if (stage === 'morning') yah.textContent = `← You are here. ${25 - years} years remaining in your Morning season.`;
+  else if (stage === 'afternoon') yah.textContent = `← You are here. ${50 - years} years remaining in your Afternoon season.`;
+  else if (stage === 'evening') yah.textContent = `← You are here. ${75 - years} years remaining in your Evening season.`;
+  else yah.textContent = `← You are here. Assignment complete.`;
+
+  // Render priorities
+  document.getElementById('priorityList').innerHTML = getPriorities(stage);
+
+  // Render stages
+  document.getElementById('stagesContainer').innerHTML = getStageCards(years, name, stage);
+
+  // Render today's actions
+  document.getElementById('todayActions').innerHTML = getTodayActions(stage);
+
+  // Today box title + number colour matches stage (must run after render)
+  document.querySelector('.today-box h3').style.color = `var(--${stage})`;
+  document.querySelectorAll('.task-num').forEach(el => el.style.color = `var(--${stage})`);
+
+  // Footer
+  const footerMessages = {
+    morning: `<strong style="color:#fff;">${name}, you are in the Morning. Make every day count.</strong>`,
+    afternoon: `<strong style="color:#fff;">${name}, you are in the Afternoon. Execute with everything you have.</strong>`,
+    evening: `<strong style="color:#fff;">${name}, you are in the Evening. Build something that will outlast you.</strong>`,
+    rest: `<strong style="color:#fff;">${name}, you have run your race. Well done.</strong>`,
+  };
+  document.getElementById('footerText').innerHTML = `Life is a gift. Every birthday is progress — and a reminder of the road ahead.<br><br>${footerMessages[stage]}<br><br><span style="color:var(--morning);">"The true worth of life is not in the things you acquire, but in what you give." ✨</span>`;
+
+  // Animate bar after short delay
+  setTimeout(() => {
+    document.getElementById('lifeFill').style.width = pct + '%';
+    document.getElementById('lifeMarker').style.left = pct + '%';
+  }, 400);
+
+  // Show result
+  document.getElementById('intake-screen').style.display = 'none';
+  document.getElementById('result-screen').style.display = 'block';
+  window.scrollTo(0, 0);
+
+  // Store for download
+  window._graphData = { name, day, month, year, years, months, days, stage };
+}
+
+// ─── TOGGLE STAGES ───
+function toggleStage(card) {
+  const wasActive = card.classList.contains('active');
+  document.querySelectorAll('.stage-card').forEach(c => c.classList.remove('active'));
+  if (!wasActive) card.classList.add('active');
+}
+
+// ─── SAVE AS HTML ───
+function saveAsHTML() {
+  const html = document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const d = window._graphData;
+  a.href = url;
+  a.download = `EdenMandate_GraphOfLife_${d.name}.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ─── RESTART ───
+function restart() {
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('intake-screen').style.display = 'flex';
+  document.getElementById('firstName').value = '';
+  document.getElementById('dobDay').value = '';
+  document.getElementById('dobMonth').value = '';
+  document.getElementById('dobYear').value = '';
+  document.getElementById('lifeFill').style.width = '0%';
+  window.scrollTo(0, 0);
+}
+
+// Enter key submits
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('intake-screen').style.display !== 'none') {
+    generateGraph();
+  }
+});
+</script>
+
+</body>
+</html>
