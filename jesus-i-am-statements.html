@@ -5,31 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>I Am Statements in the Gospels</title>
 <style>
-  body { font-family: Arial, sans-serif; max-width: 820px; margin: 0 auto; padding: 20px; background: #fff; color: #222; }
-  h1 { font-size: 22px; margin-bottom: 4px; }
-  .subtitle { color: #666; font-size: 13px; margin-bottom: 20px; }
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    color: #222;
+    font-size: 30px;
+    line-height: 1.6;
+  }
+  h1 { font-size: 2rem; margin-bottom: 4px; }
+  .subtitle { color: #666; font-size: 1rem; margin-bottom: 20px; }
   .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-  .tab { padding: 7px 16px; border-radius: 20px; border: 1px solid #ccc; background: #fff; color: #555; font-size: 13px; cursor: pointer; }
+  .tab { padding: 7px 16px; border-radius: 20px; border: 1px solid #ccc; background: #fff; color: #555; font-size: 0.9rem; cursor: pointer; }
   .tab.active { background: #222; color: #fff; border-color: #222; }
   .tab.ot-tab.active { background: #7c3c00; border-color: #7c3c00; color: #fff; }
   .counts { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
   .count-box { border: 1px solid #ddd; border-radius: 8px; padding: 10px 16px; background: #f9f9f9; min-width: 80px; }
-  .count-num { font-size: 24px; font-weight: bold; }
-  .count-lbl { font-size: 11px; color: #888; }
-  .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin: 20px 0 8px; font-weight: bold; }
+  .count-num { font-size: 2rem; font-weight: bold; }
+  .count-lbl { font-size: 0.75rem; color: #888; }
+  .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #999; margin: 20px 0 8px; font-weight: bold; }
   .card { border: 1px solid #e5e5e5; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; background: #fafafa; display: flex; gap: 12px; }
-  .pill { font-size: 11px; font-weight: bold; padding: 3px 9px; border-radius: 12px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .pill { font-size: 0.75rem; font-weight: bold; padding: 3px 9px; border-radius: 12px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
   .pill-abs { background: #ede9ff; color: #3c2e9c; }
   .pill-pred { background: #e0f5ee; color: #095; }
   .pill-ot { background: #fff3e0; color: #7c3c00; }
-  .card-ref { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
-  .card-saying { font-size: 14px; font-style: italic; margin-bottom: 6px; }
-  .card-note { font-size: 12px; color: #555; line-height: 1.6; }
-  .card-ot-refs { font-size: 12px; color: #7c3c00; margin-top: 6px; line-height: 1.6; }
+  .card-ref { font-size: 1rem; font-weight: bold; margin-bottom: 4px; }
+  .card-saying { font-size: 1.05rem; font-style: italic; margin-bottom: 6px; }
+  .card-note { font-size: 0.95rem; color: #555; line-height: 1.6; }
+  .card-ot-refs { font-size: 0.9rem; color: #7c3c00; margin-top: 6px; line-height: 1.6; }
   .ot-label { font-weight: bold; color: #7c3c00; }
   #empty { display: none; padding: 40px; text-align: center; color: #999; }
-  .ot-intro { background: #fff8f0; border: 1px solid #f0d5b0; border-radius: 10px; padding: 16px 18px; margin-bottom: 20px; font-size: 13px; line-height: 1.7; color: #4a3000; }
-  .ot-intro h2 { font-size: 15px; margin: 0 0 8px; color: #7c3c00; }
+  .ot-intro { background: #fff8f0; border: 1px solid #f0d5b0; border-radius: 10px; padding: 16px 18px; margin-bottom: 20px; font-size: 0.95rem; line-height: 1.7; color: #4a3000; }
+  .ot-intro h2 { font-size: 1.1rem; margin: 0 0 8px; color: #7c3c00; }
 </style>
 </head>
 <body>
@@ -117,7 +126,6 @@ function getFiltered() {
 function render() {
   var items = getFiltered();
   var showOT = (currentFilter === "ot");
-
   var abs = items.filter(function(d){ return d.type==="absolute"; }).length;
   var pred = items.filter(function(d){ return d.type==="predicate"; }).length;
 
@@ -133,12 +141,11 @@ function render() {
   }
 
   var html = "";
-
   if (showOT) {
     html += '<div class="ot-intro"><h2>Old Testament Background</h2>' +
       'The three anchor texts for Jesus\'s egō eimi are <strong>Exodus 3:14</strong> (the divine name), ' +
       '<strong>Isaiah 43–45</strong> (YHWH\'s repeated "I am he"), and <strong>Daniel 7:13</strong> (the Son of Man). ' +
-      'Every entry below lists the specific OT passages behind each statement — hover or read the amber text for each reference.</div>';
+      'Every entry below lists the specific OT passages behind each statement.</div>';
   }
 
   var byGospel = {};
