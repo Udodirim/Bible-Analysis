@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Finished Work of Christ — Declaration Arsenal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --crimson: #8B0000;
+    --crimson-mid: #A52020;
+    --crimson-light: #C0392B;
+    --blood: #6B0000;
+    --gold: #B8860B;
+    --gold-mid: #D4A843;
+    --gold-light: #F5EDD5;
+    --ink: #0D0D0D;
+    --ink-soft: #1C1C1C;
+    --text: #1A1A1A;
+    --text2: #3D3530;
+    --text3: #7A7060;
+    --border: #E0D8CC;
+    --border-strong: #C8B89A;
+    --bg: #FAFAF7;
+    --bg-card: #FFFFFF;
+    --bg-dark: #0D0D0D;
+    --bg-declaration: #0A0A0A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 30px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--bg-dark);
+    color: #fff;
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,0,0,0.35), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-ornament {
+    font-size: 1.2rem;
+    color: var(--crimson-light);
+    letter-spacing: 0.5em;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--crimson-light);
+  }
+
+  .hero-rule {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--crimson-light), transparent);
+    margin: 1.5rem auto;
+  }
+
+  .hero-sub {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .hero-verse { font-weight: 500;
+    max-width: 600px;
+    margin: 2rem auto 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    border-left: 2px solid var(--crimson-light);
+    padding-left: 1.2rem;
+    text-align: left;
+  }
+
+  .hero-verse cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--crimson-light);
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* ── CONTROLS ── */
+  .controls-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13,13,13,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(139,0,0,0.3);
+    padding: 0.9rem 2rem;
+  }
+
+  .controls-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .search-wrap {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+
+  .search-wrap svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.3);
+    width: 14px; height: 14px;
+  }
+
+  #search {
+    width: 100%;
+    padding: 8px 12px 8px 34px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #search::placeholder { color: rgba(255,255,255,0.3); }
+  #search:focus { border-color: rgba(139,0,0,0.6); }
+
+  .filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .fbtn {
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .fbtn:hover { border-color: rgba(255,255,255,0.35); color: rgba(255,255,255,0.85); }
+  .fbtn.active { background: var(--crimson); border-color: var(--crimson); color: #fff; }
+
+  .result-count {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.3);
+    white-space: nowrap;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 5rem;
+  }
+
+  /* ── CATEGORY HEADING ── */
+  .cat-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 3rem 0 1.2rem;
+  }
+
+  .cat-heading:first-of-type { margin-top: 0; }
+
+  .cat-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .cat-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .cat-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-strong), transparent);
+  }
+
+  .cat-num {
+    font-size: 0.65rem;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── VERSE CARD ── */
+  .verse-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--crimson);
+    border-radius: 0 0 8px 8px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 10px;
+    transition: box-shadow 0.2s, border-top-color 0.2s;
+    position: relative;
+  }
+
+  .verse-card:hover {
+    box-shadow: 0 4px 20px rgba(139,0,0,0.08);
+    border-top-color: var(--crimson-light);
+  }
+
+  .verse-card.new-entry {
+    border-top-color: var(--gold);
+  }
+
+  .verse-card.new-entry:hover { border-top-color: var(--gold-mid); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .ref {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--crimson);
+  }
+
+  .verse-card.new-entry .ref { color: var(--gold); }
+
+  .new-badge {
+    font-size: 0.62rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--gold-light);
+    color: var(--gold);
+    border: 1px solid rgba(184,134,11,0.3);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .verse-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.75;
+    color: #1a1a1a;
+  }
+
+  .verse-text strong {
+    color: var(--crimson);
+    font-weight: 700;
+  }
+
+  .verse-card.new-entry .verse-text strong { color: var(--gold); }
+
+  /* ── DECLARATION BLOCK ── */
+  .declaration-section {
+    margin-top: 4rem;
+    background: var(--bg-declaration);
+    border-radius: 12px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .declaration-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(139,0,0,0.2), transparent 60%);
+    pointer-events: none;
+  }
+
+  .declaration-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--crimson-light);
+    margin-bottom: 1.2rem;
+  }
+
+  .declaration-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .declaration-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--crimson-light);
+    margin-bottom: 2rem;
+  }
+
+  .declaration-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
+  .declaration-text p {
+    margin-bottom: 1.2rem;
+  }
+
+  .declaration-text p:last-child { margin-bottom: 0; }
+
+  .declaration-text strong {
+    color: #fff;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .declaration-amen {
+    margin-top: 1.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--crimson-light);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── EMPTY ── */
+  .empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text3);
+    font-style: italic;
+    font-size: 0.65rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.65rem;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 3.5rem 1.2rem 3rem; }
+    main { padding: 2rem 1.2rem 4rem; }
+    .declaration-section { padding: 2rem 1.5rem; }
+    .controls-bar { padding: 0.75rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ornament">✦ ✦ ✦</div>
+  <h1>The <em>Finished Work</em><br>of Christ</h1>
+  <div class="hero-rule"></div>
+  <p class="hero-sub">Full Declaration Arsenal · NKJV · Over the Nations</p>
+  <blockquote class="hero-verse">
+    "Having disarmed principalities and powers, He made a public spectacle of them, triumphing over them in it."
+    <cite>Colossians 2:15</cite>
+  </blockquote>
+</section>
+
+<!-- CONTROLS -->
+<div class="controls-bar">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="search" placeholder="Search reference or keyword…" oninput="render()">
+    </div>
+    <div class="filter-tabs" id="filters"></div>
+    <span class="result-count" id="count"></span>
+  </div>
+</div>
+
+<main id="main"></main>
+
+<footer>
+  The Finished Work of Christ · NKJV · Bible Analysis Reference Series
+</footer>
+
+<script>
+var CATEGORIES = [
+  { id: "victory",        icon: "🔱", label: "Victory Over Powers" },
+  { id: "healing",        icon: "🩹", label: "Healing" },
+  { id: "redemption",     icon: "🔴", label: "Redemption Through His Blood" },
+  { id: "justification",  icon: "✝️",  label: "Justification & Righteousness" },
+  { id: "peace",          icon: "🕊️", label: "Peace & Reconciliation" },
+  { id: "cleansing",      icon: "🔥", label: "Cleansing & Sanctification" },
+  { id: "access",         icon: "🚪", label: "Access & Boldness" },
+  { id: "overcoming",     icon: "⚔️",  label: "Overcoming — Word of Testimony" },
+  { id: "nations",        icon: "🌍", label: "Nations & Inheritance" },
+];
+
+var DATA = [
+  // VICTORY
+  { cat:"victory", ref:"Colossians 2:14-15", isNew:false,
+    text:`"...having wiped out the handwriting of requirements that was against us... He has taken it out of the way, having nailed it to the cross. Having disarmed principalities and powers, <strong>He made a public spectacle of them</strong>, triumphing over them in it."` },
+  { cat:"victory", ref:"2 Corinthians 2:14", isNew:true,
+    text:`"Now thanks be to God who <strong>always leads us in triumph in Christ</strong>, and through us diffuses the fragrance of His knowledge in every place."` },
+  { cat:"victory", ref:"1 Corinthians 15:57", isNew:true,
+    text:`"But thanks be to God, who <strong>gives us the victory through our Lord Jesus Christ.</strong>"` },
+  { cat:"victory", ref:"1 John 4:4", isNew:true,
+    text:`"You are of God, little children, and have overcome them, because <strong>He who is in you is greater than he who is in the world.</strong>"` },
+  { cat:"victory", ref:"1 John 5:4-5", isNew:true,
+    text:`"For whatever is born of God overcomes the world. And this is the victory that has overcome the world — our faith. Who is he who overcomes the world, but he who believes that Jesus is the Son of God?"` },
+  { cat:"victory", ref:"Romans 8:37", isNew:false,
+    text:`"Yet in all these things <strong>we are more than conquerors through Him who loved us.</strong>"` },
+
+  // HEALING
+  { cat:"healing", ref:"Isaiah 53:4-5", isNew:false,
+    text:`"Surely He has borne our griefs and carried our sorrows... He was wounded for our transgressions, He was bruised for our iniquities; the chastisement for our peace was upon Him, and <strong>by His stripes we are healed.</strong>"` },
+  { cat:"healing", ref:"Matthew 8:16-17", isNew:true,
+    text:`"...He cast out the spirits with a word, and healed all who were sick, that it might be fulfilled which was spoken by Isaiah the prophet, saying: 'He Himself took our infirmities and bore our sicknesses.'"` },
+  { cat:"healing", ref:"1 Peter 2:24", isNew:false,
+    text:`"...who Himself bore our sins in His own body on the tree, that we, having died to sins, might live for righteousness — <strong>by whose stripes you were healed.</strong>"` },
+  { cat:"healing", ref:"Psalm 103:2-3", isNew:true,
+    text:`"Bless the Lord, O my soul, and forget not all His benefits: Who <strong>forgives all your iniquities, who heals all your diseases.</strong>"` },
+  { cat:"healing", ref:"James 5:14-15", isNew:true,
+    text:`"Is anyone among you sick? Let him call for the elders of the church, and let them pray over him, anointing him with oil in the name of the Lord. And <strong>the prayer of faith will save the sick</strong>, and the Lord will raise him up."` },
+
+  // REDEMPTION
+  { cat:"redemption", ref:"Ephesians 1:7", isNew:false,
+    text:`"In Him we have redemption <strong>through His blood</strong>, the forgiveness of sins, according to the riches of His grace."` },
+  { cat:"redemption", ref:"Colossians 1:13-14", isNew:false,
+    text:`"He has delivered us from the power of darkness and conveyed us into the kingdom of the Son of His love, in whom we have redemption <strong>through His blood</strong>, the forgiveness of sins."` },
+  { cat:"redemption", ref:"1 Peter 1:18-19", isNew:false,
+    text:`"...you were not redeemed with corruptible things, like silver or gold... but with the precious <strong>blood of Christ</strong>, as of a lamb without blemish and without spot."` },
+  { cat:"redemption", ref:"Galatians 3:13", isNew:false,
+    text:`"Christ has redeemed us from the curse of the law, having become a curse for us..."` },
+  { cat:"redemption", ref:"Romans 3:24-25", isNew:true,
+    text:`"...being justified freely by His grace through the redemption that is in Christ Jesus, whom God set forth as a propitiation <strong>by His blood</strong>, through faith..."` },
+  { cat:"redemption", ref:"Hebrews 9:12", isNew:true,
+    text:`"Not with the blood of goats and calves, but <strong>with His own blood He entered the Most Holy Place once for all, having obtained eternal redemption.</strong>"` },
+
+  // JUSTIFICATION
+  { cat:"justification", ref:"Romans 5:9", isNew:true,
+    text:`"Much more then, having now been justified <strong>by His blood</strong>, we shall be saved from wrath through Him."` },
+  { cat:"justification", ref:"Romans 5:18-19", isNew:true,
+    text:`"Therefore, as through one man's offense judgment came to all men, resulting in condemnation, even so through one Man's righteous act the free gift came to all men, resulting in <strong>justification of life.</strong>"` },
+  { cat:"justification", ref:"2 Corinthians 5:21", isNew:true,
+    text:`"For He made Him who knew no sin to be sin for us, that <strong>we might become the righteousness of God in Him.</strong>"` },
+
+  // PEACE
+  { cat:"peace", ref:"Colossians 1:20", isNew:false,
+    text:`"...and by Him to reconcile all things to Himself... <strong>having made peace through the blood of His cross.</strong>"` },
+  { cat:"peace", ref:"Ephesians 2:13-14", isNew:false,
+    text:`"But now in Christ Jesus you who once were far off have been brought near <strong>by the blood of Christ.</strong> For He Himself is our peace, who has made both one, and has broken down the middle wall of separation."` },
+  { cat:"peace", ref:"Romans 5:1", isNew:true,
+    text:`"Therefore, having been justified by faith, <strong>we have peace with God through our Lord Jesus Christ.</strong>"` },
+  { cat:"peace", ref:"Isaiah 53:5b", isNew:true,
+    text:`"The chastisement <strong>for our peace</strong> was upon Him."` },
+
+  // CLEANSING
+  { cat:"cleansing", ref:"1 John 1:7", isNew:false,
+    text:`"...the <strong>blood of Jesus Christ His Son cleanses us from all sin.</strong>"` },
+  { cat:"cleansing", ref:"Hebrews 9:14", isNew:false,
+    text:`"How much more shall <strong>the blood of Christ</strong>... cleanse your conscience from dead works to serve the living God?"` },
+  { cat:"cleansing", ref:"Hebrews 13:12", isNew:true,
+    text:`"Therefore Jesus also, that He might <strong>sanctify the people with His own blood</strong>, suffered outside the gate."` },
+  { cat:"cleansing", ref:"Revelation 1:5b", isNew:false,
+    text:`"...To Him who loved us and <strong>washed us from our sins in His own blood.</strong>"` },
+  { cat:"cleansing", ref:"1 Corinthians 1:30", isNew:true,
+    text:`"But of Him you are in Christ Jesus, who became for us wisdom from God — and <strong>righteousness and sanctification and redemption.</strong>"` },
+
+  // ACCESS
+  { cat:"access", ref:"Hebrews 10:19-22", isNew:false,
+    text:`"Therefore, brethren, having boldness to enter the Holiest <strong>by the blood of Jesus</strong>, by a new and living way which He consecrated for us... let us draw near with a true heart in full assurance of faith..."` },
+  { cat:"access", ref:"Hebrews 13:20-21", isNew:false,
+    text:`"Now may the God of peace... <strong>through the blood of the everlasting covenant</strong>, make you complete in every good work to do His will..."` },
+
+  // OVERCOMING
+  { cat:"overcoming", ref:"Revelation 12:11", isNew:false,
+    text:`"And they overcame him <strong>by the blood of the Lamb</strong> and by the word of their testimony, and they did not love their lives to the death."` },
+  { cat:"overcoming", ref:"Revelation 5:9", isNew:true,
+    text:`"...You are worthy to take the scroll... for You were slain, and have redeemed us to God <strong>by Your blood</strong> out of every tribe and tongue and people and nation."` },
+
+  // NATIONS
+  { cat:"nations", ref:"Psalm 2:8", isNew:true,
+    text:`"Ask of Me, and I will give You the nations for Your inheritance, and <strong>the ends of the earth for Your possession.</strong>"` },
+  { cat:"nations", ref:"Psalm 22:27-28", isNew:true,
+    text:`"All the ends of the world shall remember and turn to the Lord, and all the families of the nations shall worship before You. For the kingdom is the Lord's, and <strong>He rules over the nations.</strong>"` },
+  { cat:"nations", ref:"Isaiah 49:6", isNew:true,
+    text:`"...I will also give You as a light to the Gentiles, that <strong>You should be My salvation to the ends of the earth.</strong>"` },
+  { cat:"nations", ref:"Habakkuk 2:14", isNew:true,
+    text:`"For the earth will be filled with the knowledge of the glory of the Lord, <strong>as the waters cover the sea.</strong>"` },
+];
+
+var DECLARATION = `<p>We stand in the gap for Nigeria. We declare that Jesus Christ has triumphed over every principality and power assigned to this nation — <strong>He made a public spectacle of them.</strong> By His stripes, Nigeria is healed. He bore Nigeria's griefs, carried her sorrows, and redeemed her through His blood.</p>
+<p>We plead the blood of Jesus over every state, every city, every border, every government seat, every courtroom, every school, every marketplace, every home. <strong>The blood of Jesus speaks over Nigeria — it speaks mercy, peace, redemption, and righteousness.</strong></p>
+<p>Nigeria is not redeemed by silver or gold, but by the precious blood of Christ. We declare that every curse is broken, every cycle of destruction is terminated, and the finished work of the cross prevails. <strong>The knowledge of the glory of God shall fill Nigeria as the waters cover the sea.</strong></p>
+<p>We overcome every satanic agenda against Nigeria by the blood of the Lamb and the word of our testimony. The purposes of God shall stand in this nation.</p>`;
+
+var activeFilter = 'all';
+
+function buildFilters() {
+  var wrap = document.getElementById('filters');
+  var allBtn = document.createElement('button');
+  allBtn.className = 'fbtn active';
+  allBtn.textContent = 'All';
+  allBtn.onclick = function() { activeFilter = 'all'; setActive(allBtn); render(); };
+  wrap.appendChild(allBtn);
+
+  CATEGORIES.forEach(function(c) {
+    var btn = document.createElement('button');
+    btn.className = 'fbtn';
+    btn.textContent = c.icon + ' ' + c.label;
+    btn.onclick = function() { activeFilter = c.id; setActive(btn); render(); };
+    wrap.appendChild(btn);
+  });
+}
+
+function setActive(el) {
+  document.querySelectorAll('.fbtn').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+function render() {
+  var q = document.getElementById('search').value.toLowerCase().trim();
+  var filtered = DATA.filter(function(d) {
+    var matchCat = activeFilter === 'all' || d.cat === activeFilter;
+    var matchQ = !q || d.ref.toLowerCase().includes(q) || d.text.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  document.getElementById('count').textContent = filtered.length + ' passage' + (filtered.length !== 1 ? 's' : '');
+
+  var mainEl = document.getElementById('main');
+
+  if (!filtered.length) {
+    mainEl.innerHTML = '<div class="empty">No passages match your search.</div>';
+    return;
+  }
+
+  var html = '';
+  var activeCats = activeFilter === 'all'
+    ? CATEGORIES
+    : CATEGORIES.filter(function(c){ return c.id === activeFilter; });
+
+  activeCats.forEach(function(cat) {
+    var items = filtered.filter(function(d){ return d.cat === cat.id; });
+    if (!items.length) return;
+
+    html += '<div class="cat-heading">'
+      + '<span class="cat-icon">' + cat.icon + '</span>'
+      + '<span class="cat-title">' + cat.label + '</span>'
+      + '<span class="cat-line"></span>'
+      + '<span class="cat-num">' + items.length + ' passage' + (items.length !== 1 ? 's' : '') + '</span>'
+      + '</div>';
+
+    items.forEach(function(d) {
+      html += '<div class="verse-card' + (d.isNew ? ' new-entry' : '') + '">'
+        + '<div class="card-header">'
+        + '<span class="ref">' + d.ref + '</span>'
+        + (d.isNew ? '<span class="new-badge">Added</span>' : '')
+        + '</div>'
+        + '<div class="verse-text">' + d.text + '</div>'
+        + '</div>';
+    });
+  });
+
+  // Declaration block — only show when all or no specific cat search
+  if (activeFilter === 'all' && !q) {
+    html += '<div class="declaration-section">'
+      + '<div class="declaration-label">Corporate Declaration</div>'
+      + '<div class="declaration-title">Over Nigeria</div>'
+      + '<div class="declaration-rule"></div>'
+      + '<div class="declaration-text">' + DECLARATION + '</div>'
+      + '<div class="declaration-amen">In Jesus\' Name · Amen</div>'
+      + '</div>';
+  }
+
+  mainEl.innerHTML = html;
+}
+
+buildFilters();
+render();
+</script>
+</body>
+</html>
