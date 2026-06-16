@@ -10,9 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <script type="module">
-    import { createIcons, BookOpen, Search, Key, Link2, Crown, Star, Map, UserCheck, Heart, TrendingUp, ArrowRight, Users, Sunrise, Layers, Compass } from 'https://unpkg.com/lucide@latest/dist/esm/lucide.js';
+    import { createIcons, BookOpen, Search, Key, Link2, Crown, Star, Map, UserCheck, Heart, TrendingUp, ArrowRight, Users, Sunrise, Layers, Compass, Sword } from 'https://unpkg.com/lucide@latest/dist/esm/lucide.js';
     document.addEventListener('DOMContentLoaded', () => {
-      createIcons({ icons: { BookOpen, Search, Key, Link2, Crown, Star, Map, UserCheck, Heart, TrendingUp, ArrowRight, Users, Sunrise, Layers, Compass } });
+      createIcons({ icons: { BookOpen, Search, Key, Link2, Crown, Star, Map, UserCheck, Heart, TrendingUp, ArrowRight, Users, Sunrise, Layers, Compass, Sword } });
       const obs = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }});
       }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
@@ -38,6 +38,7 @@
       --ink:   #1c1612; --sepia:   #3d2b1f; --muted: #7a6a52;
       --pg:    #faf8f4; --cream:   #f5f2eb; --vellum:#ede8dc;
       --rule:  rgba(184,134,11,.2);
+      --crimson: #8B0000;
     }
     *, html { box-sizing:border-box; scroll-behavior:smooth; }
     body { background:var(--pg); color:var(--ink); font-family:'Crimson Pro',serif; font-size:21px; overflow-x:hidden; }
@@ -85,6 +86,16 @@
     .study-card:hover { transform:translateY(-4px); border-color:rgba(184,134,11,.4); box-shadow:0 16px 48px rgba(0,0,0,.07),0 4px 16px rgba(184,134,11,.06); }
     .study-card:hover::before { opacity:1; }
     .study-card:hover::after  { transform:scaleX(1); }
+
+    /* Special crimson card for finished work */
+    .study-card.crimson-card { background:#0D0D0D; border-color:rgba(139,0,0,.4); }
+    .study-card.crimson-card::before { background:linear-gradient(135deg,rgba(139,0,0,.15),transparent); }
+    .study-card.crimson-card::after  { background:linear-gradient(90deg,transparent,var(--crimson),transparent); }
+    .study-card.crimson-card:hover { border-color:rgba(139,0,0,.7); box-shadow:0 16px 48px rgba(139,0,0,.15),0 4px 16px rgba(139,0,0,.1); }
+    .study-card.crimson-card .card-num { color:rgba(139,0,0,.15); }
+    .study-card.crimson-card:hover .card-num { color:rgba(139,0,0,.3); }
+    .study-card.crimson-card .card-ico { color:rgba(139,0,0,.6); }
+    .study-card.crimson-card:hover .card-ico { color:#C0392B; }
 
     .card-num { font-family:'Cormorant Garamond',serif; font-size:5rem; font-weight:300; line-height:1; color:rgba(184,134,11,.07); position:absolute; top:10px; right:16px; transition:color .4s; pointer-events:none; }
     .study-card:hover .card-num { color:rgba(184,134,11,.14); }
@@ -223,7 +234,7 @@
       <p class="font-body uppercase mb-3" style="font-size:1rem;letter-spacing:.35em;color:rgba(184,134,11,.65);">Study Collection</p>
       <h2 class="font-display font-light leading-tight mb-5" style="font-size:clamp(2.6rem,5vw,4rem);color:var(--sepia);">Begin Your <em class="font-semibold" style="color:var(--gold);">Study</em></h2>
       <div class="rule-sm mb-6"></div>
-      <p class="font-body max-w-lg mx-auto" style="font-size:1.6rem;color:var(--muted);">Six carefully crafted studies await. Each one an invitation to go deeper into the living Word.</p>
+      <p class="font-body max-w-lg mx-auto" style="font-size:1.6rem;color:var(--muted);">Seven carefully crafted studies await. Each one an invitation to go deeper into the living Word.</p>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
@@ -281,6 +292,15 @@
         <div class="flex items-center gap-2 font-body" style="font-size:1.1rem;color:var(--gold);">Explore <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
       </a>
 
+      <a href="finished-work-of-christ.html" class="study-card crimson-card p-8">
+        <div class="card-num">VII</div>
+        <div class="mb-5"><i data-lucide="sword" class="card-ico"></i></div>
+        <p class="font-body uppercase mb-2" style="font-size:.9rem;letter-spacing:.3em;color:rgba(192,57,43,.6);">Study Seven</p>
+        <h3 class="font-display font-semibold leading-tight mb-3" style="font-size:1.8rem;color:#fff;">The Finished Work of Christ</h3>
+        <p class="font-body leading-relaxed mb-5" style="font-size:1.32rem;color:rgba(255,255,255,.55);">A full declaration arsenal &#8212; victory, healing, redemption, and the blood of Christ declared over the nations.</p>
+        <div class="flex items-center gap-2 font-body" style="font-size:1.1rem;color:#C0392B;">Explore <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
+      </a>
+
     </div>
   </div>
 </section>
@@ -308,11 +328,12 @@
         <span class="font-display font-semibold uppercase" style="font-size:1.1rem;color:#9a8060;letter-spacing:.2em;">Bible Analysis</span>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-6">
-        <a href="names-of-god.html"          class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#b8860b'" onmouseout="this.style.color='#9a8060'">Names of God</a>
-        <a href="jesus-i-am-statements.html" class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#b8860b'" onmouseout="this.style.color='#9a8060'">I Am Statements</a>
-        <a href="jesus-gospels-purpose.html" class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#b8860b'" onmouseout="this.style.color='#9a8060'">Gospels Purpose</a>
-        <a href="who-we-are-in-christ.html"  class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#b8860b'" onmouseout="this.style.color='#9a8060'">Who We Are</a>
-        <a href="graph-of-life.html"         class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#b8860b'" onmouseout="this.style.color='#9a8060'">Graph of Life</a>
+        <a href="names-of-god.html"                 class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#b8860b'" onmouseout="this.style.color='#9a8060'">Names of God</a>
+        <a href="jesus-i-am-statements.html"        class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#b8860b'" onmouseout="this.style.color='#9a8060'">I Am Statements</a>
+        <a href="jesus-gospels-purpose.html"        class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#b8860b'" onmouseout="this.style.color='#9a8060'">Gospels Purpose</a>
+        <a href="who-we-are-in-christ.html"         class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#b8860b'" onmouseout="this.style.color='#9a8060'">Who We Are</a>
+        <a href="graph-of-life.html"                class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#b8860b'" onmouseout="this.style.color='#9a8060'">Graph of Life</a>
+        <a href="finished-work-of-christ.html"      class="font-body" style="font-size:1.1rem;color:#9a8060;transition:color .3s;" onmouseover="this.style.color='#8B0000'" onmouseout="this.style.color='#9a8060'">Finished Work</a>
       </div>
       <p class="font-body" style="font-size:1rem;color:#c4b090;letter-spacing:.06em;">Scripture. Meaning. Life.</p>
     </div>
