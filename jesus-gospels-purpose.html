@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jesus in the Gospels — Origin, Destination & Purpose</title>
+<title>Jesus in the Gospels — Origin, Destination, Purpose & Mandate</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -31,6 +31,9 @@
     --purple: #5a3a8a;
     --purple-bg: rgba(90,58,138,0.07);
     --purple-text: #4a2e78;
+    --crimson: #8a1f1f;
+    --crimson-bg: rgba(138,31,31,0.07);
+    --crimson-text: #7a1a1a;
     --serif: 'EB Garamond', Georgia, serif;
     --body: 'Spectral', Georgia, serif;
   }
@@ -204,6 +207,7 @@
   .btn.active-origin { border-color: var(--blue); color: var(--blue-text); background: var(--blue-bg); }
   .btn.active-dest { border-color: var(--green); color: var(--green-text); background: var(--green-bg); }
   .btn.active-purpose { border-color: var(--amber); color: var(--amber-text); background: var(--amber-bg); }
+  .btn.active-mandate { border-color: var(--crimson); color: var(--crimson-text); background: var(--crimson-bg); }
   .btn.active-combined { border-color: var(--purple); color: var(--purple-text); background: var(--purple-bg); }
 
   .divider-small { width: 1px; height: 16px; background: var(--border); flex-shrink: 0; }
@@ -281,6 +285,7 @@
   .tag-origin  { background: var(--blue-bg);   color: var(--blue-text);   border: 1px solid rgba(74,127,165,0.25); }
   .tag-dest    { background: var(--green-bg);   color: var(--green-text);  border: 1px solid rgba(90,138,96,0.25); }
   .tag-purpose { background: var(--amber-bg);   color: var(--amber-text);  border: 1px solid rgba(154,122,53,0.3); }
+  .tag-mandate { background: var(--crimson-bg); color: var(--crimson-text); border: 1px solid rgba(138,31,31,0.3); }
   .tag-combined{ background: var(--purple-bg);  color: var(--purple-text); border: 1px solid rgba(122,90,154,0.25); }
 
   .greek-text {
@@ -307,6 +312,33 @@
     color: var(--text3);
     font-style: italic;
     line-height: 1.6;
+  }
+
+  .today-block {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: var(--crimson-bg);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .today-label {
+    font-family: var(--body);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--crimson-text);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .today-text {
+    font-family: var(--body);
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.65;
+    font-style: normal;
   }
 
   .empty {
@@ -343,10 +375,10 @@
 
   <header>
     <div class="header-ornament">✦ ✦ ✦</div>
-    <h1>Jesus in the Gospels<br><em>Origin, Destination &amp; Purpose</em></h1>
+    <h1>Jesus in the Gospels<br><em>Origin, Destination, Purpose &amp; Mandate</em></h1>
     <p class="subtitle">An Exhaustive Reference — Greek Text &amp; Commentary</p>
     <div class="header-line">
-      <span class="passage-count">35 passages · Matthew · Luke · John</span>
+      <span class="passage-count">44 passages · Matthew · Mark · Luke · John</span>
     </div>
   </header>
 
@@ -361,10 +393,12 @@
       <button class="btn" data-t="origin" onclick="setType('origin',this)">Origin</button>
       <button class="btn" data-t="dest" onclick="setType('dest',this)">Destination</button>
       <button class="btn" data-t="purpose" onclick="setType('purpose',this)">Purpose</button>
+      <button class="btn" data-t="mandate" onclick="setType('mandate',this)">Mandate</button>
       <div class="divider-small"></div>
       <span class="filter-label">Gospel</span>
       <button class="btn active-all" data-g="all" onclick="setGospel('all',this)">All</button>
       <button class="btn" data-g="Matthew" onclick="setGospel('Matthew',this)">Matthew</button>
+      <button class="btn" data-g="Mark" onclick="setGospel('Mark',this)">Mark</button>
       <button class="btn" data-g="Luke" onclick="setGospel('Luke',this)">Luke</button>
       <button class="btn" data-g="John" onclick="setGospel('John',this)">John</button>
     </div>
@@ -375,8 +409,8 @@
 
   <footer>
     <p>Greek text follows the Nestle-Aland 28th edition.<br>
-    Tag categories: <em>Origin</em> = whence He came · <em>Destination</em> = where He goes · <em>Purpose</em> = why He came.<br>
-    Passages spanning multiple categories carry multiple tags.</p>
+    Tag categories: <em>Origin</em> = whence He came · <em>Destination</em> = where He goes · <em>Purpose</em> = why He came · <em>Mandate</em> = the specific assignment He was sent to fulfill.<br>
+    Passages spanning multiple categories carry multiple tags. Mandate entries include a "Today" application translating the assignment into present-day terms.</p>
   </footer>
 
 </div>
@@ -539,6 +573,53 @@ const DATA = [
     greek:"ἀναβαίνω πρὸς τὸν πατέρα μου καὶ πατέρα ὑμῶν.",
     eng:"I ascend to My Father and your Father.",
     note:"ἀναβαίνω (I am ascending) — post-resurrection declaration; the Father as shared destination." },
+
+  // ───────── MANDATE ─────────
+  { ref:"Matt 10:5-6", gospel:"Matthew", tags:["mandate"],
+    greek:"εἰς ὁδὸν ἐθνῶν μὴ ἀπέλθητε... πορεύεσθε δὲ μᾶλλον πρὸς τὰ πρόβατα τὰ ἀπολωλότα οἴκου Ἰσραήλ.",
+    eng:"Do not go among the Gentiles or enter any town of the Samaritans. Go rather to the lost sheep of Israel.",
+    note:"A direct field assignment given to the Twelve — geographic and ethnic boundaries set for this specific mission.",
+    today:"Jesus didn't send His first team everywhere at once — He sent them to a defined group, in a defined order. Before there was a global mission, there was a focused one. The lesson: obedience to a specific assignment comes before the expansion of the mission." },
+  { ref:"Matt 15:24", gospel:"Matthew", tags:["mandate"],
+    greek:"οὐκ ἀπεστάλην εἰ μὴ εἰς τὰ πρόβατα τὰ ἀπολωλότα οἴκου Ἰσραήλ.",
+    eng:"I was not sent except to the lost sheep of the house of Israel.",
+    note:"Said to the Canaanite woman — Jesus states the limits of His earthly mandate before her persistence moves Him to extend grace beyond it (v.28).",
+    today:"When Jesus tells her, 'It is not right to take the children's bread and toss it to the dogs,' He is reflecting His immediate, prophetic mandate: to preach first to the lost sheep of Israel. He wasn't being unkind — He was being precise about His assignment. Even Jesus operated within a defined scope before grace expanded the boundary." },
+  { ref:"Luke 4:18-19", gospel:"Luke", tags:["mandate"],
+    greek:"Πνεῦμα Κυρίου ἐπ᾽ ἐμέ... κηρύξαι αἰχμαλώτοις ἄφεσιν καὶ τυφλοῖς ἀνάβλεψιν, ἀποστεῖλαι τεθραυσμένους ἐν ἀφέσει, κηρύξαι ἐνιαυτὸν Κυρίου δεκτόν.",
+    eng:"The Spirit of the Lord is upon Me... to proclaim liberty to the captives and recovery of sight to the blind, to set at liberty those who are oppressed, to proclaim the acceptable year of the Lord.",
+    note:"Jesus reads Isaiah 61 in the Nazareth synagogue and applies the ancient prophetic job description directly to Himself — His most explicit personal mandate statement.",
+    today:"This is Jesus reading His own job description out loud, in public, in His hometown synagogue — and then saying 'today this is fulfilled in your hearing' (v.21). It's the equivalent of someone standing up and naming, item by item, exactly what they were put on earth to do. The mandate wasn't vague inspiration — it was an itemized list: freedom for captives, sight for the blind, release for the oppressed." },
+  { ref:"Mark 1:38", gospel:"Mark", tags:["mandate"],
+    greek:"Ἄγωμεν ἀλλαχοῦ εἰς τὰς ἐχομένας κωμοπόλεις, ἵνα καὶ ἐκεῖ κηρύξω· εἰς τοῦτο γὰρ ἐξῆλθον.",
+    eng:"Let us go into the next towns, that I may preach there also, because for this purpose I have come forth.",
+    note:"After healing crowds in Capernaum, Jesus refuses to stay and build a base — the mandate is itinerant, not settled.",
+    today:"The crowd wanted Him to stay where the miracles were happening. Jesus moves on instead, because His mandate wasn't to build one successful location — it was to reach the next town, and the next. Staying where it's comfortable is not the same as fulfilling the assignment." },
+  { ref:"Luke 13:32-33", gospel:"Luke", tags:["mandate"],
+    greek:"ἰδοὺ ἐκβάλλω δαιμόνια καὶ ἰάσεις ἀποτελῶ σήμερον καὶ αὔριον, καὶ τῇ τρίτῃ τελειοῦμαι... δεῖ με σήμερον καὶ αὔριον καὶ τῇ ἑχομένῃ πορεύεσθαι.",
+    eng:"Behold, I cast out demons and perform cures today and tomorrow, and the third day I will be perfected... nevertheless I must journey today, tomorrow, and the day following.",
+    note:"In response to Herod's threat, Jesus names His mandate on a literal timetable — He will not be intimidated off schedule.",
+    today:"A king threatens Him, and Jesus' response is essentially: I have a schedule, and I'm keeping it. The mandate had a timetable that no political threat could move. When you know your assignment and its timing, intimidation loses its power over you." },
+  { ref:"John 4:34", gospel:"John", tags:["mandate"],
+    greek:"Ἐμὸν βρῶμά ἐστιν ἵνα ποιήσω τὸ θέλημα τοῦ πέμψαντός με καὶ τελειώσω αὐτοῦ τὸ ἔργον.",
+    eng:"My food is to do the will of Him who sent Me, and to finish His work.",
+    note:"To the disciples at the well in Samaria — Jesus describes the mandate as sustenance itself, more vital than physical food.",
+    today:"He had just had a long, exhausting conversation with the Samaritan woman, and the disciples assumed He'd be hungry. Instead He says the assignment itself fed Him more than food could. When the mandate is clear, fulfilling it becomes more energizing than draining." },
+  { ref:"John 9:4", gospel:"John", tags:["mandate"],
+    greek:"ἡμᾶς δεῖ ἐργάζεσθαι τὰ ἔργα τοῦ πέμψαντός με ἕως ἡμέρα ἐστίν· ἔρχεται νὺξ ὅτε οὐδεὶς δύναται ἐργάζεσθαι.",
+    eng:"I must work the works of Him who sent Me while it is day; night is coming when no one can work.",
+    note:"Before healing the man born blind — Jesus frames the mandate as time-bound, urgent, and non-negotiable.",
+    today:"Before a single miracle happens in this passage, Jesus names the clock that's running. The mandate has a window. He's not implying He'll run out of time personally — He's modeling the urgency every assignment from God carries: there is a 'daylight' for the work, and it will not stay open forever." },
+  { ref:"John 17:4", gospel:"John", tags:["mandate"],
+    greek:"ἐγώ σε ἐδόξασα ἐπὶ τῆς γῆς, τὸ ἔργον τελειώσας ὃ δέδωκάς μοι ἵνα ποιήσω.",
+    eng:"I have glorified You on the earth. I have finished the work which You have given Me to do.",
+    note:"Spoken before the crucifixion, in the High Priestly Prayer — Jesus reports the mandate as complete before the cross is even reached.",
+    today:"This is striking: He says the work is finished before the cross has happened. The mandate wasn't the miracles, the crowds, or the popularity — it was obedience to a specific assignment, and that obedience was already complete. Fulfillment of a mandate isn't measured by visible results; it's measured by faithfulness to what was given." },
+  { ref:"John 19:30", gospel:"John", tags:["mandate"],
+    greek:"Τετέλεσται.",
+    eng:"It is finished.",
+    note:"The final word from the cross — a single perfect-tense verb declaring the mandate fully, completely, permanently discharged.",
+    today:"One word. Not 'I'm done trying' but 'the work is completed and stands complete forever.' This is the ultimate close-out report on a mandate — the moment every assignment given from Luke 4 onward reaches its finish line. Nothing left undone, nothing left owed." },
 ];
 
 let typeFilter = 'all';
@@ -555,14 +636,14 @@ function setType(t, btn) {
 function setGospel(g, btn) {
   gospelFilter = g;
   document.querySelectorAll('#type-filters .btn[data-g]').forEach(b => {
-    b.className = 'btn' + (b === btn ? ' active-' + (g === 'all' ? 'all' : 'origin') : '');
+    b.className = 'btn';
   });
   if (btn) { btn.className = 'btn active-all'; }
   render();
 }
 
 function tagHTML(tags, activeFilter) {
-  const labels = { origin: 'Origin', dest: 'Destination', purpose: 'Purpose', combined: 'Combined' };
+  const labels = { origin: 'Origin', dest: 'Destination', purpose: 'Purpose', mandate: 'Mandate', combined: 'Combined' };
   const visibleTags = (activeFilter && activeFilter !== 'all') ? tags.filter(t => t === activeFilter) : tags;
   return visibleTags.map(t => `<span class="tag tag-${t}">${labels[t] || t}</span>`).join(' ');
 }
@@ -572,7 +653,7 @@ function render() {
   let items = DATA.filter(d => {
     if (gospelFilter !== 'all' && d.gospel !== gospelFilter) return false;
     if (typeFilter !== 'all' && !d.tags.includes(typeFilter)) return false;
-    if (q && !d.ref.toLowerCase().includes(q) && !d.greek.toLowerCase().includes(q) && !d.eng.toLowerCase().includes(q) && !d.note.toLowerCase().includes(q)) return false;
+    if (q && !d.ref.toLowerCase().includes(q) && !d.greek.toLowerCase().includes(q) && !d.eng.toLowerCase().includes(q) && !d.note.toLowerCase().includes(q) && !(d.today && d.today.toLowerCase().includes(q))) return false;
     return true;
   });
 
@@ -583,13 +664,14 @@ function render() {
     return;
   }
 
-  const gospels = ['Matthew', 'Luke', 'John'];
+  const gospels = ['Matthew', 'Mark', 'Luke', 'John'];
   let html = '';
   gospels.forEach(g => {
     const gItems = items.filter(d => d.gospel === g);
     if (!gItems.length) return;
     html += `<div class="gospel-heading"><h2>${g}</h2></div>`;
     gItems.forEach(d => {
+      const todayHTML = d.today ? `<div class="today-block"><span class="today-label">Today</span><div class="today-text">${d.today}</div></div>` : '';
       html += `<div class="entry">
         <div class="entry-header">
           <span class="ref">${d.ref}</span>
@@ -598,6 +680,7 @@ function render() {
         <div class="greek-text">${d.greek}</div>
         <div class="english-text">${d.eng}</div>
         <div class="note-text">${d.note}</div>
+        ${todayHTML}
       </div>`;
     });
   });
